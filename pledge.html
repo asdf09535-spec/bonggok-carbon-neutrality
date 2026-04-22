@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📜 탄소중립 실천 서약서 - 봉곡중학교 1학년 5반</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-dark:#1a5c35; --green-mid:#2d8653; --green-light:#4caf7d;
+    --green-pale:#a8e6bc; --green-mint:#d4f5e2;
+    --blue-deep:#0d4a6b; --blue-mid:#1a7aa8; --blue-light:#4db8e8; --blue-sky:#b8eaf7;
+    --yellow-sun:#ffd166; --card-bg:rgba(255,255,255,0.88);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(160deg,#0d4a6b 0%,#1a7aa8 25%,#2d8653 55%,#1a5c35 100%);min-height:100vh;overflow-x:hidden;}
+  .bg-bubbles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
+  .bubble{position:absolute;border-radius:50%;opacity:0.07;animation:floatUp linear infinite;}
+  .bubble:nth-child(1){width:80px;height:80px;left:5%;background:#4caf7d;animation-duration:12s;}
+  .bubble:nth-child(2){width:50px;height:50px;left:20%;background:#4db8e8;animation-duration:9s;animation-delay:2s;}
+  .bubble:nth-child(3){width:100px;height:100px;left:45%;background:#2d8653;animation-duration:14s;animation-delay:1s;}
+  .bubble:nth-child(4){width:60px;height:60px;left:70%;background:#4db8e8;animation-duration:11s;animation-delay:3s;}
+  .bubble:nth-child(5){width:80px;height:80px;left:88%;background:#4caf7d;animation-duration:13s;animation-delay:0.5s;}
+  @keyframes floatUp{0%{bottom:-150px;transform:translateX(0) rotate(0deg);opacity:0.07;}50%{transform:translateX(30px) rotate(180deg);}100%{bottom:110%;transform:translateX(-20px) rotate(360deg);opacity:0;}}
+
+  .school-top-banner{position:relative;z-index:10;background:rgba(10,40,60,0.6);backdrop-filter:blur(10px);border-bottom:1px solid rgba(77,184,232,0.2);text-align:center;padding:10px 20px;}
+  .school-top-banner span{color:rgba(255,255,255,0.75);font-size:0.82rem;font-weight:500;letter-spacing:2px;}
+  .school-top-banner span strong{color:var(--green-pale);font-weight:700;}
+
+  nav{position:sticky;top:0;z-index:100;display:flex;justify-content:center;gap:8px;padding:14px 20px;background:rgba(13,74,107,0.78);backdrop-filter:blur(20px);border-bottom:1px solid rgba(77,184,232,0.25);flex-wrap:wrap;}
+  nav a{text-decoration:none;color:rgba(255,255,255,0.85);font-size:0.85rem;font-weight:500;padding:8px 16px;border-radius:20px;transition:all 0.25s;border:1px solid transparent;display:flex;align-items:center;gap:5px;}
+  nav a:hover,nav a.active{background:rgba(76,175,125,0.35);border-color:rgba(76,175,125,0.5);color:#fff;transform:translateY(-1px);}
+
+  .page-header{position:relative;z-index:10;text-align:center;padding:40px 20px 30px;}
+  .page-header h1{font-family:'Gaegu',cursive;font-size:clamp(2rem,5vw,3rem);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;gap:12px;}
+  .page-header p{color:var(--green-pale);font-size:0.92rem;margin-top:8px;}
+
+  .container{max-width:1000px;margin:0 auto;padding:30px 20px 70px;position:relative;z-index:5;}
+
+  /* 서약 항목 */
+  .pledge-items-card{background:linear-gradient(135deg,rgba(255,255,255,0.92),rgba(212,245,226,0.92));border-radius:28px;padding:36px;border:2px solid rgba(76,175,125,0.25);margin-bottom:30px;position:relative;overflow:hidden;}
+  .pledge-items-card::after{content:'🌍';position:absolute;right:-10px;bottom:-10px;font-size:100px;opacity:0.06;}
+  .pic-title{text-align:center;margin-bottom:28px;}
+  .pic-title span{font-size:2.8rem;display:block;margin-bottom:10px;}
+  .pic-title h2{font-family:'Gaegu',cursive;font-size:1.9rem;color:var(--green-dark);font-weight:700;}
+  .pic-title p{color:#666;font-size:0.88rem;margin-top:5px;}
+  .pledge-items-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:28px;}
+  .pi{background:linear-gradient(135deg,var(--green-mint),rgba(184,234,247,0.6));border-radius:18px;padding:18px;display:flex;align-items:flex-start;gap:12px;border:1px solid rgba(76,175,125,0.2);transition:transform 0.2s;}
+  .pi:hover{transform:scale(1.02);}
+  .pi .pi-ic{font-size:1.7rem;flex-shrink:0;}
+  .pi .pi-tx{font-size:0.88rem;color:var(--green-dark);line-height:1.55;font-weight:500;}
+
+  /* 서약서 작성 폼 */
+  .form-card{background:var(--card-bg);border-radius:24px;padding:32px;margin-bottom:30px;border:1px solid rgba(255,255,255,0.5);}
+  .form-card h3{font-family:'Gaegu',cursive;font-size:1.5rem;color:var(--green-dark);margin-bottom:20px;display:flex;align-items:center;gap:8px;}
+  .form-row{display:flex;gap:14px;margin-bottom:14px;flex-wrap:wrap;}
+  .form-group{flex:1;min-width:150px;}
+  .form-group label{display:block;font-size:0.8rem;color:#666;margin-bottom:5px;font-weight:600;}
+  .form-group input,.form-group textarea,.form-group select{width:100%;padding:11px 15px;border:2px solid rgba(76,175,125,0.22);border-radius:13px;font-size:0.88rem;font-family:'Noto Sans KR',sans-serif;background:rgba(255,255,255,0.85);transition:border-color 0.2s;color:#333;outline:none;}
+  .form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--green-mid);}
+  .form-group textarea{resize:none;height:90px;}
+
+  /* 추가 실천 체크 */
+  .pledge-checks{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:18px;}
+  .pc-item{display:flex;align-items:center;gap:10px;background:rgba(212,245,226,0.5);padding:10px 14px;border-radius:12px;cursor:pointer;transition:all 0.2s;border:2px solid transparent;}
+  .pc-item:hover,.pc-item.checked{background:rgba(76,175,125,0.18);border-color:rgba(76,175,125,0.4);}
+  .pc-item input[type=checkbox]{accent-color:var(--green-mid);width:16px;height:16px;}
+  .pc-item span{font-size:0.84rem;color:#444;font-weight:500;}
+
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 30px;border-radius:26px;font-size:0.9rem;font-weight:700;font-family:'Noto Sans KR',sans-serif;cursor:pointer;border:none;transition:all 0.25s;}
+  .btn-green{background:linear-gradient(135deg,var(--green-mid),var(--green-dark));color:white;box-shadow:0 4px 15px rgba(45,134,83,0.4);}
+  .btn-green:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(45,134,83,0.5);}
+
+  /* 서약서 담벼락 */
+  .wall-section h3{font-family:'Gaegu',cursive;font-size:1.4rem;color:#fff;margin-bottom:18px;display:flex;align-items:center;gap:8px;}
+  .wall-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px;}
+  .wall-post{background:var(--card-bg);border-radius:20px;padding:20px;border-left:4px solid var(--green-light);transition:all 0.25s;position:relative;overflow:hidden;}
+  .wall-post:nth-child(3n+2){border-left-color:var(--blue-light);}
+  .wall-post:nth-child(3n){border-left-color:var(--yellow-sun);}
+  .wall-post:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,0.18);}
+  .wall-post::before{content:'';position:absolute;top:0;right:0;width:60px;height:60px;background:radial-gradient(circle at top right,rgba(76,175,125,0.08),transparent);}
+  .wp-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+  .wp-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--green-mint),var(--blue-sky));display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+  .wp-name{font-size:0.88rem;font-weight:700;color:var(--green-dark);}
+  .wp-date{font-size:0.73rem;color:#aaa;}
+  .wp-text{font-size:0.87rem;color:#444;line-height:1.65;}
+  .wp-tag{display:inline-block;margin-top:10px;background:rgba(76,175,125,0.12);color:var(--green-mid);border:1px solid rgba(76,175,125,0.22);padding:3px 10px;border-radius:10px;font-size:0.74rem;font-weight:600;}
+  .wp-checks{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;}
+  .wp-check-badge{background:rgba(76,175,125,0.1);color:var(--green-mid);font-size:0.72rem;padding:2px 9px;border-radius:8px;border:1px solid rgba(76,175,125,0.2);}
+
+  .school-bottom-banner{position:relative;z-index:5;text-align:center;padding:38px 20px;border-top:1px solid rgba(255,255,255,0.1);}
+  .school-bottom-banner .school-name{font-family:'Gaegu',cursive;font-size:1.3rem;color:#fff;font-weight:700;margin-bottom:5px;}
+  .school-bottom-banner p{color:rgba(255,255,255,0.6);font-size:0.8rem;line-height:1.8;}
+  .footer-earth{font-size:2.2rem;display:block;margin-bottom:8px;animation:pulse 2s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.1);}}
+</style>
+</head>
+<body>
+<div class="bg-bubbles">
+  <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
+  <div class="bubble"></div><div class="bubble"></div>
+</div>
+
+<div class="school-top-banner">
+  <span>🏫 <strong>봉곡중학교</strong> · 2026학년도 1학년 5반 탄소중립학급</span>
+</div>
+
+<nav>
+  <a href="index.html">🏠 홈</a>
+  <a href="pledge.html" class="active">📜 실천 서약서</a>
+  <a href="books.html">📚 도서 소감</a>
+  <a href="market.html">🛍️ 중고 장터</a>
+  <a href="diary.html">📓 탄소 일기</a>
+</nav>
+
+<div class="page-header">
+  <h1>📜 탄소중립 실천 서약서</h1>
+  <p>학기 초, 우리의 다짐을 함께 나눠요 · 봉곡중학교 1학년 5반</p>
+</div>
+
+<div class="container">
+
+  <!-- 공통 서약 항목 -->
+  <div class="pledge-items-card">
+    <div class="pic-title">
+      <span>🤝</span>
+      <h2>우리 학급의 탄소중립 실천 약속</h2>
+      <p>아래의 실천 항목을 지키며 지구를 지키는 멋진 학급이 되어요!</p>
+    </div>
+    <div class="pledge-items-grid">
+      <div class="pi"><span class="pi-ic">🚶</span><div class="pi-tx">가까운 거리는 걷거나 자전거를 이용해 이동할게요</div></div>
+      <div class="pi"><span class="pi-ic">♻️</span><div class="pi-tx">쓰레기는 올바르게 분리배출하고 자원을 아껴 쓸게요</div></div>
+      <div class="pi"><span class="pi-ic">🍽️</span><div class="pi-tx">급식을 남기지 않고 음식물 쓰레기를 줄일게요</div></div>
+      <div class="pi"><span class="pi-ic">🔌</span><div class="pi-tx">사용하지 않는 전기는 꼭 끄고 에너지를 절약할게요</div></div>
+      <div class="pi"><span class="pi-ic">🌱</span><div class="pi-tx">매달 환경 관련 도서를 읽고 환경 지식을 쌓을게요</div></div>
+      <div class="pi"><span class="pi-ic">🛒</span><div class="pi-tx">물건을 새로 사기 전에 중고 거래를 먼저 생각할게요</div></div>
+    </div>
+
+    <!-- 서약서 작성 폼 -->
+    <div style="background:rgba(255,255,255,0.65);border-radius:20px;padding:26px;border:2px dashed rgba(76,175,125,0.35);">
+      <h3 style="font-family:'Gaegu',cursive;font-size:1.3rem;color:var(--green-dark);margin-bottom:18px;display:flex;align-items:center;gap:8px;">✍️ 나의 탄소중립 서약서 작성하기</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>이름 (닉네임)</label>
+          <input type="text" placeholder="예: 초록별 강예솔">
+        </div>
+        <div class="form-group">
+          <label>날짜</label>
+          <input type="date" value="2026-03-02">
+        </div>
+      </div>
+      <div style="margin-bottom:14px;">
+        <label style="display:block;font-size:0.8rem;color:#666;margin-bottom:8px;font-weight:600;">추가로 실천할 항목을 선택하세요</label>
+        <div class="pledge-checks">
+          <label class="pc-item"><input type="checkbox"><span>🚿 샤워 시간 줄이기</span></label>
+          <label class="pc-item"><input type="checkbox"><span>🥤 텀블러 사용하기</span></label>
+          <label class="pc-item"><input type="checkbox"><span>🛍️ 장바구니 사용하기</span></label>
+          <label class="pc-item"><input type="checkbox"><span>🌿 채식 식단 도전</span></label>
+          <label class="pc-item"><input type="checkbox"><span>💡 에너지 절약 실천</span></label>
+          <label class="pc-item"><input type="checkbox"><span>📱 스크린 타임 줄이기</span></label>
+        </div>
+      </div>
+      <div class="form-group" style="margin-bottom:16px;">
+        <label>나만의 특별한 탄소중립 실천 약속</label>
+        <textarea placeholder="예: 저는 매일 물 절약을 실천하고, 일회용품 대신 텀블러를 사용하겠습니다!"></textarea>
+      </div>
+      <button class="btn btn-green">🌿 서약서 공유하기</button>
+    </div>
+  </div>
+
+  <!-- 서약서 담벼락 -->
+  <div class="wall-section">
+    <h3>💚 우리 반 친구들의 서약서 (26명 완료)</h3>
+    <div class="wall-grid">
+      <div class="wall-post">
+        <div class="wp-header"><div class="wp-avatar">🌱</div><div><div class="wp-name">1번 · 강예솔</div><div class="wp-date">2026. 03. 02</div></div></div>
+        <div class="wp-text">매일 텀블러를 들고 다니며 일회용컵 사용을 줄이겠습니다! 우리 함께 지구를 지켜요 🌍</div>
+        <div class="wp-checks"><span class="wp-check-badge">🥤 텀블러 사용</span><span class="wp-check-badge">🛍️ 장바구니</span></div>
+      </div>
+      <div class="wall-post">
+        <div class="wp-header"><div class="wp-avatar">🌊</div><div><div class="wp-name">2번 · 권예은</div><div class="wp-date">2026. 03. 02</div></div></div>
+        <div class="wp-text">학교 올 때 대중교통이나 걷기로 탄소발자국을 줄이겠어요. 작은 실천이 큰 변화를!✨</div>
+        <div class="wp-checks"><span class="wp-check-badge">🚶 걷기 등교</span><span class="wp-check-badge">💡 에너지절약</span></div>
+      </div>
+      <div class="wall-post">
+        <div class="wp-header"><div class="wp-avatar">☘️</div><div><div class="wp-name">3번 · 김서윤</div><div class="wp-date">2026. 03. 02</div></div></div>
+        <div class="wp-text">급식을 절대 남기지 않고 분리수거를 꼭 실천하겠습니다. 지구가 웃는 날까지!</div>
+        <div class="wp-checks"><span class="wp-check-badge">🍽️ 잔반제로</span><span class="wp-check-badge">♻️ 분리수거</span></div>
+      </div>
+      <div class="wall-post">
+        <div class="wp-header"><div class="wp-avatar">🦋</div><div><div class="wp-name">4번 · 권정훈</div><div class="wp-date">2026. 03. 02</div></div></div>
+        <div class="wp-text">한 달에 환경 책 한 권씩 읽고 친구들과 나누겠어요. 아는 만큼 지킬 수 있으니까요 📚</div>
+        <div class="wp-checks"><span class="wp-check-badge">📚 독서 실천</span></div>
+      </div>
+      <div class="wall-post">
+        <div class="wp-header"><div class="wp-avatar">🌻</div><div><div class="wp-name">5번 · 김세혁</div><div class="wp-date">2026. 03. 02</div></div></div>
+        <div class="wp-text">물 낭비 줄이기! 양치할 때 컵 사용, 샤워 시간 줄이기부터 시작하겠습니다!</div>
+        <div class="wp-checks"><span class="wp-check-badge">🚿 샤워줄이기</span><span class="wp-check-badge">💡 에너지절약</span></div>
+      </div>
+      <div class="wall-post">
+        <div class="wp-header"><div class="wp-avatar">🐢</div><div><div class="wp-name">6번 · 김예은</div><div class="wp-date">2026. 03. 02</div></div></div>
+        <div class="wp-text">중고 물품 거래를 적극 활용해서 새 제품 구매를 줄이겠어요. 자원 순환이 답이에요!</div>
+        <div class="wp-checks"><span class="wp-check-badge">🛒 중고거래</span></div>
+      </div>
+      <div class="wall-post">
+        <div class="wp-header"><div class="wp-avatar">🍀</div><div><div class="wp-name">7번 · 김온유</div><div class="wp-date">2026. 03. 03</div></div></div>
+        <div class="wp-text">스마트폰 사용 시간을 줄이고 충전기를 뽑는 습관을 기르겠습니다. 전기 아끼기 도전!</div>
+        <div class="wp-checks"><span class="wp-check-badge">📱 스크린타임</span><span class="wp-check-badge">💡 에너지절약</span></div>
+      </div>
+      <div class="wall-post">
+        <div class="wp-header"><div class="wp-avatar">🌸</div><div><div class="wp-name">8번 · 김태윤</div><div class="wp-date">2026. 03. 03</div></div></div>
+        <div class="wp-text">채식 식단을 주 2회 도전해볼게요! 육식을 줄이면 탄소를 많이 줄일 수 있다고 배웠어요.</div>
+        <div class="wp-checks"><span class="wp-check-badge">🌿 채식도전</span><span class="wp-check-badge">🍽️ 잔반제로</span></div>
+      </div>
+      <div class="wall-post">
+        <div class="wp-header"><div class="wp-avatar">🌴</div><div><div class="wp-name">9번 · 나수인</div><div class="wp-date">2026. 03. 03</div></div></div>
+        <div class="wp-text">학교 올 때 자전거 타기를 시작하겠어요. 운동도 되고 탄소도 줄이고 일석이조! 🚲</div>
+        <div class="wp-checks"><span class="wp-check-badge">🚶 자전거등교</span></div>
+      </div>
+      <div class="wall-post">
+        <div class="wp-header"><div class="wp-avatar">🌈</div><div><div class="wp-name">10번 · 박규연</div><div class="wp-date">2026. 03. 03</div></div></div>
+        <div class="wp-text">불필요한 소비를 줄이고 꼭 필요한 것만 사겠습니다. 과소비가 지구를 아프게 해요!</div>
+        <div class="wp-checks"><span class="wp-check-badge">🛒 중고거래</span><span class="wp-check-badge">🛍️ 장바구니</span></div>
+      </div>
+      <div class="wall-post">
+        <div class="wp-header"><div class="wp-avatar">🦚</div><div><div class="wp-name">11번 · 박승준</div><div class="wp-date">2026. 03. 04</div></div></div>
+        <div class="wp-text">플라스틱 라벨을 꼭 뜯고 씻어서 분리배출하겠습니다! 올바른 분리수거가 중요해요.</div>
+        <div class="wp-checks"><span class="wp-check-badge">♻️ 분리수거</span></div>
+      </div>
+      <div class="wall-post">
+        <div class="wp-header"><div class="wp-avatar">🐸</div><div><div class="wp-name">12번 · 박지우</div><div class="wp-date">2026. 03. 04</div></div></div>
+        <div class="wp-text">급식 시간마다 식판을 깨끗이 비우겠어요. 남기지 않는 것도 탄소중립 실천이에요!</div>
+        <div class="wp-checks"><span class="wp-check-badge">🍽️ 잔반제로</span><span class="wp-check-badge">🌿 채식도전</span></div>
+      </div>
+      <div class="wall-post">
+        <div class="wp-header"><div class="wp-avatar">🌵</div><div><div class="wp-name">13번 · 배종혁</div><div class="wp-date">2026. 03. 04</div></div></div>
+        <div class="wp-text">쓰지 않는 플러그는 꼭 뽑고, 에어컨·히터 온도도 적당하게 맞추겠습니다!</div>
+        <div class="wp-checks"><span class="wp-check-badge">💡 에너지절약</span><span class="wp-check-badge">📱 스크린타임</span></div>
+      </div>
+      <div class="wall-post">
+        <div class="wp-header"><div class="wp-avatar">🍃</div><div><div class="wp-name">14번 · 송민슬</div><div class="wp-date">2026. 03. 04</div></div></div>
+        <div class="wp-text">텀블러와 손수건을 항상 갖고 다니며 일회용품을 쓰지 않겠습니다. 지구 지킴이!</div>
+        <div class="wp-checks"><span class="wp-check-badge">🥤 텀블러</span><span class="wp-check-badge">🛍️ 장바구니</span></div>
+      </div>
+      <div class="wall-post">
+        <div class="wp-header"><div class="wp-avatar">🌺</div><div><div class="wp-name">15번 · 양나경</div><div class="wp-date">2026. 03. 05</div></div></div>
+        <div class="wp-text">환경 도서를 읽고 SNS에 공유해서 더 많은 친구들이 관심 갖도록 하겠어요!</div>
+        <div class="wp-checks"><span class="wp-check-badge">📚 독서실천</span></div>
+      </div>
+      <div class="wall-post">
+        <div class="wp-header"><div class="wp-avatar">🦜</div><div><div class="wp-name">16번 · 오은율</div><div class="wp-date">2026. 03. 05</div></div></div>
+        <div class="wp-text">집에서 먹고 남은 음식은 냉장 보관하고, 음식물 쓰레기를 최대한 줄이겠습니다.</div>
+        <div class="wp-checks"><span class="wp-check-badge">🍽️ 잔반제로</span><span class="wp-check-badge">🌿 채식도전</span></div>
+      </div>
+      <div class="wall-post">
+        <div class="wp-header"><div class="wp-avatar">🌿</div><div><div class="wp-name">17번 · 유민서</div><div class="wp-date">2026. 03. 05</div></div></div>
+        <div class="wp-text">샤워 시간을 5분으로 줄이고, 세탁은 모아서 한 번에 하겠습니다. 물도 에너지예요!</div>
+        <div class="wp-checks"><span class="wp-check-badge">🚿 샤워줄이기</span><span class="wp-check-badge">💡 에너지절약</span></div>
+      </div>
+      <div class="wall-post">
+        <div class="wp-header"><div class="wp-avatar">🐦</div><div><div class="wp-name">18번 · 이민성</div><div class="wp-date">2026. 03. 05</div></div></div>
+        <div class="wp-text">중고 거래 앱을 적극 활용해서 안 쓰는 물건은 팔고, 필요한 건 중고로 사겠습니다!</div>
+        <div class="wp-checks"><span class="wp-check-badge">🛒 중고거래</span><span class="wp-check-badge">♻️ 분리수거</span></div>
+      </div>
+      <div class="wall-post">
+        <div class="wp-header"><div class="wp-avatar">🌙</div><div><div class="wp-name">19번 · 이승민</div><div class="wp-date">2026. 03. 06</div></div></div>
+        <div class="wp-text">자기 전에 모든 전자기기 충전기를 뽑는 습관을 들이겠어요. 대기 전력도 탄소예요!</div>
+        <div class="wp-checks"><span class="wp-check-badge">💡 에너지절약</span><span class="wp-check-badge">📱 스크린타임</span></div>
+      </div>
+      <div class="wall-post">
+        <div class="wp-header"><div class="wp-avatar">🍂</div><div><div class="wp-name">20번 · 이태현</div><div class="wp-date">2026. 03. 06</div></div></div>
+        <div class="wp-text">매주 한 번은 채식 식단에 도전하고, 로컬 푸드를 이용하겠습니다. 가까운 것이 환경에 좋아요!</div>
+        <div class="wp-checks"><span class="wp-check-badge">🌿 채식도전</span><span class="wp-check-badge">🍽️ 잔반제로</span></div>
+      </div>
+      <div class="wall-post">
+        <div class="wp-header"><div class="wp-avatar">🌼</div><div><div class="wp-name">21번 · 임효린</div><div class="wp-date">2026. 03. 06</div></div></div>
+        <div class="wp-text">장 볼 때 비닐봉지 대신 천 가방을 꼭 챙기겠습니다. 엄마한테도 알려드릴게요!</div>
+        <div class="wp-checks"><span class="wp-check-badge">🛍️ 장바구니</span><span class="wp-check-badge">🥤 텀블러</span></div>
+      </div>
+      <div class="wall-post">
+        <div class="wp-header"><div class="wp-avatar">🐝</div><div><div class="wp-name">22번 · 정해지</div><div class="wp-date">2026. 03. 06</div></div></div>
+        <div class="wp-text">환경 책을 친구에게 선물하겠어요. 한 명이라도 더 환경에 관심 갖게 되면 기쁠 것 같아요!</div>
+        <div class="wp-checks"><span class="wp-check-badge">📚 독서실천</span></div>
+      </div>
+      <div class="wall-post">
+        <div class="wp-header"><div class="wp-avatar">🦊</div><div><div class="wp-name">23번 · 차경호</div><div class="wp-date">2026. 03. 07</div></div></div>
+        <div class="wp-text">학교 화장실에서 물을 틀어놓지 않겠습니다. 양치할 때 컵 사용 꼭 실천!</div>
+        <div class="wp-checks"><span class="wp-check-badge">🚿 물절약</span><span class="wp-check-badge">💡 에너지절약</span></div>
+      </div>
+      <div class="wall-post">
+        <div class="wp-header"><div class="wp-avatar">🌷</div><div><div class="wp-name">24번 · 최진리</div><div class="wp-date">2026. 03. 07</div></div></div>
+        <div class="wp-text">옷은 되도록 중고로 사거나 친구들과 교환하겠습니다. 패스트패션이 환경을 파괴해요!</div>
+        <div class="wp-checks"><span class="wp-check-badge">🛒 중고거래</span><span class="wp-check-badge">♻️ 분리수거</span></div>
+      </div>
+      <div class="wall-post">
+        <div class="wp-header"><div class="wp-avatar">🌞</div><div><div class="wp-name">25번 · 최하안</div><div class="wp-date">2026. 03. 07</div></div></div>
+        <div class="wp-text">집 근처 공원 쓰레기 줍기에 참여하겠습니다. 지역 환경부터 내가 직접 지켜요!</div>
+        <div class="wp-checks"><span class="wp-check-badge">♻️ 분리수거</span><span class="wp-check-badge">🌿 환경봉사</span></div>
+      </div>
+      <div class="wall-post">
+        <div class="wp-header"><div class="wp-avatar">🐬</div><div><div class="wp-name">26번 · 황승준</div><div class="wp-date">2026. 03. 07</div></div></div>
+        <div class="wp-text">일회용 빨대 대신 개인 빨대를 사용하겠습니다. 바다 생물들을 위해 플라스틱을 줄여요!</div>
+        <div class="wp-checks"><span class="wp-check-badge">🥤 텀블러</span><span class="wp-check-badge">🛒 중고거래</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="school-bottom-banner">
+  <span class="footer-earth">🌍</span>
+  <div class="school-name">🏫 봉곡중학교</div>
+  <p>🌿 탄소중립 학급 · 초록별 프로젝트 · 2026학년도 1학년 5반 🌿<br>
+  우리의 작은 실천이 지구를 더 오래 살게 합니다</p>
+</div>
+</body>
+</html>

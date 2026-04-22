@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌍 탄소중립 학급 - 봉곡중학교 1학년 5반</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-dark: #1a5c35;
+    --green-mid: #2d8653;
+    --green-light: #4caf7d;
+    --green-pale: #a8e6bc;
+    --green-mint: #d4f5e2;
+    --blue-deep: #0d4a6b;
+    --blue-mid: #1a7aa8;
+    --blue-light: #4db8e8;
+    --blue-sky: #b8eaf7;
+    --yellow-sun: #ffd166;
+    --white: #f8fff9;
+    --card-bg: rgba(255,255,255,0.88);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: linear-gradient(160deg, #0d4a6b 0%, #1a7aa8 25%, #2d8653 55%, #1a5c35 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  .bg-bubbles { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; overflow:hidden; }
+  .bubble { position:absolute; border-radius:50%; opacity:0.07; animation:floatUp linear infinite; }
+  .bubble:nth-child(1){width:80px;height:80px;left:5%;background:#4caf7d;animation-duration:12s;}
+  .bubble:nth-child(2){width:50px;height:50px;left:15%;background:#4db8e8;animation-duration:9s;animation-delay:2s;}
+  .bubble:nth-child(3){width:120px;height:120px;left:30%;background:#2d8653;animation-duration:15s;animation-delay:1s;}
+  .bubble:nth-child(4){width:60px;height:60px;left:50%;background:#4db8e8;animation-duration:11s;animation-delay:4s;}
+  .bubble:nth-child(5){width:90px;height:90px;left:65%;background:#4caf7d;animation-duration:13s;animation-delay:0.5s;}
+  .bubble:nth-child(6){width:40px;height:40px;left:80%;background:#4db8e8;animation-duration:8s;animation-delay:3s;}
+  .bubble:nth-child(7){width:70px;height:70px;left:90%;background:#2d8653;animation-duration:10s;animation-delay:1.5s;}
+  @keyframes floatUp {
+    0%{bottom:-150px;transform:translateX(0) rotate(0deg);opacity:0.07;}
+    50%{transform:translateX(30px) rotate(180deg);}
+    100%{bottom:110%;transform:translateX(-20px) rotate(360deg);opacity:0;}
+  }
+
+  /* 학교 상단 배너 */
+  .school-top-banner {
+    position: relative; z-index: 10;
+    background: rgba(10,40,60,0.6);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(77,184,232,0.2);
+    text-align: center;
+    padding: 10px 20px;
+  }
+  .school-top-banner span {
+    color: rgba(255,255,255,0.75);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+  }
+  .school-top-banner span strong { color: var(--green-pale); font-weight: 700; }
+
+  header { position:relative; z-index:10; text-align:center; padding:44px 20px 28px; }
+  .earth-hero { display:inline-block; margin-bottom:20px; animation:earthFloat 4s ease-in-out infinite; }
+  @keyframes earthFloat { 0%,100%{transform:translateY(0) rotate(-2deg);} 50%{transform:translateY(-10px) rotate(2deg);} }
+  .earth-svg { width:130px; height:130px; filter:drop-shadow(0 8px 30px rgba(77,184,232,0.5)); }
+  .title-main { font-family:'Gaegu',cursive; font-size:clamp(2.2rem,6vw,3.8rem); font-weight:700; color:#fff; text-shadow:0 3px 20px rgba(0,0,0,0.3); line-height:1.2; }
+  .title-sub { font-family:'Gaegu',cursive; font-size:clamp(1rem,2.5vw,1.5rem); color:var(--green-pale); margin-top:8px; }
+  .class-badge { display:inline-block; background:linear-gradient(135deg,var(--yellow-sun),#ffb347); color:var(--green-dark); font-size:0.9rem; font-weight:700; padding:6px 22px; border-radius:30px; margin-top:14px; box-shadow:0 4px 15px rgba(255,209,102,0.4); letter-spacing:1px; }
+
+  nav { position:sticky; top:0; z-index:100; display:flex; justify-content:center; gap:8px; padding:14px 20px; background:rgba(13,74,107,0.78); backdrop-filter:blur(20px); border-bottom:1px solid rgba(77,184,232,0.25); flex-wrap:wrap; }
+  nav a { text-decoration:none; color:rgba(255,255,255,0.85); font-size:0.85rem; font-weight:500; padding:8px 16px; border-radius:20px; transition:all 0.25s; border:1px solid transparent; display:flex; align-items:center; gap:5px; }
+  nav a:hover, nav a.active { background:rgba(76,175,125,0.35); border-color:rgba(76,175,125,0.5); color:#fff; transform:translateY(-1px); }
+
+  .container { max-width:1100px; margin:0 auto; padding:40px 20px 60px; position:relative; z-index:5; }
+
+  .section-title { text-align:center; margin-bottom:30px; }
+  .section-title h2 { font-family:'Gaegu',cursive; font-size:clamp(1.6rem,4vw,2.4rem); color:#fff; font-weight:700; display:inline-flex; align-items:center; gap:10px; }
+  .section-title p { color:var(--green-pale); font-size:0.88rem; margin-top:6px; }
+  .title-line { width:60px; height:4px; background:linear-gradient(90deg,var(--green-light),var(--blue-light)); border-radius:2px; margin:10px auto 0; }
+
+  .card { background:var(--card-bg); border-radius:24px; padding:28px; box-shadow:0 8px 32px rgba(0,0,0,0.15),0 1px 0 rgba(255,255,255,0.6) inset; backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.5); }
+
+  /* 통계 */
+  .stats-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(175px,1fr)); gap:16px; }
+  .stat-card { background:var(--card-bg); border-radius:20px; padding:22px; text-align:center; border:1px solid rgba(255,255,255,0.5); transition:transform 0.3s; }
+  .stat-card:hover { transform:scale(1.04); }
+  .stat-icon { font-size:2.2rem; margin-bottom:10px; display:block; }
+  .stat-value { font-size:2rem; font-weight:900; color:var(--green-dark); font-family:'Gaegu',cursive; line-height:1; }
+  .stat-label { font-size:0.82rem; color:#666; margin-top:5px; font-weight:500; }
+
+  .progress-box { background:var(--card-bg); border-radius:24px; padding:28px; margin-top:20px; border:1px solid rgba(255,255,255,0.5); }
+  .progress-title { font-family:'Gaegu',cursive; font-size:1.35rem; color:var(--green-dark); font-weight:700; margin-bottom:18px; display:flex; align-items:center; gap:8px; }
+  .progress-item { margin-bottom:15px; }
+  .progress-label { display:flex; justify-content:space-between; font-size:0.85rem; color:#444; font-weight:600; margin-bottom:6px; }
+  .progress-bar { height:13px; background:rgba(76,175,125,0.12); border-radius:7px; overflow:hidden; }
+  .progress-fill { height:100%; border-radius:7px; animation:fillBar 2s ease-out forwards; }
+  .pf-green { background:linear-gradient(90deg,var(--green-light),var(--green-mid)); }
+  .pf-blue { background:linear-gradient(90deg,var(--blue-light),var(--blue-mid)); }
+  .pf-yellow { background:linear-gradient(90deg,#ffd166,#ffb347); }
+  @keyframes fillBar { from{transform:scaleX(0);} to{transform:scaleX(1);} }
+
+  /* 메뉴 카드 */
+  .menu-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:22px; }
+  .menu-card {
+    background:var(--card-bg);
+    border-radius:26px;
+    padding:36px 28px;
+    text-align:center;
+    border:1px solid rgba(255,255,255,0.55);
+    cursor:pointer;
+    transition:all 0.3s ease;
+    text-decoration:none;
+    display:block;
+    position:relative;
+    overflow:hidden;
+  }
+  .menu-card::before {
+    content:'';
+    position:absolute; top:0; left:0; right:0; height:5px;
+    background:linear-gradient(90deg,var(--green-light),var(--blue-light));
+    border-radius:26px 26px 0 0;
+  }
+  .menu-card:hover { transform:translateY(-7px); box-shadow:0 20px 50px rgba(0,0,0,0.22); }
+  .menu-card .mc-icon { font-size:3.2rem; margin-bottom:14px; display:block; }
+  .menu-card .mc-title { font-family:'Gaegu',cursive; font-size:1.5rem; color:var(--green-dark); font-weight:700; margin-bottom:8px; }
+  .menu-card .mc-desc { font-size:0.85rem; color:#666; line-height:1.6; }
+  .menu-card .mc-count { display:inline-block; margin-top:14px; background:linear-gradient(135deg,var(--green-light),var(--green-mid)); color:#fff; font-size:0.78rem; font-weight:700; padding:4px 14px; border-radius:12px; }
+
+  /* 일기 미리보기 */
+  .diary-preview { background:var(--card-bg); border-radius:24px; padding:28px; border:1px solid rgba(255,255,255,0.5); }
+  .dp-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:10px; }
+  .dp-header h3 { font-family:'Gaegu',cursive; font-size:1.4rem; color:var(--green-dark); display:flex; align-items:center; gap:8px; }
+  .dp-header a { font-size:0.82rem; color:var(--blue-mid); font-weight:600; text-decoration:none; padding:6px 14px; border:1px solid var(--blue-light); border-radius:14px; transition:all 0.2s; }
+  .dp-header a:hover { background:var(--blue-mid); color:#fff; }
+
+  .diary-turn-box {
+    background:linear-gradient(135deg,rgba(212,245,226,0.9),rgba(184,234,247,0.8));
+    border-radius:18px;
+    padding:20px 24px;
+    border:2px dashed rgba(76,175,125,0.35);
+    margin-bottom:18px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .dtb-avatar { width:50px; height:50px; border-radius:50%; background:linear-gradient(135deg,var(--green-light),var(--blue-light)); display:flex; align-items:center; justify-content:center; font-size:1.5rem; flex-shrink:0; }
+  .dtb-info { flex:1; }
+  .dtb-info .turn-label { font-size:0.78rem; color:#666; font-weight:500; }
+  .dtb-info .turn-name { font-family:'Gaegu',cursive; font-size:1.3rem; color:var(--green-dark); font-weight:700; }
+  .dtb-info .turn-week { font-size:0.8rem; color:#888; margin-top:2px; }
+
+  .diary-mini { border-left:3px solid var(--green-light); padding-left:16px; margin-bottom:14px; }
+  .diary-mini:nth-child(even) { border-left-color:var(--blue-light); }
+  .diary-mini .dm-name { font-size:0.78rem; color:#888; margin-bottom:3px; }
+  .diary-mini .dm-title { font-size:0.92rem; font-weight:700; color:#333; margin-bottom:4px; }
+  .diary-mini .dm-excerpt { font-size:0.82rem; color:#666; line-height:1.5; }
+
+  /* 섹션 구분 */
+  .section-divider { text-align:center; margin:10px 0 40px; opacity:0.35; font-size:1.4rem; letter-spacing:8px; }
+  section { margin-bottom:10px; }
+
+  /* 학교 하단 배너 */
+  .school-bottom-banner {
+    position:relative; z-index:5;
+    text-align:center;
+    padding:40px 20px;
+    border-top:1px solid rgba(255,255,255,0.1);
+  }
+  .school-bottom-banner .footer-earth { font-size:2.5rem; margin-bottom:10px; display:block; animation:pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100%{transform:scale(1);} 50%{transform:scale(1.1);} }
+  .school-bottom-banner .school-name { font-family:'Gaegu',cursive; font-size:1.4rem; color:#fff; font-weight:700; margin-bottom:5px; }
+  .school-bottom-banner p { color:rgba(255,255,255,0.6); font-size:0.82rem; line-height:1.8; }
+
+  .scroll-top { position:fixed; bottom:28px; right:28px; z-index:999; width:48px; height:48px; border-radius:50%; background:linear-gradient(135deg,var(--green-mid),var(--blue-mid)); color:white; font-size:1.2rem; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 20px rgba(0,0,0,0.25); transition:all 0.3s; opacity:0; pointer-events:none; }
+  .scroll-top:hover { transform:scale(1.1) translateY(-3px); }
+
+  @media(max-width:600px){
+    nav a { padding:7px 11px; font-size:0.78rem; }
+    .menu-card { padding:26px 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="bg-bubbles">
+  <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
+  <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
+</div>
+
+<!-- 학교 상단 배너 -->
+<div class="school-top-banner">
+  <span>🏫 <strong>봉곡중학교</strong> · 2026학년도 1학년 5반 탄소중립학급</span>
+</div>
+
+<header>
+  <div class="earth-hero">
+    <svg class="earth-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="eg" cx="40%" cy="35%">
+          <stop offset="0%" stop-color="#4db8e8"/>
+          <stop offset="60%" stop-color="#1a7aa8"/>
+          <stop offset="100%" stop-color="#0d4a6b"/>
+        </radialGradient>
+        <clipPath id="ec"><circle cx="100" cy="100" r="88"/></clipPath>
+      </defs>
+      <circle cx="100" cy="100" r="88" fill="url(#eg)"/>
+      <g clip-path="url(#ec)" fill="#2d8653" opacity="0.9">
+        <ellipse cx="110" cy="65" rx="45" ry="22" transform="rotate(-10,110,65)"/>
+        <ellipse cx="135" cy="80" rx="20" ry="12" transform="rotate(15,135,80)"/>
+        <ellipse cx="105" cy="115" rx="18" ry="28" transform="rotate(5,105,115)"/>
+        <ellipse cx="55" cy="80" rx="14" ry="30" transform="rotate(-5,55,80)"/>
+        <ellipse cx="60" cy="120" rx="10" ry="18"/>
+        <ellipse cx="148" cy="125" rx="14" ry="10" transform="rotate(10,148,125)"/>
+      </g>
+      <g fill="rgba(255,255,255,0.45)" clip-path="url(#ec)">
+        <ellipse cx="80" cy="50" rx="20" ry="7"/>
+        <ellipse cx="90" cy="47" rx="15" ry="6"/>
+        <ellipse cx="140" cy="95" rx="18" ry="6"/>
+        <ellipse cx="50" cy="110" rx="14" ry="5"/>
+      </g>
+      <ellipse cx="72" cy="65" rx="22" ry="16" fill="rgba(255,255,255,0.1)"/>
+      <circle cx="100" cy="100" r="88" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="3"/>
+    </svg>
+  </div>
+  <h1 class="title-main">🌿 탄소중립 학급 🌿</h1>
+  <p class="title-sub">초록별 프로젝트 · 우리가 지키는 지구</p>
+  <span class="class-badge">✨ 2026학년도 봉곡중학교 1학년 5반 ✨</span>
+</header>
+
+<nav>
+  <a href="index.html" class="active">🏠 홈</a>
+  <a href="pledge.html">📜 실천 서약서</a>
+  <a href="books.html">📚 도서 소감</a>
+  <a href="market.html">🛍️ 중고 장터</a>
+  <a href="diary.html">📓 탄소 일기</a>
+</nav>
+
+<div class="container">
+
+  <!-- 통계 -->
+  <section id="stats">
+    <div class="section-title">
+      <h2>📊 우리 학급의 탄소중립 기록</h2>
+      <p>함께 만들어가는 초록 지구</p>
+      <div class="title-line"></div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card"><span class="stat-icon">🌱</span><div class="stat-value">127<span style="font-size:1rem">kg</span></div><div class="stat-label">절감한 탄소량</div></div>
+      <div class="stat-card"><span class="stat-icon">📚</span><div class="stat-value">18</div><div class="stat-label">완독한 환경 도서</div></div>
+      <div class="stat-card"><span class="stat-icon">🛍️</span><div class="stat-value">34</div><div class="stat-label">중고 거래 건수</div></div>
+      <div class="stat-card"><span class="stat-icon">📓</span><div class="stat-value">56</div><div class="stat-label">작성된 탄소일기</div></div>
+      <div class="stat-card"><span class="stat-icon">🌳</span><div class="stat-value">6.3</div><div class="stat-label">심은 나무 상당량</div></div>
+    </div>
+    <div class="progress-box">
+      <div class="progress-title">🎯 이번 학기 목표 달성률</div>
+      <div class="progress-item"><div class="progress-label"><span>🚴 자전거·도보 등교</span><span>72%</span></div><div class="progress-bar"><div class="progress-fill pf-green" style="width:72%"></div></div></div>
+      <div class="progress-item"><div class="progress-label"><span>🔌 전자기기 사용 줄이기</span><span>58%</span></div><div class="progress-bar"><div class="progress-fill pf-blue" style="width:58%"></div></div></div>
+      <div class="progress-item"><div class="progress-label"><span>🥗 잔반 없는 급식</span><span>85%</span></div><div class="progress-bar"><div class="progress-fill pf-yellow" style="width:85%"></div></div></div>
+      <div class="progress-item"><div class="progress-label"><span>♻️ 분리배출 실천</span><span>91%</span></div><div class="progress-bar"><div class="progress-fill pf-green" style="width:91%"></div></div></div>
+    </div>
+  </section>
+
+  <div class="section-divider">🌿 · 🌊 · 🌿</div>
+
+  <!-- 메뉴 바로가기 -->
+  <section>
+    <div class="section-title">
+      <h2>✨ 탄소중립 활동 바로가기</h2>
+      <p>클릭해서 자세한 내용을 확인해요</p>
+      <div class="title-line"></div>
+    </div>
+    <div class="menu-grid">
+      <a href="pledge.html" class="menu-card">
+        <span class="mc-icon">📜</span>
+        <div class="mc-title">탄소중립 서약서</div>
+        <div class="mc-desc">학기 초 우리의 다짐을 함께 나눠요. 나만의 탄소중립 실천 서약서를 작성하고 공유해요!</div>
+        <span class="mc-count">26명 서약 완료 ✅</span>
+      </a>
+      <a href="books.html" class="menu-card">
+        <span class="mc-icon">📚</span>
+        <div class="mc-title">도서 소감 나눔</div>
+        <div class="mc-desc">환경·탄소중립 관련 책을 읽고 느낀 점을 친구들과 나눠요!</div>
+        <span class="mc-count">18권 소감 등록됨 📖</span>
+      </a>
+      <a href="market.html" class="menu-card">
+        <span class="mc-icon">🛍️</span>
+        <div class="mc-title">초록 중고 장터</div>
+        <div class="mc-desc">안 쓰는 물건을 사고팔아요. 새 물건보다 나눔이 더 소중한 지구를 위한 선택!</div>
+        <span class="mc-count">34건 거래 완료 ♻️</span>
+      </a>
+      <a href="diary.html" class="menu-card">
+        <span class="mc-icon">📓</span>
+        <div class="mc-title">탄소중립 일기</div>
+        <div class="mc-desc">돌아가며 오늘 하루의 탄소중립 실천을 기록하고 공유해요!</div>
+        <span class="mc-count">56편 일기 작성됨 ✍️</span>
+      </a>
+    </div>
+  </section>
+
+  <div class="section-divider">📓 · 🌍 · 📓</div>
+
+  <!-- 일기 미리보기 -->
+  <section>
+    <div class="diary-preview card">
+      <div class="dp-header">
+        <h3>📓 최근 탄소일기</h3>
+        <a href="diary.html">전체 보기 →</a>
+      </div>
+      <!-- 이번 주 차례 -->
+      <div class="diary-turn-box">
+        <div class="dtb-avatar">✍️</div>
+        <div class="dtb-info">
+          <div class="turn-label">✏️ 이번 주 일기 작성 차례</div>
+          <div class="turn-name">강예솔 학생 (1번)</div>
+          <div class="turn-week">2026년 3월 2주차</div>
+        </div>
+      </div>
+      <div class="diary-mini">
+        <div class="dm-name">🌊 이서연 · 2026. 04. 14</div>
+        <div class="dm-title">오늘은 학교까지 걸어왔어요!</div>
+        <div class="dm-excerpt">평소에는 엄마 차로 등교했는데, 오늘은 처음으로 걸어왔어요. 20분 정도 걸렸는데 새소리도 듣고 기분이 너무 좋았어요!</div>
+      </div>
+      <div class="diary-mini">
+        <div class="dm-name">🌳 박지호 · 2026. 04. 07</div>
+        <div class="dm-title">급식을 완전히 다 먹었습니다!</div>
+        <div class="dm-excerpt">싫어하는 시금치나물이 나왔는데 꾹 참고 다 먹었어요. 잔반을 남기지 않으면 탄소를 많이 줄일 수 있어요!</div>
+      </div>
+      <div style="text-align:center; margin-top:16px;">
+        <a href="diary.html" style="display:inline-block; background:linear-gradient(135deg,var(--green-mid),var(--green-dark)); color:#fff; font-size:0.85rem; font-weight:700; padding:10px 26px; border-radius:22px; text-decoration:none; transition:all 0.2s;">📓 일기 전체 보기</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- 학교 하단 배너 -->
+<div class="school-bottom-banner">
+  <span class="footer-earth">🌍</span>
+  <div class="school-name">🏫 봉곡중학교</div>
+  <p>
+    🌿 탄소중립 학급 · 초록별 프로젝트 · 2026학년도 1학년 5반 🌿<br>
+    우리의 작은 실천이 지구를 더 오래 살게 합니다<br>
+    <span style="font-size:0.75rem; opacity:0.6;">봉곡중학교 1학년 5반 · 함께 만들어가는 초록 미래</span>
+  </p>
+</div>
+
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+  window.addEventListener('scroll',()=>{
+    const btn=document.getElementById('scrollTop');
+    btn.style.opacity=window.scrollY>200?'1':'0';
+    btn.style.pointerEvents=window.scrollY>200?'auto':'none';
+  });
+</script>
+</body>
+</html>

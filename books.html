@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📚 도서 소감 나눔 - 봉곡중학교 1학년 5반</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--green-dark:#1a5c35;--green-mid:#2d8653;--green-light:#4caf7d;--green-pale:#a8e6bc;--green-mint:#d4f5e2;--blue-deep:#0d4a6b;--blue-mid:#1a7aa8;--blue-light:#4db8e8;--blue-sky:#b8eaf7;--yellow-sun:#ffd166;--card-bg:rgba(255,255,255,0.88);}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(160deg,#0d4a6b 0%,#1a7aa8 25%,#2d8653 55%,#1a5c35 100%);min-height:100vh;overflow-x:hidden;}
+  .bg-bubbles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
+  .bubble{position:absolute;border-radius:50%;opacity:0.07;animation:floatUp linear infinite;}
+  .bubble:nth-child(1){width:80px;height:80px;left:5%;background:#4caf7d;animation-duration:12s;}
+  .bubble:nth-child(2){width:50px;height:50px;left:20%;background:#4db8e8;animation-duration:9s;animation-delay:2s;}
+  .bubble:nth-child(3){width:100px;height:100px;left:45%;background:#2d8653;animation-duration:14s;animation-delay:1s;}
+  .bubble:nth-child(4){width:60px;height:60px;left:72%;background:#4db8e8;animation-duration:11s;animation-delay:3s;}
+  .bubble:nth-child(5){width:75px;height:75px;left:88%;background:#4caf7d;animation-duration:13s;animation-delay:0.5s;}
+  @keyframes floatUp{0%{bottom:-150px;transform:translateX(0) rotate(0deg);opacity:0.07;}50%{transform:translateX(30px) rotate(180deg);}100%{bottom:110%;transform:translateX(-20px) rotate(360deg);opacity:0;}}
+
+  .school-top-banner{position:relative;z-index:10;background:rgba(10,40,60,0.6);backdrop-filter:blur(10px);border-bottom:1px solid rgba(77,184,232,0.2);text-align:center;padding:10px 20px;}
+  .school-top-banner span{color:rgba(255,255,255,0.75);font-size:0.82rem;font-weight:500;letter-spacing:2px;}
+  .school-top-banner span strong{color:var(--green-pale);font-weight:700;}
+
+  nav{position:sticky;top:0;z-index:100;display:flex;justify-content:center;gap:8px;padding:14px 20px;background:rgba(13,74,107,0.78);backdrop-filter:blur(20px);border-bottom:1px solid rgba(77,184,232,0.25);flex-wrap:wrap;}
+  nav a{text-decoration:none;color:rgba(255,255,255,0.85);font-size:0.85rem;font-weight:500;padding:8px 16px;border-radius:20px;transition:all 0.25s;border:1px solid transparent;display:flex;align-items:center;gap:5px;}
+  nav a:hover,nav a.active{background:rgba(76,175,125,0.35);border-color:rgba(76,175,125,0.5);color:#fff;transform:translateY(-1px);}
+
+  .page-header{position:relative;z-index:10;text-align:center;padding:40px 20px 30px;}
+  .page-header h1{font-family:'Gaegu',cursive;font-size:clamp(2rem,5vw,3rem);color:#fff;font-weight:700;}
+  .page-header p{color:var(--green-pale);font-size:0.92rem;margin-top:8px;}
+
+  .container{max-width:1100px;margin:0 auto;padding:30px 20px 70px;position:relative;z-index:5;}
+
+  /* 필터 */
+  .filter-bar{display:flex;justify-content:center;gap:8px;margin-bottom:28px;flex-wrap:wrap;}
+  .fb{padding:7px 18px;border-radius:20px;font-size:0.82rem;font-weight:600;cursor:pointer;border:2px solid rgba(255,255,255,0.35);background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.9);font-family:'Noto Sans KR',sans-serif;transition:all 0.2s;}
+  .fb.active,.fb:hover{background:rgba(76,175,125,0.4);border-color:var(--green-light);color:#fff;}
+
+  /* 추가 폼 */
+  .add-form-card{background:var(--card-bg);border-radius:24px;padding:28px;margin-bottom:30px;border:1px solid rgba(255,255,255,0.5);}
+  .add-form-card h3{font-family:'Gaegu',cursive;font-size:1.4rem;color:var(--green-dark);margin-bottom:18px;display:flex;align-items:center;gap:8px;}
+  .form-row{display:flex;gap:12px;margin-bottom:12px;flex-wrap:wrap;}
+  .fg{flex:1;min-width:150px;}
+  .fg label{display:block;font-size:0.78rem;color:#666;margin-bottom:5px;font-weight:600;}
+  .fg input,.fg textarea,.fg select{width:100%;padding:10px 14px;border:2px solid rgba(76,175,125,0.2);border-radius:12px;font-size:0.87rem;font-family:'Noto Sans KR',sans-serif;background:rgba(255,255,255,0.85);transition:border-color 0.2s;color:#333;outline:none;}
+  .fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--green-mid);}
+  .fg textarea{resize:none;height:90px;}
+  .star-row{display:flex;gap:6px;margin-bottom:14px;}
+  .star-btn{font-size:1.6rem;cursor:pointer;transition:transform 0.15s;background:none;border:none;}
+  .star-btn:hover{transform:scale(1.2);}
+
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 26px;border-radius:24px;font-size:0.88rem;font-weight:700;font-family:'Noto Sans KR',sans-serif;cursor:pointer;border:none;transition:all 0.25s;}
+  .btn-green{background:linear-gradient(135deg,var(--green-mid),var(--green-dark));color:white;box-shadow:0 4px 15px rgba(45,134,83,0.35);}
+  .btn-green:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(45,134,83,0.5);}
+
+  /* 도서 그리드 */
+  .books-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;}
+  .book-card{background:var(--card-bg);border-radius:22px;overflow:hidden;border:1px solid rgba(255,255,255,0.5);transition:all 0.3s;}
+  .book-card:hover{transform:translateY(-6px);box-shadow:0 18px 50px rgba(0,0,0,0.2);}
+  .bc-cover{height:150px;display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;}
+  .bc-cover.c1{background:linear-gradient(135deg,#a8e6bc,#4caf7d);}
+  .bc-cover.c2{background:linear-gradient(135deg,#b8eaf7,#4db8e8);}
+  .bc-cover.c3{background:linear-gradient(135deg,#ffeaa7,#fdcb6e);}
+  .bc-cover.c4{background:linear-gradient(135deg,#dfe6e9,#74b9ff);}
+  .bc-cover.c5{background:linear-gradient(135deg,#fd79a8,#e84393,70%,#c1121f);}
+  .bc-cover.c5{background:linear-gradient(135deg,#ffecd2,#fcb69f);}
+  .bc-cover.c6{background:linear-gradient(135deg,#d4efdf,#76b947);}
+  .bc-month{position:absolute;top:10px;left:10px;background:rgba(255,255,255,0.85);color:var(--green-dark);font-size:0.72rem;font-weight:700;padding:3px 10px;border-radius:10px;}
+  .bc-body{padding:18px;}
+  .bc-title{font-size:0.96rem;font-weight:700;color:var(--green-dark);margin-bottom:3px;}
+  .bc-author{font-size:0.76rem;color:#999;margin-bottom:10px;}
+  .bc-review{font-size:0.85rem;color:#555;line-height:1.65;margin-bottom:12px;}
+  .bc-footer{display:flex;align-items:center;justify-content:space-between;padding-top:12px;border-top:1px solid rgba(76,175,125,0.12);}
+  .bc-student{display:flex;align-items:center;gap:7px;}
+  .bc-avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--green-mint),var(--blue-sky));display:flex;align-items:center;justify-content:center;font-size:0.9rem;}
+  .bc-name{font-size:0.78rem;color:#777;font-weight:500;}
+  .bc-stars{color:var(--yellow-sun);font-size:0.92rem;letter-spacing:-1px;}
+  .bc-date{font-size:0.73rem;color:#bbb;}
+
+  /* 추가 버튼 카드 */
+  .add-card{background:linear-gradient(135deg,rgba(212,245,226,0.85),rgba(184,234,247,0.85));border:2px dashed rgba(76,175,125,0.4);border-radius:22px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:280px;cursor:pointer;transition:all 0.25s;text-decoration:none;}
+  .add-card:hover{background:rgba(255,255,255,0.9);transform:scale(1.02);}
+  .add-card .add-icon{font-size:3rem;margin-bottom:12px;}
+  .add-card p{color:var(--green-mid);font-size:0.9rem;font-weight:600;margin-bottom:12px;}
+
+  .school-bottom-banner{position:relative;z-index:5;text-align:center;padding:38px 20px;border-top:1px solid rgba(255,255,255,0.1);}
+  .school-bottom-banner .school-name{font-family:'Gaegu',cursive;font-size:1.3rem;color:#fff;font-weight:700;margin-bottom:5px;}
+  .school-bottom-banner p{color:rgba(255,255,255,0.6);font-size:0.8rem;line-height:1.8;}
+  .footer-earth{font-size:2.2rem;display:block;margin-bottom:8px;animation:pulse 2s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.1);}}
+
+  .section-label{color:#fff;font-family:'Gaegu',cursive;font-size:1.1rem;margin-bottom:14px;opacity:0.85;}
+</style>
+</head>
+<body>
+<div class="bg-bubbles">
+  <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
+  <div class="bubble"></div><div class="bubble"></div>
+</div>
+
+<div class="school-top-banner">
+  <span>🏫 <strong>봉곡중학교</strong> · 2026학년도 1학년 5반 탄소중립학급</span>
+</div>
+
+<nav>
+  <a href="index.html">🏠 홈</a>
+  <a href="pledge.html">📜 실천 서약서</a>
+  <a href="books.html" class="active">📚 도서 소감</a>
+  <a href="market.html">🛍️ 중고 장터</a>
+  <a href="diary.html">📓 탄소 일기</a>
+</nav>
+
+<div class="page-header">
+  <h1>📚 탄소중립 도서 소감 나눔</h1>
+  <p>읽고 느끼고 나누는 환경 이야기 · 봉곡중학교 1학년 5반</p>
+</div>
+
+<div class="container">
+
+  <div class="filter-bar">
+    <button class="fb active">전체</button>
+    <button class="fb">3월</button>
+    <button class="fb">4월</button>
+    <button class="fb">5월</button>
+    <button class="fb">6월</button>
+    <button class="fb">⭐⭐⭐⭐⭐ 5점</button>
+  </div>
+
+  <!-- 소감 작성 폼 -->
+  <div class="add-form-card">
+    <h3>📖 새 도서 소감 작성하기</h3>
+    <div class="form-row">
+      <div class="fg">
+        <label>책 제목</label>
+        <input type="text" placeholder="읽은 책 제목을 입력하세요">
+      </div>
+      <div class="fg">
+        <label>저자</label>
+        <input type="text" placeholder="저자명">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="fg">
+        <label>이름</label>
+        <select>
+          <option value="">-- 이름 선택 --</option>
+          <option>1번 강예솔</option><option>2번 권예은</option><option>3번 김서윤</option>
+          <option>4번 권정훈</option><option>5번 김세혁</option><option>6번 김예은</option>
+          <option>7번 김온유</option><option>8번 김태윤</option><option>9번 나수인</option>
+          <option>10번 박규연</option><option>11번 박승준</option><option>12번 박지우</option>
+          <option>13번 배종혁</option><option>14번 송민슬</option><option>15번 양나경</option>
+          <option>16번 오은율</option><option>17번 유민서</option><option>18번 이민성</option>
+          <option>19번 이승민</option><option>20번 이태현</option><option>21번 임효린</option>
+          <option>22번 정해지</option><option>23번 차경호</option><option>24번 최진리</option>
+          <option>25번 최하안</option><option>26번 황승준</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>독서 완료 날짜</label>
+        <input type="date" value="2026-03-01">
+      </div>
+    </div>
+    <div style="margin-bottom:14px;">
+      <label style="display:block;font-size:0.78rem;color:#666;margin-bottom:7px;font-weight:600;">별점</label>
+      <div class="star-row">
+        <button class="star-btn" onclick="setStar(1)">⭐</button>
+        <button class="star-btn" onclick="setStar(2)">⭐</button>
+        <button class="star-btn" onclick="setStar(3)">⭐</button>
+        <button class="star-btn" onclick="setStar(4)">⭐</button>
+        <button class="star-btn" onclick="setStar(5)">⭐</button>
+      </div>
+    </div>
+    <div class="fg" style="margin-bottom:16px;">
+      <label>소감 (느낀 점, 인상 깊었던 내용)</label>
+      <textarea placeholder="책을 읽고 느낀 점을 자유롭게 써보세요. 어떤 내용이 인상 깊었나요? 실천에 어떻게 활용할 건가요?"></textarea>
+    </div>
+    <button class="btn btn-green">📚 소감 등록하기</button>
+  </div>
+
+  <!-- 도서 목록 -->
+  <div class="section-label">📖 등록된 도서 소감 (18권)</div>
+  <div class="books-grid">
+    <div class="book-card">
+      <div class="bc-cover c1"><span class="bc-month">3월</span>📗</div>
+      <div class="bc-body">
+        <div class="bc-title">기후 변화가 뭐예요?</div>
+        <div class="bc-author">캐서린 바 저 · 초록나무 출판</div>
+        <div class="bc-review">지구 온난화가 왜 일어나는지 쉽게 설명되어 있었어요. 내가 매일 하는 작은 행동들이 지구에 영향을 준다는 사실에 깜짝 놀랐어요!</div>
+        <div class="bc-footer">
+          <div class="bc-student"><div class="bc-avatar">🌱</div><div class="bc-name">강예솔 · 2026.03.15</div></div>
+          <span class="bc-stars">⭐⭐⭐⭐⭐</span>
+        </div>
+      </div>
+    </div>
+    <div class="book-card">
+      <div class="bc-cover c2"><span class="bc-month">3월</span>🌊</div>
+      <div class="bc-body">
+        <div class="bc-title">바다가 아파요</div>
+        <div class="bc-author">해양생태연구소 저 · 지구 출판사</div>
+        <div class="bc-review">플라스틱 쓰레기로 가득 찬 바다 사진이 마음에 걸렸어요. 이제 절대 함부로 쓰레기를 버리지 않겠다고 다짐했어요.</div>
+        <div class="bc-footer">
+          <div class="bc-student"><div class="bc-avatar">🌊</div><div class="bc-name">권예은 · 2026.03.18</div></div>
+          <span class="bc-stars">⭐⭐⭐⭐⭐</span>
+        </div>
+      </div>
+    </div>
+    <div class="book-card">
+      <div class="bc-cover c3"><span class="bc-month">3월</span>🌳</div>
+      <div class="bc-body">
+        <div class="bc-title">나무가 들려주는 이야기</div>
+        <div class="bc-author">페터 볼레벤 저 · 숲속 책방</div>
+        <div class="bc-review">나무들도 서로 소통하고 서로 돕는다는 것이 정말 신기했어요! 나무 한 그루가 얼마나 소중한지 다시 깨달았습니다.</div>
+        <div class="bc-footer">
+          <div class="bc-student"><div class="bc-avatar">🌳</div><div class="bc-name">김서윤 · 2026.03.20</div></div>
+          <span class="bc-stars">⭐⭐⭐⭐</span>
+        </div>
+      </div>
+    </div>
+    <div class="book-card">
+      <div class="bc-cover c4"><span class="bc-month">3월</span>🦁</div>
+      <div class="bc-body">
+        <div class="bc-title">사라져가는 동물들</div>
+        <div class="bc-author">제인 구달 재단 · 야생 도서</div>
+        <div class="bc-review">기후 변화로 살 곳을 잃어가는 동물들의 이야기가 슬펐어요. 북극곰 사진을 보고 눈물이 났어요. 꼭 읽어보세요!</div>
+        <div class="bc-footer">
+          <div class="bc-student"><div class="bc-avatar">🦋</div><div class="bc-name">권정훈 · 2026.03.22</div></div>
+          <span class="bc-stars">⭐⭐⭐⭐⭐</span>
+        </div>
+      </div>
+    </div>
+    <div class="book-card">
+      <div class="bc-cover c5"><span class="bc-month">4월</span>♻️</div>
+      <div class="bc-body">
+        <div class="bc-title">쓰레기가 사는 곳</div>
+        <div class="bc-author">홍수열 저 · 슬로비 출판</div>
+        <div class="bc-review">재활용의 진실을 알게 되었어요. 우리가 분리배출한 것들이 실제로 재활용되는 비율이 생각보다 낮다는 게 충격이었어요.</div>
+        <div class="bc-footer">
+          <div class="bc-student"><div class="bc-avatar">🌻</div><div class="bc-name">김세혁 · 2026.04.05</div></div>
+          <span class="bc-stars">⭐⭐⭐⭐⭐</span>
+        </div>
+      </div>
+    </div>
+    <div class="book-card">
+      <div class="bc-cover c6"><span class="bc-month">4월</span>🌱</div>
+      <div class="bc-body">
+        <div class="bc-title">탄소 제로 도전!</div>
+        <div class="bc-author">조 워런 저 · 미래아이 출판</div>
+        <div class="bc-review">일상에서 탄소를 줄이는 100가지 방법을 소개하는 책! 실천 가능한 방법들이 많아서 당장 시작할 수 있을 것 같아요.</div>
+        <div class="bc-footer">
+          <div class="bc-student"><div class="bc-avatar">🐢</div><div class="bc-name">김예은 · 2026.04.08</div></div>
+          <span class="bc-stars">⭐⭐⭐⭐</span>
+        </div>
+      </div>
+    </div>
+    <a class="add-card" href="#">
+      <span class="add-icon">📖</span>
+      <p>내가 읽은 책 소감 올리기</p>
+      <div class="btn btn-green" style="font-size:0.82rem;padding:9px 20px;">+ 소감 작성</div>
+    </a>
+  </div>
+
+</div>
+
+<div class="school-bottom-banner">
+  <span class="footer-earth">🌍</span>
+  <div class="school-name">🏫 봉곡중학교</div>
+  <p>🌿 탄소중립 학급 · 초록별 프로젝트 · 2026학년도 1학년 5반 🌿<br>
+  우리의 작은 실천이 지구를 더 오래 살게 합니다</p>
+</div>
+
+<script>
+  document.querySelectorAll('.fb').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.fb').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+  function setStar(n){ console.log('별점:',n); }
+</script>
+</body>
+</html>

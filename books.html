@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
 <style>
-.books-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px;}
+.books-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:18px;}
 .book-card{background:var(--card-bg);border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,0.5);transition:all 0.3s;}
 .book-card:hover{transform:translateY(-5px);box-shadow:0 16px 44px rgba(0,0,0,0.18);}
 .bc-cover{height:130px;display:flex;align-items:center;justify-content:center;font-size:3.5rem;position:relative;}
@@ -17,7 +17,7 @@
 .bc-cover.c4{background:linear-gradient(135deg,#dfe6e9,#74b9ff);}
 .bc-cover.c5{background:linear-gradient(135deg,#ffecd2,#fcb69f);}
 .bc-cover.c6{background:linear-gradient(135deg,#d4efdf,#76b947);}
-.bc-month-badge{position:absolute;top:8px;left:10px;background:rgba(255,255,255,0.82);color:#1a5c35;font-size:0.7rem;font-weight:700;padding:2px 9px;border-radius:9px;}
+.bc-month{position:absolute;top:8px;left:10px;background:rgba(255,255,255,0.82);color:#1a5c35;font-size:0.7rem;font-weight:700;padding:2px 9px;border-radius:9px;}
 .bc-body{padding:16px;}
 .bc-title{font-size:0.95rem;font-weight:700;color:#1a5c35;margin-bottom:3px;}
 .bc-author{font-size:0.74rem;color:#999;margin-bottom:9px;}
@@ -25,48 +25,37 @@
 .bc-footer{display:flex;align-items:center;justify-content:space-between;padding-top:10px;border-top:1px solid rgba(76,175,125,0.12);}
 .bc-student{font-size:0.76rem;color:#777;}
 .bc-stars{color:#ffd166;font-size:0.9rem;letter-spacing:-1px;}
-.example-badge{background:rgba(255,209,102,0.22);border:1px solid rgba(255,209,102,0.38);color:#b07d00;font-size:0.68rem;padding:2px 8px;border-radius:7px;font-weight:700;margin-left:5px;}
 .star-row{display:flex;gap:4px;margin-bottom:12px;}
 .star-btn{font-size:1.5rem;cursor:pointer;background:none;border:none;transition:transform 0.15s;padding:0;line-height:1;}
 .star-btn:hover{transform:scale(1.25);}
-.star-btn.lit{filter:none;}
 .star-btn.dim{filter:grayscale(1) opacity(0.4);}
 </style>
 </head>
 <body>
 <div class="bg-bubbles"><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div></div>
-
 <div class="school-top-banner">
   <span>🏫 <strong>봉곡중학교</strong> · 2026학년도 1학년 5반 탄소중립학급</span>
   <button class="admin-toggle-btn" id="adminToggleBtn" onclick="openAdminModal()">🔐 관리자</button>
 </div>
 <div class="admin-bar" id="adminBar">
-  <p>🔐 <strong>관리자 모드</strong> — 각 도서 카드에 수정/삭제 버튼이 표시됩니다. &nbsp;<button onclick="exitAdmin()" style="background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:3px 11px;border-radius:8px;cursor:pointer;font-size:0.77rem;font-family:'Noto Sans KR',sans-serif;">🚪 로그아웃</button></p>
+  <p>🔐 <strong>관리자 모드</strong> &nbsp;<button onclick="exitAdmin()" style="background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:3px 11px;border-radius:8px;cursor:pointer;font-size:0.77rem;font-family:'Noto Sans KR',sans-serif;">🚪 로그아웃</button></p>
 </div>
 <nav>
-  <a href="index.html">🏠 홈</a>
-  <a href="pledge.html">📜 서약서</a>
+  <a href="index.html">🏠 홈</a><a href="pledge.html">📜 서약서</a>
   <a href="books.html" class="active">📚 도서소감</a>
-  <a href="market.html">🛍️ 중고장터</a>
-  <a href="diary.html">📓 탄소일기</a>
+  <a href="market.html">🛍️ 중고장터</a><a href="diary.html">📓 탄소일기</a>
 </nav>
-
 <div class="page-header">
   <h1>📚 탄소중립 도서 소감 나눔</h1>
   <p>읽고 느끼고 나누는 환경 이야기 · 봉곡중학교 1학년 5반</p>
 </div>
-
 <div class="container">
   <div class="filter-bar" id="filterBar">
     <button class="fb active" data-month="all">전체</button>
-    <button class="fb" data-month="3">3월</button>
-    <button class="fb" data-month="4">4월</button>
-    <button class="fb" data-month="5">5월</button>
-    <button class="fb" data-month="6">6월</button>
+    <button class="fb" data-month="3">3월</button><button class="fb" data-month="4">4월</button>
+    <button class="fb" data-month="5">5월</button><button class="fb" data-month="6">6월</button>
     <button class="fb" data-month="7">7월~</button>
   </div>
-
-  <!-- 작성 폼 -->
   <div class="write-box">
     <h3>📖 새 도서 소감 작성하기</h3>
     <div class="form-row">
@@ -74,180 +63,160 @@
       <div class="fg"><label>저자</label><input type="text" id="bookAuthor" placeholder="저자명"></div>
     </div>
     <div class="form-row">
-      <div id="studentSelectWrap" class="fg"></div>
-      <div class="fg"><label>독서 완료 날짜</label><input type="date" id="bookDate" value="2026-03-01"></div>
+      <div id="studentSelectWrap"></div>
+      <div class="fg"><label>독서 완료 날짜</label><input type="date" id="bookDate"></div>
     </div>
     <div style="margin-bottom:12px;">
       <label style="display:block;font-size:0.77rem;color:#555;font-weight:600;margin-bottom:6px;">별점</label>
       <div class="star-row" id="starRow">
-        <button class="star-btn dim" data-s="1" onclick="setStar(1)">⭐</button>
-        <button class="star-btn dim" data-s="2" onclick="setStar(2)">⭐</button>
-        <button class="star-btn dim" data-s="3" onclick="setStar(3)">⭐</button>
-        <button class="star-btn dim" data-s="4" onclick="setStar(4)">⭐</button>
-        <button class="star-btn dim" data-s="5" onclick="setStar(5)">⭐</button>
+        <button class="star-btn" data-s="1" onclick="setStar(1)">⭐</button>
+        <button class="star-btn" data-s="2" onclick="setStar(2)">⭐</button>
+        <button class="star-btn" data-s="3" onclick="setStar(3)">⭐</button>
+        <button class="star-btn" data-s="4" onclick="setStar(4)">⭐</button>
+        <button class="star-btn" data-s="5" onclick="setStar(5)">⭐</button>
       </div>
     </div>
     <div class="fg" style="margin-bottom:13px;">
-      <label>소감 (느낀 점, 인상 깊었던 내용)</label>
-      <textarea id="bookReview" placeholder="책을 읽고 느낀 점을 자유롭게 써보세요. 어떤 내용이 인상 깊었나요?"></textarea>
+      <label>소감</label>
+      <textarea id="bookReview" placeholder="책을 읽고 느낀 점을 자유롭게 써보세요!"></textarea>
     </div>
-    <button class="btn btn-green" onclick="submitBook()">📚 소감 등록하기</button>
+    <button class="btn btn-green" id="submitBtn" onclick="submitBook()">📚 소감 등록하기</button>
   </div>
-
-  <div style="color:#fff;font-family:'Gaegu',cursive;font-size:1.1rem;margin-bottom:13px;display:flex;align-items:center;gap:6px;">
-    📖 등록된 도서 소감 <span id="bookCount" style="opacity:0.7;font-size:0.85rem"></span>
+  <div style="color:#fff;font-family:'Gaegu',cursive;font-size:1.1rem;margin-bottom:13px;">
+    📖 등록된 도서 소감 <span id="bookCount" style="opacity:0.7;font-size:0.85rem;font-family:'Noto Sans KR'"></span>
   </div>
-  <div class="books-grid" id="booksGrid"></div>
+  <div class="books-grid" id="booksGrid"><div style="color:rgba(255,255,255,0.7);padding:30px;text-align:center">⏳ 불러오는 중...</div></div>
 </div>
 
 <div class="modal-overlay" id="adminModal">
   <div class="modal-box">
-    <h3>🔐 관리자 로그인</h3>
-    <p>관리자 비밀번호를 입력해 주세요</p>
+    <h3>🔐 관리자 로그인</h3><p>관리자 비밀번호를 입력해 주세요</p>
     <input type="password" class="pw-input" id="adminPwInput" placeholder="비밀번호" onkeydown="if(event.key==='Enter')checkAdmin()">
     <div class="modal-err" id="adminErr">❌ 비밀번호가 올바르지 않습니다</div>
-    <div class="modal-btns">
-      <button class="btn btn-green" onclick="checkAdmin()">✅ 확인</button>
-      <button class="btn btn-gray" onclick="closeAdminModal()">취소</button>
-    </div>
+    <div class="modal-btns"><button class="btn btn-green" onclick="checkAdmin()">✅ 확인</button><button class="btn btn-gray" onclick="closeAdminModal()">취소</button></div>
   </div>
 </div>
 <div class="modal-overlay" id="editModal">
-  <div class="modal-box">
-    <div id="editModalBody"></div>
-    <div class="modal-btns" style="margin-top:4px">
-      <button class="btn btn-green" id="editSaveBtn">💾 저장</button>
-      <button class="btn btn-gray" onclick="closeEditModal()">취소</button>
-    </div>
+  <div class="modal-box"><div id="editModalBody"></div>
+    <div class="modal-btns" style="margin-top:4px"><button class="btn btn-green" id="editSaveBtn">💾 저장</button><button class="btn btn-gray" onclick="closeEditModal()">취소</button></div>
   </div>
 </div>
-
 <div class="toast" id="toast"></div>
 <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 <div class="school-bottom-banner">
-  <span class="footer-earth">🌍</span>
-  <div class="school-name">🏫 봉곡중학교</div>
+  <span class="footer-earth">🌍</span><div class="school-name">🏫 봉곡중학교</div>
   <p>🌿 탄소중립 학급 · 초록별 프로젝트 · 2026학년도 1학년 5반 🌿<br>우리의 작은 실천이 지구를 더 오래 살게 합니다</p>
 </div>
 
-<script src="shared.js"></script>
-<script>
-const KEY='books';
-const COVERS=['c1','c2','c3','c4','c5','c6'];
-const EMOJIS=['📗','🌊','🌳','🦁','♻️','🌱','🌏','🐋','🍃','🌿'];
-let selectedStar=5;
+<script type="module">
+import {
+  STUDENTS, openAdminModal, closeAdminModal, checkAdmin, exitAdmin,
+  subscribeCollection, addItem, updateItem, deleteItem,
+  showEditModal, closeEditModal, adminActions, showToast,
+  formatDate, nowDate, getStudentSelect
+} from "./shared.js";
 
-const EXAMPLES=[
-  {id:'bex1',title:'기후 변화가 뭐예요?',author:'캐서린 바',name:'강예솔',date:'2026-03-15',stars:5,review:'지구 온난화가 왜 일어나는지 쉽게 설명되어 있었어요. 내가 매일 하는 작은 행동들이 지구에 영향을 준다는 사실에 깜짝 놀랐어요!',isExample:true},
-  {id:'bex2',title:'바다가 아파요',author:'해양생태연구소',name:'권예은',date:'2026-03-18',stars:5,review:'플라스틱 쓰레기로 가득 찬 바다 사진이 마음에 걸렸어요. 이제 절대 함부로 쓰레기를 버리지 않겠다고 다짐했어요.',isExample:true},
-  {id:'bex3',title:'나무가 들려주는 이야기',author:'페터 볼레벤',name:'김서윤',date:'2026-03-20',stars:4,review:'나무들도 서로 소통하고 서로 돕는다는 것이 정말 신기했어요! 나무 한 그루가 얼마나 소중한지 다시 깨달았습니다.',isExample:true},
-];
+Object.assign(window, { openAdminModal, closeAdminModal, checkAdmin, exitAdmin, deleteItem, closeEditModal });
 
-function initExamples(){ if(getData(KEY).length===0) setData(KEY,EXAMPLES); }
+const KEY = "books";
+const COVERS = ["c1","c2","c3","c4","c5","c6"];
+const EMOJIS = ["📗","🌊","🌳","🦁","♻️","🌱","🌏","🐋","🍃","🌿"];
+const idx = STUDENTS.reduce((a,s,i)=>{a[s]=i;return a;},{});
+let selectedStar = 5, currentMonth = "all", allData = [];
 
-let currentMonth='all';
-
-function renderAll(){
-  const data=getData(KEY);
-  const filtered=currentMonth==='all'?data:data.filter(b=>{
-    const m=parseInt(b.date?.split('-')[1]||'0');
-    if(currentMonth==='7') return m>=7;
-    return m===parseInt(currentMonth);
+function render(data) {
+  allData = data;
+  renderFiltered();
+}
+function renderFiltered() {
+  const filtered = currentMonth === "all" ? allData : allData.filter(b => {
+    const m = parseInt((b.date||"").split("-")[1]||"0");
+    return currentMonth === "7" ? m >= 7 : m === parseInt(currentMonth);
   });
-  document.getElementById('bookCount').textContent='('+data.length+'권)';
-  const grid=document.getElementById('booksGrid');
-  if(filtered.length===0){
-    grid.innerHTML=`<div style="grid-column:1/-1;text-align:center;color:rgba(255,255,255,0.6);padding:40px 20px;"><div style="font-size:3rem;margin-bottom:10px">📚</div><p>아직 소감이 없어요. 첫 번째로 등록해 보세요!</p></div>`;
+  document.getElementById("bookCount").textContent = `(${allData.length}권)`;
+  const grid = document.getElementById("booksGrid");
+  if (!filtered.length) {
+    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;color:rgba(255,255,255,0.65);padding:40px 20px;"><div style="font-size:3rem;margin-bottom:10px">📚</div><p>등록된 소감이 없어요!</p></div>`;
     return;
   }
-  const idx=STUDENTS.reduce((a,s,i)=>{a[s]=i;return a;},{});
-  grid.innerHTML=filtered.map((b,i)=>{
-    const si=idx[b.name]??i;
-    const stars='⭐'.repeat(b.stars||5);
-    const exBadge=b.isExample?`<span class="example-badge">예시</span>`:'';
-    const month=b.date?parseInt(b.date.split('-')[1]):3;
+  grid.innerHTML = filtered.map((b,i) => {
+    const si = idx[b.name] ?? i;
+    const stars = "⭐".repeat(b.stars||5);
+    const month = b.date ? parseInt(b.date.split("-")[1]) : 3;
     return `<div class="book-card deletable">
-      <div class="bc-cover ${COVERS[si%COVERS.length]}">
-        <span class="bc-month-badge">${month}월</span>
-        ${EMOJIS[si%EMOJIS.length]}
-      </div>
+      <div class="bc-cover ${COVERS[si%COVERS.length]}"><span class="bc-month">${month}월</span>${EMOJIS[si%EMOJIS.length]}</div>
       <div class="bc-body">
         <div class="bc-title">${b.title}</div>
-        <div class="bc-author">${b.author}</div>
+        <div class="bc-author">${b.author||""}</div>
         <div class="bc-review">${b.review}</div>
-        <div class="bc-footer">
-          <span class="bc-student">✍️ ${b.name} ${exBadge}</span>
-          <span class="bc-stars">${stars}</span>
-        </div>
-        ${adminActions(KEY,b,'editBook')}
-      </div>
-    </div>`;
-  }).join('');
+        <div class="bc-footer"><span class="bc-student">✍️ ${b.name} · ${formatDate(b.date)}</span><span class="bc-stars">${stars}</span></div>
+        ${adminActions(KEY,b,"editBook")}
+      </div></div>`;
+  }).join("");
 }
+window.renderAll = renderFiltered;
 
-function setStar(n){
-  selectedStar=n;
-  document.querySelectorAll('.star-btn').forEach(btn=>{
-    btn.className='star-btn '+(parseInt(btn.dataset.s)<=n?'lit':'dim');
+function setStar(n) {
+  selectedStar = n;
+  document.querySelectorAll(".star-btn").forEach(b => b.classList.toggle("dim", parseInt(b.dataset.s) > n));
+}
+window.setStar = setStar;
+
+async function submitBook() {
+  const title  = document.getElementById("bookTitle").value.trim();
+  const author = document.getElementById("bookAuthor").value.trim();
+  const name   = document.getElementById("bookName")?.value;
+  const date   = document.getElementById("bookDate").value;
+  const review = document.getElementById("bookReview").value.trim();
+  if (!title)  { showToast("⚠️ 책 제목을 입력해 주세요"); return; }
+  if (!name)   { showToast("⚠️ 이름을 선택해 주세요"); return; }
+  if (!review) { showToast("⚠️ 소감을 입력해 주세요"); return; }
+  const btn = document.getElementById("submitBtn");
+  btn.disabled = true; btn.textContent = "저장 중...";
+  const ok = await addItem(KEY, { title, author, name, date, stars: selectedStar, review });
+  btn.disabled = false; btn.textContent = "📚 소감 등록하기";
+  if (ok) {
+    ["bookTitle","bookAuthor","bookReview"].forEach(id => document.getElementById(id).value = "");
+    document.getElementById("bookName").value = "";
+    setStar(5);
+    showToast("📚 소감이 등록되었습니다!");
+  }
+}
+window.submitBook = submitBook;
+
+window.editBook = (id) => {
+  const item = allData.find(x => x.id === id);
+  if (!item) return;
+  showEditModal("도서 소감", [
+    { id:"title",  label:"책 제목", type:"text",     value: item.title },
+    { id:"author", label:"저자",   type:"text",     value: item.author||"" },
+    { id:"review", label:"소감",   type:"textarea", value: item.review },
+    { id:"stars",  label:"별점",   type:"select",   value: String(item.stars||5),
+      options:[1,2,3,4,5].map(n=>({v:String(n),l:"⭐".repeat(n)+` (${n}점)`})) },
+    { id:"date",   label:"날짜",   type:"date",     value: item.date },
+  ], async () => {
+    await updateItem(KEY, id, {
+      title:  document.getElementById("ef_title").value,
+      author: document.getElementById("ef_author").value,
+      review: document.getElementById("ef_review").value,
+      stars:  parseInt(document.getElementById("ef_stars").value),
+      date:   document.getElementById("ef_date").value,
+    });
+    closeEditModal(); showToast("✅ 수정되었습니다");
   });
-}
+};
 
-function submitBook(){
-  const title=document.getElementById('bookTitle').value.trim();
-  const author=document.getElementById('bookAuthor').value.trim();
-  const name=document.getElementById('bookName')?.value;
-  const date=document.getElementById('bookDate').value;
-  const review=document.getElementById('bookReview').value.trim();
-  if(!title){showToast('⚠️ 책 제목을 입력해 주세요');return;}
-  if(!name){showToast('⚠️ 이름을 선택해 주세요');return;}
-  if(!review){showToast('⚠️ 소감을 입력해 주세요');return;}
-  const arr=getData(KEY);
-  arr.unshift({id:uid(),title,author,name,date,stars:selectedStar,review,isExample:false});
-  setData(KEY,arr);
-  document.getElementById('bookTitle').value='';
-  document.getElementById('bookAuthor').value='';
-  document.getElementById('bookReview').value='';
-  document.getElementById('bookName').value='';
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("studentSelectWrap").innerHTML = getStudentSelect("bookName","이름");
+  document.getElementById("bookDate").value = nowDate();
   setStar(5);
-  renderAll();
-  showToast('📚 소감이 등록되었습니다!');
-}
-
-function editBook(id){
-  const item=getData(KEY).find(x=>x.id===id);
-  if(!item)return;
-  showEditModal('도서 소감',[
-    {id:'title',label:'책 제목',type:'text',value:item.title},
-    {id:'author',label:'저자',type:'text',value:item.author},
-    {id:'review',label:'소감',type:'textarea',value:item.review},
-    {id:'stars',label:'별점',type:'select',value:String(item.stars||5),options:[1,2,3,4,5].map(n=>({v:String(n),l:'⭐'.repeat(n)+' ('+n+'점)'}))},
-    {id:'date',label:'날짜',type:'date',value:item.date},
-  ],()=>{
-    const arr=getData(KEY);
-    const i=arr.findIndex(x=>x.id===id);
-    if(i>-1){
-      arr[i].title=document.getElementById('ef_title').value;
-      arr[i].author=document.getElementById('ef_author').value;
-      arr[i].review=document.getElementById('ef_review').value;
-      arr[i].stars=parseInt(document.getElementById('ef_stars').value);
-      arr[i].date=document.getElementById('ef_date').value;
-      setData(KEY,arr);
-    }
-    closeEditModal();renderAll();showToast('✅ 수정되었습니다');
-  });
-}
-
-document.addEventListener('DOMContentLoaded',()=>{
-  document.getElementById('studentSelectWrap').innerHTML=getStudentSelect('bookName','이름');
-  initExamples();
-  renderAll();
-  document.getElementById('filterBar').addEventListener('click',e=>{
-    const btn=e.target.closest('.fb');
-    if(!btn)return;
-    document.querySelectorAll('.fb').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    currentMonth=btn.dataset.month;
-    renderAll();
+  subscribeCollection(KEY, render);
+  document.getElementById("filterBar").addEventListener("click", e => {
+    const btn = e.target.closest(".fb"); if (!btn) return;
+    document.querySelectorAll(".fb").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    currentMonth = btn.dataset.month;
+    renderFiltered();
   });
 });
 </script>

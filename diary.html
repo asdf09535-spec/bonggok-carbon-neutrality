@@ -7,80 +7,68 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
 <style>
-/* 차례 표 */
-.turn-card{background:var(--card-bg);border-radius:22px;padding:24px;margin-bottom:24px;border:1px solid rgba(255,255,255,0.5);}
-.turn-card h3{font-family:'Gaegu',cursive;font-size:1.3rem;color:#1a5c35;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
-.turn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:9px;}
-.turn-item{border-radius:13px;padding:10px 13px;display:flex;align-items:center;gap:9px;border:1px solid rgba(76,175,125,0.14);background:rgba(255,255,255,0.5);transition:transform 0.2s;}
+.turn-card{background:var(--card-bg);border-radius:22px;padding:22px;margin-bottom:22px;border:1px solid rgba(255,255,255,0.5);}
+.turn-card h3{font-family:'Gaegu',cursive;font-size:1.25rem;color:#1a5c35;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.turn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:8px;}
+.turn-item{border-radius:12px;padding:9px 12px;display:flex;align-items:center;gap:8px;border:1px solid rgba(76,175,125,0.13);background:rgba(255,255,255,0.5);transition:transform 0.2s;}
 .turn-item:hover{transform:scale(1.03);}
-.turn-item.t-current{background:linear-gradient(135deg,rgba(76,175,125,0.18),rgba(77,184,232,0.13));border-color:rgba(76,175,125,0.38);box-shadow:0 3px 10px rgba(76,175,125,0.18);}
-.turn-item.t-done{opacity:0.5;}
-.ti-num{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#4caf7d,#2d8653);color:#fff;font-size:0.7rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.turn-item.t-current{background:linear-gradient(135deg,rgba(76,175,125,0.18),rgba(77,184,232,0.13));border-color:rgba(76,175,125,0.38);box-shadow:0 3px 10px rgba(76,175,125,0.17);}
+.turn-item.t-done{opacity:0.48;}
+.ti-num{width:25px;height:25px;border-radius:50%;background:linear-gradient(135deg,#4caf7d,#2d8653);color:#fff;font-size:0.68rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .t-current .ti-num{background:linear-gradient(135deg,#ffd166,#ffb347);color:#1a5c35;}
 .t-done .ti-num{background:linear-gradient(135deg,#ccc,#aaa);}
-.ti-name{font-size:0.83rem;font-weight:700;color:#333;}
-.ti-week{font-size:0.7rem;color:#999;margin-top:1px;}
-.cur-badge{font-size:0.64rem;background:#ffd166;color:#1a5c35;padding:1px 6px;border-radius:6px;font-weight:700;margin-left:3px;}
-/* 타임라인 */
-.timeline{position:relative;padding-left:26px;}
+.ti-name{font-size:0.81rem;font-weight:700;color:#333;}
+.ti-week{font-size:0.68rem;color:#999;margin-top:1px;}
+.cur-badge{font-size:0.62rem;background:#ffd166;color:#1a5c35;padding:1px 6px;border-radius:5px;font-weight:700;margin-left:3px;}
+.timeline{position:relative;padding-left:24px;}
 .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,#4caf7d,#4db8e8);border-radius:2px;}
-.diary-entry{background:var(--card-bg);border-radius:20px;padding:20px 24px;margin-bottom:18px;position:relative;border:1px solid rgba(255,255,255,0.5);transition:all 0.3s;}
-.diary-entry:hover{transform:translateX(4px);box-shadow:0 8px 28px rgba(0,0,0,0.13);}
-.diary-entry::before{content:'';position:absolute;left:-33px;top:22px;width:12px;height:12px;border-radius:50%;background:#4caf7d;border:3px solid #fff;box-shadow:0 2px 7px rgba(0,0,0,0.18);}
+.diary-entry{background:var(--card-bg);border-radius:20px;padding:20px 24px;margin-bottom:17px;position:relative;border:1px solid rgba(255,255,255,0.5);transition:all 0.3s;}
+.diary-entry:hover{transform:translateX(4px);box-shadow:0 8px 28px rgba(0,0,0,0.12);}
+.diary-entry::before{content:'';position:absolute;left:-31px;top:22px;width:11px;height:11px;border-radius:50%;background:#4caf7d;border:3px solid #fff;box-shadow:0 2px 7px rgba(0,0,0,0.18);}
 .diary-entry:nth-child(2n)::before{background:#4db8e8;}
 .diary-entry:nth-child(3n)::before{background:#ffd166;}
-.de-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:11px;flex-wrap:wrap;gap:7px;}
-.de-author{display:flex;align-items:center;gap:10px;}
-.de-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#d4f5e2,#b8eaf7);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
-.de-name{font-size:0.88rem;font-weight:700;color:#1a5c35;}
-.de-date{font-size:0.72rem;color:#aaa;margin-top:2px;}
-.de-week{font-size:0.71rem;background:rgba(76,175,125,0.1);color:#2d8653;border:1px solid rgba(76,175,125,0.2);padding:2px 9px;border-radius:9px;font-weight:600;}
-.de-title{font-size:0.97rem;font-weight:700;color:#222;margin-bottom:8px;}
-.de-content{font-size:0.85rem;color:#555;line-height:1.72;}
-.de-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:10px;}
-.de-tag{padding:2px 9px;border-radius:9px;font-size:0.72rem;font-weight:600;}
+.de-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:7px;}
+.de-author{display:flex;align-items:center;gap:9px;}
+.de-avatar{width:35px;height:35px;border-radius:50%;background:linear-gradient(135deg,#d4f5e2,#b8eaf7);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.de-name{font-size:0.87rem;font-weight:700;color:#1a5c35;}
+.de-date{font-size:0.7rem;color:#aaa;margin-top:2px;}
+.de-week{font-size:0.7rem;background:rgba(76,175,125,0.1);color:#2d8653;border:1px solid rgba(76,175,125,0.2);padding:2px 9px;border-radius:9px;font-weight:600;}
+.de-title{font-size:0.96rem;font-weight:700;color:#222;margin-bottom:8px;}
+.de-content{font-size:0.84rem;color:#555;line-height:1.72;}
+.de-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:9px;}
+.de-tag{padding:2px 9px;border-radius:9px;font-size:0.71rem;font-weight:600;}
 .tg{background:rgba(76,175,125,0.1);color:#2d8653;border:1px solid rgba(76,175,125,0.2);}
 .tb{background:rgba(77,184,232,0.1);color:#1a7aa8;border:1px solid rgba(77,184,232,0.2);}
 .ty{background:rgba(255,209,102,0.14);color:#b07d00;border:1px solid rgba(255,209,102,0.28);}
-.example-badge{font-size:0.67rem;background:rgba(255,209,102,0.22);border:1px solid rgba(255,209,102,0.38);color:#b07d00;padding:1px 8px;border-radius:7px;font-weight:700;margin-left:4px;}
 </style>
 </head>
 <body>
 <div class="bg-bubbles"><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div></div>
-
 <div class="school-top-banner">
   <span>🏫 <strong>봉곡중학교</strong> · 2026학년도 1학년 5반 탄소중립학급</span>
   <button class="admin-toggle-btn" id="adminToggleBtn" onclick="openAdminModal()">🔐 관리자</button>
 </div>
 <div class="admin-bar" id="adminBar">
-  <p>🔐 <strong>관리자 모드</strong> — 각 일기 항목에 수정/삭제 버튼이 표시됩니다. &nbsp;<button onclick="exitAdmin()" style="background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:3px 11px;border-radius:8px;cursor:pointer;font-size:0.77rem;font-family:'Noto Sans KR',sans-serif;">🚪 로그아웃</button></p>
+  <p>🔐 <strong>관리자 모드</strong> &nbsp;<button onclick="exitAdmin()" style="background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:3px 11px;border-radius:8px;cursor:pointer;font-size:0.77rem;font-family:'Noto Sans KR',sans-serif;">🚪 로그아웃</button></p>
 </div>
 <nav>
-  <a href="index.html">🏠 홈</a>
-  <a href="pledge.html">📜 서약서</a>
-  <a href="books.html">📚 도서소감</a>
-  <a href="market.html">🛍️ 중고장터</a>
-  <a href="diary.html" class="active">📓 탄소일기</a>
+  <a href="index.html">🏠 홈</a><a href="pledge.html">📜 서약서</a><a href="books.html">📚 도서소감</a>
+  <a href="market.html">🛍️ 중고장터</a><a href="diary.html" class="active">📓 탄소일기</a>
 </nav>
-
 <div class="page-header">
   <h1>📓 탄소중립 일기</h1>
   <p>오늘 하루 나의 초록 실천을 기록해요 · 봉곡중학교 1학년 5반</p>
 </div>
-
 <div class="container">
-  <!-- 차례 표 -->
   <div class="turn-card">
-    <h3>🗓️ 일기 작성 차례 <span style="font-size:0.85rem;font-weight:400;color:#888;margin-left:5px">(번호순 돌아가며 작성)</span></h3>
+    <h3>🗓️ 일기 작성 차례 <span style="font-size:0.82rem;font-weight:400;color:#888;margin-left:4px">(번호순 돌아가며 작성)</span></h3>
     <div class="turn-grid" id="turnGrid"></div>
   </div>
-
-  <!-- 작성 폼 -->
   <div class="write-box">
-    <h3>✏️ 이번 주 일기 작성하기 <span id="turnIndicator" style="font-size:0.9rem;color:#1a7aa8;background:rgba(77,184,232,0.12);padding:3px 12px;border-radius:10px;border:1px solid rgba(77,184,232,0.22);"></span></h3>
+    <h3>✏️ 이번 주 일기 작성하기 <span id="turnIndicator" style="font-size:0.88rem;color:#1a7aa8;background:rgba(77,184,232,0.12);padding:3px 12px;border-radius:10px;border:1px solid rgba(77,184,232,0.22);"></span></h3>
     <div class="form-row">
       <div class="fg"><label>제목</label><input type="text" id="diaryTitle" placeholder="오늘의 탄소중립 실천 제목"></div>
-      <div class="fg" style="max-width:155px;"><label>날짜</label><input type="date" id="diaryDate" value="2026-03-09"></div>
+      <div class="fg" style="max-width:150px;"><label>날짜</label><input type="date" id="diaryDate"></div>
     </div>
     <div id="studentSelectWrap" style="margin-bottom:12px;"></div>
     <div class="fg" style="margin-bottom:12px;">
@@ -91,161 +79,139 @@
       <label>태그 (스페이스로 구분, # 자동 추가)</label>
       <input type="text" id="diaryTags" placeholder="예: 걷기등교 잔반제로 분리배출">
     </div>
-    <button class="btn btn-green" onclick="submitDiary()">🌿 일기 게시하기</button>
+    <button class="btn btn-green" id="submitBtn" onclick="submitDiary()">🌿 일기 게시하기</button>
   </div>
-
-  <div style="color:#fff;font-family:'Gaegu',cursive;font-size:1.1rem;margin-bottom:14px;display:flex;align-items:center;gap:6px;">
-    📖 탄소중립 일기 모음 <span id="diaryCount" style="opacity:0.7;font-size:0.85rem"></span>
+  <div style="color:#fff;font-family:'Gaegu',cursive;font-size:1.1rem;margin-bottom:14px;">
+    📖 탄소중립 일기 모음 <span id="diaryCount" style="opacity:0.7;font-size:0.85rem;font-family:'Noto Sans KR'"></span>
   </div>
-
-  <div class="timeline" id="diaryTimeline"></div>
+  <div class="timeline" id="diaryTimeline"><div style="color:rgba(255,255,255,0.7);padding:30px;text-align:center">⏳ 불러오는 중...</div></div>
 </div>
 
 <div class="modal-overlay" id="adminModal">
   <div class="modal-box">
-    <h3>🔐 관리자 로그인</h3>
-    <p>관리자 비밀번호를 입력해 주세요</p>
+    <h3>🔐 관리자 로그인</h3><p>관리자 비밀번호를 입력해 주세요</p>
     <input type="password" class="pw-input" id="adminPwInput" placeholder="비밀번호" onkeydown="if(event.key==='Enter')checkAdmin()">
     <div class="modal-err" id="adminErr">❌ 비밀번호가 올바르지 않습니다</div>
-    <div class="modal-btns">
-      <button class="btn btn-green" onclick="checkAdmin()">✅ 확인</button>
-      <button class="btn btn-gray" onclick="closeAdminModal()">취소</button>
-    </div>
+    <div class="modal-btns"><button class="btn btn-green" onclick="checkAdmin()">✅ 확인</button><button class="btn btn-gray" onclick="closeAdminModal()">취소</button></div>
   </div>
 </div>
 <div class="modal-overlay" id="editModal">
-  <div class="modal-box">
-    <div id="editModalBody"></div>
-    <div class="modal-btns" style="margin-top:4px">
-      <button class="btn btn-green" id="editSaveBtn">💾 저장</button>
-      <button class="btn btn-gray" onclick="closeEditModal()">취소</button>
-    </div>
+  <div class="modal-box"><div id="editModalBody"></div>
+    <div class="modal-btns" style="margin-top:4px"><button class="btn btn-green" id="editSaveBtn">💾 저장</button><button class="btn btn-gray" onclick="closeEditModal()">취소</button></div>
   </div>
 </div>
-
 <div class="toast" id="toast"></div>
 <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 <div class="school-bottom-banner">
-  <span class="footer-earth">🌍</span>
-  <div class="school-name">🏫 봉곡중학교</div>
+  <span class="footer-earth">🌍</span><div class="school-name">🏫 봉곡중학교</div>
   <p>🌿 탄소중립 학급 · 초록별 프로젝트 · 2026학년도 1학년 5반 🌿<br>우리의 작은 실천이 지구를 더 오래 살게 합니다</p>
 </div>
 
-<script src="shared.js"></script>
-<script>
-const KEY='diary';
-const AVATARS=['🌱','🌊','☘️','🦋','🌻','🐢','🍀','🌸','🌴','🌈','🦚','🐸','🌵','🍃','🌺','🦜','🌿','🐦','🌙','🍂','🌼','🐝','🦊','🌷','🌞','🐬'];
+<script type="module">
+import {
+  STUDENTS, isAdmin, openAdminModal, closeAdminModal, checkAdmin, exitAdmin,
+  subscribeCollection, addItem, updateItem, deleteItem,
+  showEditModal, closeEditModal, adminActions, showToast,
+  formatDate, nowDate, getStudentSelect
+} from "./shared.js";
 
-// 주차 계산 (2026-03-02 기준)
-const TURN_WEEKS=['3월 1주','3월 2주','3월 3주','3월 4주','4월 1주','4월 2주','4월 3주','4월 4주','5월 1주','5월 2주','5월 3주','5월 4주','6월 1주','6월 2주','6월 3주','6월 4주','7월 1주','7월 2주','7월 3주','8월 1주','8월 2주','9월 1주','9월 2주','9월 3주','10월 1주','10월 2주'];
+Object.assign(window, { openAdminModal, closeAdminModal, checkAdmin, exitAdmin, deleteItem, closeEditModal });
 
-const EXAMPLES=[
-  {id:'dex1',name:'강예솔',date:'2026-03-09',title:'오늘은 학교까지 걸어왔어요!',content:'평소에는 엄마 차로 등교했는데, 오늘은 처음으로 집에서 학교까지 걸어왔어요. 20분 정도 걸렸는데 새소리도 듣고 꽃도 보면서 기분이 너무 좋았어요! 차 한 번 안 타면 약 2kg의 탄소가 줄어든다고 해서 더 뿌듯했어요.',tags:['걷기등교','탄소2kg절감','뿌듯한하루'],isExample:true},
-  {id:'dex2',name:'권예은',date:'2026-03-16',title:'급식을 완전히 다 먹었습니다!',content:'오늘 급식 메뉴에 제가 싫어하는 시금치나물이 나왔는데, 탄소중립 서약을 했으니까 꾹 참고 다 먹었어요! 음식 1kg을 버리면 탄소 2.5kg이 발생한다고 배웠는데, 잔반을 남기지 않으면 정말 많은 탄소를 줄일 수 있어요.',tags:['잔반제로','시금치극복','음식쓰레기줄이기'],isExample:true},
-  {id:'dex3',name:'김서윤',date:'2026-03-23',title:'분리배출 제대로 해봤어요',content:'집에서 쓰레기를 버리다가 플라스틱 라벨을 뜯고 깨끗하게 씻어서 분리배출함에 넣었어요. 처음엔 귀찮았는데 이제는 습관이 되고 있어요. 작은 습관 하나가 지구를 살린다고 믿어요! 🌍',tags:['분리배출','재활용','좋은습관만들기'],isExample:true},
-];
-function initExamples(){ if(getData(KEY).length===0) setData(KEY,EXAMPLES); }
+const KEY = "diary";
+const AVATARS = ["🌱","🌊","☘️","🦋","🌻","🐢","🍀","🌸","🌴","🌈","🦚","🐸","🌵","🍃","🌺","🦜","🌿","🐦","🌙","🍂","🌼","🐝","🦊","🌷","🌞","🐬"];
+const TURN_WEEKS = ["3월 1주","3월 2주","3월 3주","3월 4주","4월 1주","4월 2주","4월 3주","4월 4주","5월 1주","5월 2주","5월 3주","5월 4주","6월 1주","6월 2주","6월 3주","6월 4주","7월 1주","7월 2주","7월 3주","8월 1주","8월 2주","9월 1주","9월 2주","9월 3주","10월 1주","10월 2주"];
+const idx = STUDENTS.reduce((a,s,i)=>{a[s]=i;return a;},{});
+let allData = [];
 
-function renderTurnGrid(){
-  const data=getData(KEY);
-  const writtenNames=new Set(data.map(d=>d.name));
-  // 현재 차례: 아직 안 쓴 첫 번째 학생
-  let currentIdx=STUDENTS.findIndex(s=>!writtenNames.has(s));
-  if(currentIdx===-1) currentIdx=0;
-  const grid=document.getElementById('turnGrid');
-  grid.innerHTML=STUDENTS.map((s,i)=>{
-    const done=writtenNames.has(s);
-    const cur=i===currentIdx;
-    return `<div class="turn-item ${cur?'t-current':done?'t-done':''}">
+function renderTurn(data) {
+  const written = new Set(data.map(d=>d.name));
+  let curIdx = STUDENTS.findIndex(s=>!written.has(s));
+  if (curIdx === -1) curIdx = 0;
+  document.getElementById("turnGrid").innerHTML = STUDENTS.map((s,i) => {
+    const done = written.has(s), cur = i===curIdx;
+    return `<div class="turn-item ${cur?"t-current":done?"t-done":""}">
       <div class="ti-num">${i+1}</div>
-      <div><div class="ti-name">${s}${cur?`<span class="cur-badge">현재</span>`:''}</div><div class="ti-week">${TURN_WEEKS[i]||'예정'}</div></div>
+      <div><div class="ti-name">${s}${cur?`<span class="cur-badge">현재</span>`:""}</div>
+      <div class="ti-week">${TURN_WEEKS[i]||"예정"}</div></div>
     </div>`;
-  }).join('');
-  const indicator=document.getElementById('turnIndicator');
-  indicator.textContent=`✏️ 현재 차례: ${STUDENTS[currentIdx]} (${currentIdx+1}번)`;
+  }).join("");
+  document.getElementById("turnIndicator").textContent = `✏️ 현재 차례: ${STUDENTS[curIdx]} (${curIdx+1}번)`;
 }
 
-function renderAll(){
-  renderTurnGrid();
-  const data=getData(KEY);
-  document.getElementById('diaryCount').textContent='('+data.length+'편)';
-  const tl=document.getElementById('diaryTimeline');
-  if(data.length===0){
-    tl.innerHTML=`<div style="text-align:center;color:rgba(255,255,255,0.6);padding:40px 20px;"><div style="font-size:3rem;margin-bottom:10px">📓</div><p>아직 일기가 없어요. 첫 번째로 작성해 보세요!</p></div>`;
+function render(data) {
+  allData = data;
+  renderTurn(data);
+  document.getElementById("diaryCount").textContent = `(${data.length}편)`;
+  const tl = document.getElementById("diaryTimeline");
+  if (!data.length) {
+    tl.innerHTML = `<div style="text-align:center;color:rgba(255,255,255,0.65);padding:40px 20px;"><div style="font-size:3rem;margin-bottom:10px">📓</div><p>아직 일기가 없어요. 첫 번째로 작성해 보세요!</p></div>`;
     return;
   }
-  const idx=STUDENTS.reduce((a,s,i)=>{a[s]=i;return a;},{});
-  tl.innerHTML=[...data].reverse().map(item=>{
-    const si=idx[item.name]??0;
-    const av=AVATARS[si%AVATARS.length];
-    const ex=item.isExample?`<span class="example-badge">예시</span>`:'';
-    const tagColors=['tg','tb','ty'];
-    const tagHtml=(item.tags||[]).map((t,ti)=>`<span class="de-tag ${tagColors[ti%3]}">#${t}</span>`).join('');
+  const TAG_CLS = ["tg","tb","ty"];
+  tl.innerHTML = [...data].reverse().map(item => {
+    const si = idx[item.name] ?? 0;
+    const tags = (item.tags||[]).map((t,ti)=>`<span class="de-tag ${TAG_CLS[ti%3]}">#${t}</span>`).join("");
     return `<div class="diary-entry deletable">
       <div class="de-head">
         <div class="de-author">
-          <div class="de-avatar">${av}</div>
-          <div><div class="de-name">${si+1}번 · ${item.name} ${ex}</div><div class="de-date">${formatDate(item.date)}</div></div>
+          <div class="de-avatar">${AVATARS[si%AVATARS.length]}</div>
+          <div><div class="de-name">${si+1}번 · ${item.name}</div><div class="de-date">${formatDate(item.date)}</div></div>
         </div>
-        <span class="de-week">${TURN_WEEKS[si]||'일기'}</span>
+        <span class="de-week">${TURN_WEEKS[si]||"일기"}</span>
       </div>
       <div class="de-title">${item.title}</div>
       <div class="de-content">${item.content}</div>
-      ${tagHtml?`<div class="de-tags">${tagHtml}</div>`:''}
-      ${adminActions(KEY,item,'editDiary')}
+      ${tags ? `<div class="de-tags">${tags}</div>` : ""}
+      ${adminActions(KEY, item, "editDiary")}
     </div>`;
-  }).join('');
+  }).join("");
 }
+window.renderAll = () => render(allData);
 
-function submitDiary(){
-  const title=document.getElementById('diaryTitle').value.trim();
-  const name=document.getElementById('diaryWriter')?.value;
-  const date=document.getElementById('diaryDate').value;
-  const content=document.getElementById('diaryContent').value.trim();
-  const tagsRaw=document.getElementById('diaryTags').value.trim();
-  if(!title){showToast('⚠️ 제목을 입력해 주세요');return;}
-  if(!name){showToast('⚠️ 이름을 선택해 주세요');return;}
-  if(!content){showToast('⚠️ 일기 내용을 입력해 주세요');return;}
-  const tags=tagsRaw?tagsRaw.split(/\s+/).filter(Boolean):[];
-  const arr=getData(KEY);
-  arr.push({id:uid(),name,date,title,content,tags,isExample:false});
-  setData(KEY,arr);
-  document.getElementById('diaryTitle').value='';
-  document.getElementById('diaryContent').value='';
-  document.getElementById('diaryTags').value='';
-  document.getElementById('diaryWriter').value='';
-  renderAll();
-  showToast('🌿 일기가 등록되었습니다!');
+async function submitDiary() {
+  const title   = document.getElementById("diaryTitle").value.trim();
+  const name    = document.getElementById("diaryWriter")?.value;
+  const date    = document.getElementById("diaryDate").value;
+  const content = document.getElementById("diaryContent").value.trim();
+  const tagsRaw = document.getElementById("diaryTags").value.trim();
+  if (!title)   { showToast("⚠️ 제목을 입력해 주세요"); return; }
+  if (!name)    { showToast("⚠️ 이름을 선택해 주세요"); return; }
+  if (!content) { showToast("⚠️ 일기 내용을 입력해 주세요"); return; }
+  const tags = tagsRaw ? tagsRaw.split(/\s+/).filter(Boolean) : [];
+  const btn = document.getElementById("submitBtn");
+  btn.disabled = true; btn.textContent = "저장 중...";
+  const ok = await addItem(KEY, { name, date, title, content, tags });
+  btn.disabled = false; btn.textContent = "🌿 일기 게시하기";
+  if (ok) {
+    ["diaryTitle","diaryContent","diaryTags"].forEach(id=>document.getElementById(id).value="");
+    document.getElementById("diaryWriter").value = "";
+    showToast("🌿 일기가 등록되었습니다!");
+  }
 }
+window.submitDiary = submitDiary;
 
-function editDiary(id){
-  const item=getData(KEY).find(x=>x.id===id);
-  if(!item)return;
-  showEditModal('일기',[
-    {id:'title',label:'제목',type:'text',value:item.title},
-    {id:'content',label:'내용',type:'textarea',value:item.content},
-    {id:'tags',label:'태그 (스페이스 구분)',type:'text',value:(item.tags||[]).join(' ')},
-    {id:'date',label:'날짜',type:'date',value:item.date},
-  ],()=>{
-    const arr=getData(KEY);
-    const i=arr.findIndex(x=>x.id===id);
-    if(i>-1){
-      arr[i].title=document.getElementById('ef_title').value;
-      arr[i].content=document.getElementById('ef_content').value;
-      arr[i].tags=document.getElementById('ef_tags').value.trim().split(/\s+/).filter(Boolean);
-      arr[i].date=document.getElementById('ef_date').value;
-      setData(KEY,arr);
-    }
-    closeEditModal();renderAll();showToast('✅ 수정되었습니다');
+window.editDiary = (id) => {
+  const item = allData.find(x=>x.id===id); if (!item) return;
+  showEditModal("일기", [
+    { id:"title",   label:"제목",   type:"text",     value: item.title },
+    { id:"content", label:"내용",   type:"textarea", value: item.content },
+    { id:"tags",    label:"태그",   type:"text",     value: (item.tags||[]).join(" ") },
+    { id:"date",    label:"날짜",   type:"date",     value: item.date },
+  ], async () => {
+    await updateItem(KEY, id, {
+      title:   document.getElementById("ef_title").value,
+      content: document.getElementById("ef_content").value,
+      tags:    document.getElementById("ef_tags").value.trim().split(/\s+/).filter(Boolean),
+      date:    document.getElementById("ef_date").value,
+    });
+    closeEditModal(); showToast("✅ 수정되었습니다");
   });
-}
+};
 
-document.addEventListener('DOMContentLoaded',()=>{
-  const wrap=document.getElementById('studentSelectWrap');
-  wrap.innerHTML=`<div class="fg">`+getStudentSelect('diaryWriter','작성자 이름').replace('<div class="fg">','').replace('</div>','')+'</div>';
-  wrap.innerHTML=getStudentSelect('diaryWriter','작성자 이름');
-  initExamples();
-  renderAll();
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("studentSelectWrap").innerHTML = getStudentSelect("diaryWriter","작성자 이름");
+  document.getElementById("diaryDate").value = nowDate();
+  subscribeCollection(KEY, render);
 });
 </script>
 </body>

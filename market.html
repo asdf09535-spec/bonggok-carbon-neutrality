@@ -7,268 +7,227 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
 <style>
-.guide-banner{background:linear-gradient(135deg,rgba(212,245,226,0.88),rgba(184,234,247,0.82));border-radius:18px;padding:18px 22px;margin-bottom:20px;border:1px solid rgba(76,175,125,0.22);display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
-.gb-icon{font-size:2rem;flex-shrink:0;}
-.gb-text h4{font-size:0.93rem;font-weight:700;color:#1a5c35;margin-bottom:3px;}
-.gb-text p{font-size:0.8rem;color:#555;line-height:1.5;}
-.stats-mini{display:flex;gap:11px;margin-bottom:20px;flex-wrap:wrap;}
-.sm-card{flex:1;min-width:105px;background:var(--card-bg);border-radius:15px;padding:13px 14px;text-align:center;border:1px solid rgba(255,255,255,0.5);}
-.sm-num{font-family:'Gaegu',cursive;font-size:1.55rem;color:#1a5c35;font-weight:700;}
-.sm-lbl{font-size:0.74rem;color:#777;margin-top:2px;}
-.filter-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:20px;flex-wrap:wrap;}
-.filter-left{display:flex;gap:7px;flex-wrap:wrap;}
-.market-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:16px;}
+.guide-banner{background:linear-gradient(135deg,rgba(212,245,226,0.88),rgba(184,234,247,0.82));border-radius:18px;padding:17px 22px;margin-bottom:18px;border:1px solid rgba(76,175,125,0.22);display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.gb-icon{font-size:1.9rem;flex-shrink:0;}
+.gb-text h4{font-size:0.92rem;font-weight:700;color:#1a5c35;margin-bottom:2px;}
+.gb-text p{font-size:0.79rem;color:#555;line-height:1.5;}
+.stats-mini{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap;}
+.sm-card{flex:1;min-width:100px;background:var(--card-bg);border-radius:14px;padding:12px;text-align:center;border:1px solid rgba(255,255,255,0.5);}
+.sm-num{font-family:'Gaegu',cursive;font-size:1.5rem;color:#1a5c35;font-weight:700;}
+.sm-lbl{font-size:0.72rem;color:#777;margin-top:2px;}
+.filter-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:18px;flex-wrap:wrap;}
+.market-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:15px;}
 .item-card{background:var(--card-bg);border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,0.5);transition:all 0.3s;}
-.item-card:hover{transform:translateY(-4px);box-shadow:0 14px 40px rgba(0,0,0,0.17);}
-.item-img{height:120px;display:flex;align-items:center;justify-content:center;font-size:3rem;background:linear-gradient(135deg,#d4f5e2,#b8eaf7);position:relative;}
-.badge{position:absolute;top:9px;right:9px;font-size:0.68rem;font-weight:700;padding:3px 10px;border-radius:9px;color:#fff;}
-.badge-sale{background:linear-gradient(135deg,#2d8653,#1a5c35);}
-.badge-done{background:linear-gradient(135deg,#aaa,#888);}
-.badge-free{background:linear-gradient(135deg,#f6a623,#e67e22);}
+.item-card:hover{transform:translateY(-4px);box-shadow:0 14px 38px rgba(0,0,0,0.16);}
+.item-img{height:118px;display:flex;align-items:center;justify-content:center;font-size:2.9rem;background:linear-gradient(135deg,#d4f5e2,#b8eaf7);position:relative;}
+.badge{position:absolute;top:9px;right:9px;font-size:0.67rem;font-weight:700;padding:3px 10px;border-radius:9px;color:#fff;}
+.b-sale{background:linear-gradient(135deg,#2d8653,#1a5c35);}
+.b-done{background:linear-gradient(135deg,#aaa,#888);}
+.b-free{background:linear-gradient(135deg,#f6a623,#e67e22);}
 .item-body{padding:13px;}
-.item-name{font-size:0.88rem;font-weight:700;color:#333;margin-bottom:3px;}
-.item-desc{font-size:0.76rem;color:#777;line-height:1.42;margin-bottom:8px;}
-.item-seller{font-size:0.72rem;color:#bbb;margin-bottom:7px;}
+.item-name{font-size:0.87rem;font-weight:700;color:#333;margin-bottom:3px;}
+.item-desc{font-size:0.75rem;color:#777;line-height:1.42;margin-bottom:7px;}
+.item-seller{font-size:0.71rem;color:#bbb;margin-bottom:7px;}
 .item-foot{display:flex;align-items:center;justify-content:space-between;}
-.item-price{font-size:0.97rem;font-weight:900;color:#1a5c35;}
+.item-price{font-size:0.95rem;font-weight:900;color:#1a5c35;}
 .item-price.done{color:#aaa;text-decoration:line-through;}
 .item-price.free{color:#e67e22;}
-.contact-btn{font-size:0.73rem;background:linear-gradient(135deg,#4caf7d,#2d8653);color:#fff;padding:5px 12px;border-radius:10px;cursor:pointer;font-weight:600;border:none;font-family:'Noto Sans KR',sans-serif;transition:all 0.2s;}
+.contact-btn{font-size:0.72rem;background:linear-gradient(135deg,#4caf7d,#2d8653);color:#fff;padding:5px 12px;border-radius:10px;cursor:pointer;font-weight:600;border:none;font-family:'Noto Sans KR',sans-serif;transition:all 0.2s;}
 .contact-btn:hover{opacity:0.85;transform:scale(1.04);}
 .contact-btn.done{background:linear-gradient(135deg,#ccc,#aaa);cursor:default;}
-.example-badge{background:rgba(255,209,102,0.22);border:1px solid rgba(255,209,102,0.38);color:#b07d00;font-size:0.67rem;padding:2px 8px;border-radius:7px;font-weight:700;}
-.status-select{font-size:0.78rem;padding:4px 8px;border-radius:9px;border:1px solid rgba(76,175,125,0.3);font-family:'Noto Sans KR',sans-serif;color:#444;outline:none;cursor:pointer;background:#fff;}
+.status-select{font-size:0.77rem;padding:4px 8px;border-radius:9px;border:1px solid rgba(76,175,125,0.3);font-family:'Noto Sans KR',sans-serif;color:#444;outline:none;cursor:pointer;background:#fff;margin-top:7px;width:100%;}
 </style>
 </head>
 <body>
 <div class="bg-bubbles"><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div></div>
-
 <div class="school-top-banner">
   <span>🏫 <strong>봉곡중학교</strong> · 2026학년도 1학년 5반 탄소중립학급</span>
   <button class="admin-toggle-btn" id="adminToggleBtn" onclick="openAdminModal()">🔐 관리자</button>
 </div>
 <div class="admin-bar" id="adminBar">
-  <p>🔐 <strong>관리자 모드</strong> — 각 물품 카드에 수정/삭제 버튼이 표시됩니다. &nbsp;<button onclick="exitAdmin()" style="background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:3px 11px;border-radius:8px;cursor:pointer;font-size:0.77rem;font-family:'Noto Sans KR',sans-serif;">🚪 로그아웃</button></p>
+  <p>🔐 <strong>관리자 모드</strong> &nbsp;<button onclick="exitAdmin()" style="background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:3px 11px;border-radius:8px;cursor:pointer;font-size:0.77rem;font-family:'Noto Sans KR',sans-serif;">🚪 로그아웃</button></p>
 </div>
 <nav>
-  <a href="index.html">🏠 홈</a>
-  <a href="pledge.html">📜 서약서</a>
-  <a href="books.html">📚 도서소감</a>
-  <a href="market.html" class="active">🛍️ 중고장터</a>
-  <a href="diary.html">📓 탄소일기</a>
+  <a href="index.html">🏠 홈</a><a href="pledge.html">📜 서약서</a><a href="books.html">📚 도서소감</a>
+  <a href="market.html" class="active">🛍️ 중고장터</a><a href="diary.html">📓 탄소일기</a>
 </nav>
-
 <div class="page-header">
   <h1>🛍️ 초록 중고 장터</h1>
   <p>새 물건보다 나눔이 더 소중해요 · 봉곡중학교 1학년 5반</p>
 </div>
-
 <div class="container">
   <div class="guide-banner">
     <div class="gb-icon">♻️</div>
-    <div class="gb-text">
-      <h4>안 쓰는 물건을 나누면 지구가 행복해져요!</h4>
-      <p>중고 거래는 탄소중립 실천의 첫걸음입니다. 우리 반 친구들과 안전하게 거래해요 🌿</p>
-    </div>
+    <div class="gb-text"><h4>안 쓰는 물건을 나누면 지구가 행복해져요!</h4><p>중고 거래는 탄소중립 실천의 첫걸음입니다. 우리 반 친구들과 안전하게 거래해요 🌿</p></div>
   </div>
-
   <div class="stats-mini">
-    <div class="sm-card"><div class="sm-num" id="statTotal">0</div><div class="sm-lbl">총 등록 물품</div></div>
-    <div class="sm-card"><div class="sm-num" id="statSale">0</div><div class="sm-lbl">판매 중</div></div>
-    <div class="sm-card"><div class="sm-num" id="statFree">0</div><div class="sm-lbl">나눔 진행</div></div>
-    <div class="sm-card"><div class="sm-num" id="statDone">0</div><div class="sm-lbl">거래 완료</div></div>
+    <div class="sm-card"><div class="sm-num" id="stTotal">0</div><div class="sm-lbl">총 등록</div></div>
+    <div class="sm-card"><div class="sm-num" id="stSale">0</div><div class="sm-lbl">판매 중</div></div>
+    <div class="sm-card"><div class="sm-num" id="stFree">0</div><div class="sm-lbl">나눔</div></div>
+    <div class="sm-card"><div class="sm-num" id="stDone">0</div><div class="sm-lbl">거래완료</div></div>
   </div>
-
-  <!-- 작성 폼 -->
   <div class="write-box">
     <h3>📦 물품 등록하기</h3>
     <div class="form-row">
       <div class="fg"><label>물품 이름</label><input type="text" id="itemName" placeholder="예: 수학 문제집"></div>
       <div class="fg"><label>카테고리</label>
         <select id="itemCat">
-          <option value="book">📚 책·문제집</option>
-          <option value="bag">🎒 가방·잡화</option>
-          <option value="supply">🖍️ 학용품</option>
-          <option value="clothes">👕 의류</option>
-          <option value="free">🎁 나눔(무료)</option>
-          <option value="other">🎮 기타</option>
+          <option value="book">📚 책·문제집</option><option value="bag">🎒 가방·잡화</option>
+          <option value="supply">🖍️ 학용품</option><option value="clothes">👕 의류</option>
+          <option value="free">🎁 나눔(무료)</option><option value="other">🎮 기타</option>
         </select>
       </div>
     </div>
     <div class="form-row">
-      <div id="studentSelectWrap" class="fg"></div>
+      <div id="studentSelectWrap"></div>
       <div class="fg"><label>가격 (나눔이면 0)</label><input type="number" id="itemPrice" placeholder="3000" min="0"></div>
     </div>
-    <div class="fg" style="margin-bottom:13px;">
-      <label>물품 설명</label>
-      <textarea id="itemDesc" placeholder="예: 1학기 수학 문제집, 연필 필기 약간 있음, 상태 양호"></textarea>
-    </div>
-    <button class="btn btn-green" onclick="submitItem()">📦 등록하기</button>
+    <div class="fg" style="margin-bottom:13px;"><label>물품 설명</label><textarea id="itemDesc" placeholder="예: 1학기 수학 문제집, 연필 필기 약간, 상태 양호"></textarea></div>
+    <button class="btn btn-green" id="submitBtn" onclick="submitItem()">📦 등록하기</button>
   </div>
-
   <div class="filter-row">
-    <div class="filter-left" id="filterBar">
+    <div id="filterBar" style="display:flex;gap:7px;flex-wrap:wrap;">
       <button class="fb active" data-cat="all">전체</button>
-      <button class="fb" data-cat="book">📚 책</button>
-      <button class="fb" data-cat="bag">🎒 가방</button>
-      <button class="fb" data-cat="supply">🖍️ 학용품</button>
-      <button class="fb" data-cat="clothes">👕 의류</button>
+      <button class="fb" data-cat="book">📚 책</button><button class="fb" data-cat="bag">🎒 가방</button>
+      <button class="fb" data-cat="supply">🖍️ 학용품</button><button class="fb" data-cat="clothes">👕 의류</button>
       <button class="fb" data-cat="free">🎁 나눔</button>
     </div>
   </div>
-
-  <div class="market-grid" id="marketGrid"></div>
+  <div class="market-grid" id="marketGrid"><div style="color:rgba(255,255,255,0.7);padding:30px;text-align:center">⏳ 불러오는 중...</div></div>
 </div>
 
 <div class="modal-overlay" id="adminModal">
   <div class="modal-box">
-    <h3>🔐 관리자 로그인</h3>
-    <p>관리자 비밀번호를 입력해 주세요</p>
+    <h3>🔐 관리자 로그인</h3><p>관리자 비밀번호를 입력해 주세요</p>
     <input type="password" class="pw-input" id="adminPwInput" placeholder="비밀번호" onkeydown="if(event.key==='Enter')checkAdmin()">
     <div class="modal-err" id="adminErr">❌ 비밀번호가 올바르지 않습니다</div>
-    <div class="modal-btns">
-      <button class="btn btn-green" onclick="checkAdmin()">✅ 확인</button>
-      <button class="btn btn-gray" onclick="closeAdminModal()">취소</button>
-    </div>
+    <div class="modal-btns"><button class="btn btn-green" onclick="checkAdmin()">✅ 확인</button><button class="btn btn-gray" onclick="closeAdminModal()">취소</button></div>
   </div>
 </div>
 <div class="modal-overlay" id="editModal">
-  <div class="modal-box">
-    <div id="editModalBody"></div>
-    <div class="modal-btns" style="margin-top:4px">
-      <button class="btn btn-green" id="editSaveBtn">💾 저장</button>
-      <button class="btn btn-gray" onclick="closeEditModal()">취소</button>
-    </div>
+  <div class="modal-box"><div id="editModalBody"></div>
+    <div class="modal-btns" style="margin-top:4px"><button class="btn btn-green" id="editSaveBtn">💾 저장</button><button class="btn btn-gray" onclick="closeEditModal()">취소</button></div>
   </div>
 </div>
-
 <div class="toast" id="toast"></div>
 <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 <div class="school-bottom-banner">
-  <span class="footer-earth">🌍</span>
-  <div class="school-name">🏫 봉곡중학교</div>
+  <span class="footer-earth">🌍</span><div class="school-name">🏫 봉곡중학교</div>
   <p>🌿 탄소중립 학급 · 초록별 프로젝트 · 2026학년도 1학년 5반 🌿<br>우리의 작은 실천이 지구를 더 오래 살게 합니다</p>
 </div>
 
-<script src="shared.js"></script>
-<script>
-const KEY='market';
-const CAT_EMOJI={book:'📚',bag:'🎒',supply:'🖍️',clothes:'👕',free:'🌱',other:'🎮'};
-const EXAMPLES=[
-  {id:'mex1',name:'강예솔',cat:'book',itemName:'수학 익힘책 + 풀이집',desc:'1학년 1학기 수학. 거의 새것, 연필 필기 조금 있음',price:2000,status:'sale',date:'2026-03-10',isExample:true},
-  {id:'mex2',name:'권예은',cat:'clothes',itemName:'체육복 상하의 세트 (160)',desc:'학교 체육복 160사이즈. 세탁해서 깨끗함',price:5000,status:'sale',date:'2026-03-12',isExample:true},
-  {id:'mex3',name:'김서윤',cat:'free',itemName:'화분 (미니 다육이)',desc:'직접 키운 다육이 나눔! 이름은 초록이. 무료로 드려요 😊',price:0,status:'free',date:'2026-03-15',isExample:true},
-];
-function initExamples(){ if(getData(KEY).length===0) setData(KEY,EXAMPLES); }
+<script type="module">
+import {
+  STUDENTS, isAdmin, openAdminModal, closeAdminModal, checkAdmin, exitAdmin,
+  subscribeCollection, addItem, updateItem, deleteItem,
+  showEditModal, closeEditModal, adminActions, showToast,
+  formatDate, nowDate, getStudentSelect
+} from "./shared.js";
 
-let currentCat='all';
+Object.assign(window, { openAdminModal, closeAdminModal, checkAdmin, exitAdmin, deleteItem, closeEditModal });
 
-function renderAll(){
-  const data=getData(KEY);
-  const filtered=currentCat==='all'?data:data.filter(x=>x.cat===currentCat);
-  document.getElementById('statTotal').textContent=data.length;
-  document.getElementById('statSale').textContent=data.filter(x=>x.status==='sale').length;
-  document.getElementById('statFree').textContent=data.filter(x=>x.status==='free').length;
-  document.getElementById('statDone').textContent=data.filter(x=>x.status==='done').length;
-  const grid=document.getElementById('marketGrid');
-  if(filtered.length===0){
-    grid.innerHTML=`<div style="grid-column:1/-1;text-align:center;color:rgba(255,255,255,0.6);padding:40px 20px;"><div style="font-size:3rem;margin-bottom:10px">🛍️</div><p>아직 등록된 물품이 없어요!</p></div>`;
+const KEY = "market";
+const CAT_EMOJI = { book:"📚", bag:"🎒", supply:"🖍️", clothes:"👕", free:"🌱", other:"🎮" };
+const idx = STUDENTS.reduce((a,s,i)=>{a[s]=i;return a;},{});
+let currentCat = "all", allData = [];
+
+function render(data) { allData = data; renderFiltered(); }
+function renderFiltered() {
+  const filtered = currentCat === "all" ? allData : allData.filter(x => x.cat === currentCat);
+  document.getElementById("stTotal").textContent = allData.length;
+  document.getElementById("stSale").textContent  = allData.filter(x=>x.status==="sale").length;
+  document.getElementById("stFree").textContent  = allData.filter(x=>x.status==="free").length;
+  document.getElementById("stDone").textContent  = allData.filter(x=>x.status==="done").length;
+  const grid = document.getElementById("marketGrid");
+  if (!filtered.length) {
+    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;color:rgba(255,255,255,0.65);padding:40px 20px;"><div style="font-size:3rem;margin-bottom:10px">🛍️</div><p>등록된 물품이 없어요!</p></div>`;
     return;
   }
-  const idx=STUDENTS.reduce((a,s,i)=>{a[s]=i;return a;},{});
-  grid.innerHTML=filtered.map(item=>{
-    const si=idx[item.name]??0;
-    const em=CAT_EMOJI[item.cat]||'📦';
-    const status=item.status;
-    let badgeCls='badge-sale', badgeTx='판매중';
-    if(status==='done'){badgeCls='badge-done';badgeTx='거래완료';}
-    if(status==='free'){badgeCls='badge-free';badgeTx='나눔';}
-    const priceTx=status==='done'?`<span class="item-price done">${item.price>0?item.price.toLocaleString()+'원':'무료'}</span>`:
-      status==='free'?`<span class="item-price free">무료 🎁</span>`:
-      `<span class="item-price">${item.price>0?item.price.toLocaleString()+'원':'무료'}</span>`;
-    const ctaBtn=status==='done'?`<button class="contact-btn done">완료</button>`:
-      `<button class="contact-btn" onclick="alert('${item.name} 학생에게 직접 연락해 주세요! 😊')">💬 연락</button>`;
-    const exBadge=item.isExample?`<span class="example-badge">예시</span>`:'';
-    const adminToggle=isAdmin()?`<select class="status-select" onchange="changeStatus('${item.id}',this.value)" style="margin-top:8px">
-      <option value="sale" ${status==='sale'?'selected':''}>판매중</option>
-      <option value="done" ${status==='done'?'selected':''}>거래완료</option>
-      <option value="free" ${status==='free'?'selected':''}>나눔</option>
-    </select>`:'';
+  grid.innerHTML = filtered.map(item => {
+    const si = idx[item.name] ?? 0;
+    const em = CAT_EMOJI[item.cat]||"📦";
+    const st = item.status;
+    const bc = st==="done"?"b-done":st==="free"?"b-free":"b-sale";
+    const bt = st==="done"?"거래완료":st==="free"?"나눔":"판매중";
+    const pr = st==="done"
+      ? `<span class="item-price done">${item.price>0?item.price.toLocaleString()+"원":"무료"}</span>`
+      : st==="free" ? `<span class="item-price free">무료 🎁</span>`
+      : `<span class="item-price">${item.price>0?item.price.toLocaleString()+"원":"무료"}</span>`;
+    const cta = st==="done"
+      ? `<button class="contact-btn done">완료</button>`
+      : `<button class="contact-btn" onclick="alert('${item.name} 학생에게 직접 연락해 주세요 😊')">💬 연락</button>`;
+    const stSel = isAdmin() ? `<select class="status-select" onchange="changeStatus('${item.id}',this.value)">
+      <option value="sale"${st==="sale"?" selected":""}>판매중</option>
+      <option value="done"${st==="done"?" selected":""}>거래완료</option>
+      <option value="free"${st==="free"?" selected":""}>나눔</option>
+    </select>` : "";
     return `<div class="item-card deletable">
-      <div class="item-img">${em}<span class="badge ${badgeCls}">${badgeTx}</span></div>
+      <div class="item-img">${em}<span class="badge ${bc}">${bt}</span></div>
       <div class="item-body">
         <div class="item-name">${item.itemName}</div>
         <div class="item-desc">${item.desc}</div>
-        <div class="item-seller">판매자: ${si+1}번 ${item.name} ${exBadge} · ${formatDate(item.date)}</div>
-        <div class="item-foot">${priceTx}${ctaBtn}</div>
-        ${adminToggle}
-        ${adminActions(KEY,item,'editItem')}
-      </div>
-    </div>`;
-  }).join('');
+        <div class="item-seller">${si+1}번 ${item.name} · ${formatDate(item.date)}</div>
+        <div class="item-foot">${pr}${cta}</div>
+        ${stSel}
+        ${adminActions(KEY,item,"editItem")}
+      </div></div>`;
+  }).join("");
 }
+window.renderAll = renderFiltered;
 
-function changeStatus(id,val){
-  const arr=getData(KEY);
-  const i=arr.findIndex(x=>x.id===id);
-  if(i>-1){arr[i].status=val;setData(KEY,arr);}
-  renderAll();
-  showToast('상태가 변경되었습니다');
+async function changeStatus(id, val) {
+  await updateItem(KEY, id, { status: val });
+  showToast("상태가 변경되었습니다");
 }
+window.changeStatus = changeStatus;
 
-function submitItem(){
-  const itemName=document.getElementById('itemName').value.trim();
-  const name=document.getElementById('itemSeller')?.value;
-  const cat=document.getElementById('itemCat').value;
-  const price=parseInt(document.getElementById('itemPrice').value)||0;
-  const desc=document.getElementById('itemDesc').value.trim();
-  if(!itemName){showToast('⚠️ 물품 이름을 입력해 주세요');return;}
-  if(!name){showToast('⚠️ 이름을 선택해 주세요');return;}
-  if(!desc){showToast('⚠️ 물품 설명을 입력해 주세요');return;}
-  const arr=getData(KEY);
-  arr.unshift({id:uid(),itemName,name,cat,price,desc,status:cat==='free'?'free':'sale',date:nowDate(),isExample:false});
-  setData(KEY,arr);
-  document.getElementById('itemName').value='';
-  document.getElementById('itemDesc').value='';
-  document.getElementById('itemPrice').value='';
-  document.getElementById('itemSeller').value='';
-  renderAll();
-  showToast('📦 물품이 등록되었습니다!');
+async function submitItem() {
+  const itemName = document.getElementById("itemName").value.trim();
+  const name     = document.getElementById("itemSeller")?.value;
+  const cat      = document.getElementById("itemCat").value;
+  const price    = parseInt(document.getElementById("itemPrice").value)||0;
+  const desc     = document.getElementById("itemDesc").value.trim();
+  if (!itemName) { showToast("⚠️ 물품 이름을 입력해 주세요"); return; }
+  if (!name)     { showToast("⚠️ 이름을 선택해 주세요"); return; }
+  if (!desc)     { showToast("⚠️ 물품 설명을 입력해 주세요"); return; }
+  const btn = document.getElementById("submitBtn");
+  btn.disabled = true; btn.textContent = "저장 중...";
+  const ok = await addItem(KEY, { itemName, name, cat, price, desc, status: cat==="free"?"free":"sale", date: nowDate() });
+  btn.disabled = false; btn.textContent = "📦 등록하기";
+  if (ok) {
+    ["itemName","itemDesc","itemPrice"].forEach(id=>document.getElementById(id).value="");
+    document.getElementById("itemSeller").value="";
+    showToast("📦 물품이 등록되었습니다!");
+  }
 }
+window.submitItem = submitItem;
 
-function editItem(id){
-  const item=getData(KEY).find(x=>x.id===id);
-  if(!item)return;
-  showEditModal('물품',[
-    {id:'itemName',label:'물품 이름',type:'text',value:item.itemName},
-    {id:'desc',label:'물품 설명',type:'textarea',value:item.desc},
-    {id:'price',label:'가격',type:'number',value:item.price},
-    {id:'status',label:'상태',type:'select',value:item.status,options:[{v:'sale',l:'판매중'},{v:'done',l:'거래완료'},{v:'free',l:'나눔'}]},
-  ],()=>{
-    const arr=getData(KEY);
-    const i=arr.findIndex(x=>x.id===id);
-    if(i>-1){
-      arr[i].itemName=document.getElementById('ef_itemName').value;
-      arr[i].desc=document.getElementById('ef_desc').value;
-      arr[i].price=parseInt(document.getElementById('ef_price').value)||0;
-      arr[i].status=document.getElementById('ef_status').value;
-      setData(KEY,arr);
-    }
-    closeEditModal();renderAll();showToast('✅ 수정되었습니다');
+window.editItem = (id) => {
+  const item = allData.find(x=>x.id===id); if (!item) return;
+  showEditModal("물품", [
+    { id:"itemName", label:"물품 이름", type:"text",     value: item.itemName },
+    { id:"desc",     label:"설명",      type:"textarea", value: item.desc },
+    { id:"price",    label:"가격",      type:"number",   value: item.price },
+    { id:"status",   label:"상태",      type:"select",   value: item.status,
+      options:[{v:"sale",l:"판매중"},{v:"done",l:"거래완료"},{v:"free",l:"나눔"}] },
+  ], async () => {
+    await updateItem(KEY, id, {
+      itemName: document.getElementById("ef_itemName").value,
+      desc:     document.getElementById("ef_desc").value,
+      price:    parseInt(document.getElementById("ef_price").value)||0,
+      status:   document.getElementById("ef_status").value,
+    });
+    closeEditModal(); showToast("✅ 수정되었습니다");
   });
-}
+};
 
-document.addEventListener('DOMContentLoaded',()=>{
-  document.getElementById('studentSelectWrap').innerHTML=getStudentSelect('itemSeller','판매자 이름');
-  initExamples();
-  renderAll();
-  document.getElementById('filterBar').addEventListener('click',e=>{
-    const btn=e.target.closest('.fb');
-    if(!btn)return;
-    document.querySelectorAll('#filterBar .fb').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    currentCat=btn.dataset.cat;
-    renderAll();
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("studentSelectWrap").innerHTML = getStudentSelect("itemSeller","판매자 이름");
+  subscribeCollection(KEY, render);
+  document.getElementById("filterBar").addEventListener("click", e => {
+    const btn = e.target.closest(".fb"); if (!btn) return;
+    document.querySelectorAll("#filterBar .fb").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active"); currentCat = btn.dataset.cat; renderFiltered();
   });
 });
 </script>

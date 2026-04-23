@@ -9,17 +9,15 @@
 </head>
 <body>
 <div class="bg-bubbles"><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div></div>
-
 <div class="school-top-banner">
   <span>🏫 <strong>봉곡중학교</strong> · 2026학년도 1학년 5반 탄소중립학급</span>
   <button class="admin-toggle-btn" id="adminToggleBtn" onclick="openAdminModal()">🔐 관리자</button>
 </div>
 <div class="admin-bar" id="adminBar">
-  <p>🔐 <strong>관리자 모드 활성화</strong> — 각 항목에 수정/삭제 버튼이 표시됩니다. &nbsp;
-    <button onclick="exitAdmin()" style="background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:3px 12px;border-radius:8px;cursor:pointer;font-size:0.77rem;font-family:'Noto Sans KR',sans-serif;">🚪 로그아웃</button>
+  <p>🔐 <strong>관리자 모드 활성화</strong> &nbsp;
+    <button onclick="exitAdmin()" style="background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:3px 11px;border-radius:8px;cursor:pointer;font-size:0.77rem;font-family:'Noto Sans KR',sans-serif;">🚪 로그아웃</button>
   </p>
 </div>
-
 <nav>
   <a href="index.html" class="active">🏠 홈</a>
   <a href="pledge.html">📜 서약서</a>
@@ -27,16 +25,11 @@
   <a href="market.html">🛍️ 중고장터</a>
   <a href="diary.html">📓 탄소일기</a>
 </nav>
-
 <header class="hero">
   <div class="earth-float">
     <svg class="earth-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <radialGradient id="eg" cx="40%" cy="35%">
-          <stop offset="0%" stop-color="#4db8e8"/>
-          <stop offset="60%" stop-color="#1a7aa8"/>
-          <stop offset="100%" stop-color="#0d4a6b"/>
-        </radialGradient>
+        <radialGradient id="eg" cx="40%" cy="35%"><stop offset="0%" stop-color="#4db8e8"/><stop offset="60%" stop-color="#1a7aa8"/><stop offset="100%" stop-color="#0d4a6b"/></radialGradient>
         <clipPath id="ec"><circle cx="100" cy="100" r="88"/></clipPath>
       </defs>
       <circle cx="100" cy="100" r="88" fill="url(#eg)"/>
@@ -59,14 +52,19 @@
   <p class="title-sub">초록별 프로젝트 · 우리가 지키는 지구</p>
   <span class="class-badge">✨ 2026학년도 봉곡중학교 1학년 5반 ✨</span>
 </header>
-
 <div class="container">
   <div class="section-title">
     <h2>📊 우리 학급의 탄소중립 기록</h2>
     <p>함께 만들어가는 초록 지구</p>
     <div class="title-line"></div>
   </div>
-  <div class="stats-grid" id="statsGrid"></div>
+  <div class="stats-grid" id="statsGrid">
+    <div class="stat-card"><span class="stat-icon">🌱</span><div class="stat-value" id="sv-carbon">-</div><div class="stat-label">절감한 탄소량(kg)</div></div>
+    <div class="stat-card"><span class="stat-icon">📚</span><div class="stat-value" id="sv-books">-</div><div class="stat-label">완독한 환경 도서</div></div>
+    <div class="stat-card"><span class="stat-icon">🛍️</span><div class="stat-value" id="sv-market">-</div><div class="stat-label">등록된 거래 물품</div></div>
+    <div class="stat-card"><span class="stat-icon">📓</span><div class="stat-value" id="sv-diary">-</div><div class="stat-label">작성된 탄소일기</div></div>
+    <div class="stat-card"><span class="stat-icon">🌳</span><div class="stat-value" id="sv-tree">-</div><div class="stat-label">심은 나무 상당량</div></div>
+  </div>
   <div class="progress-box">
     <div class="progress-title">🎯 이번 학기 목표 달성률</div>
     <div class="progress-item"><div class="progress-label"><span>🚴 자전거·도보 등교</span><span id="p1v">-</span></div><div class="progress-bar"><div class="progress-fill pf-g" id="p1" style="width:0%"></div></div></div>
@@ -74,88 +72,67 @@
     <div class="progress-item"><div class="progress-label"><span>🥗 잔반 없는 급식</span><span id="p3v">-</span></div><div class="progress-bar"><div class="progress-fill pf-y" id="p3" style="width:0%"></div></div></div>
     <div class="progress-item"><div class="progress-label"><span>♻️ 분리배출 실천</span><span id="p4v">-</span></div><div class="progress-bar"><div class="progress-fill pf-g" id="p4" style="width:0%"></div></div></div>
   </div>
-
   <div class="divider">🌿 · 🌊 · 🌿</div>
-
-  <div class="section-title">
-    <h2>✨ 탄소중립 활동 바로가기</h2>
-    <div class="title-line"></div>
-  </div>
+  <div class="section-title"><h2>✨ 탄소중립 활동 바로가기</h2><div class="title-line"></div></div>
   <div class="menu-grid">
-    <a href="pledge.html" class="menu-card">
-      <span class="mc-icon">📜</span>
-      <div class="mc-title">탄소중립 서약서</div>
-      <div class="mc-desc">학기 초 우리의 다짐을 함께 나눠요. 나만의 서약서를 작성하고 공유해요!</div>
-      <span class="mc-count" id="mc-pledge">작성된 서약서 확인하기 →</span>
-    </a>
-    <a href="books.html" class="menu-card">
-      <span class="mc-icon">📚</span>
-      <div class="mc-title">도서 소감 나눔</div>
-      <div class="mc-desc">환경·탄소중립 관련 책을 읽고 느낀 점을 친구들과 나눠요!</div>
-      <span class="mc-count" id="mc-books">도서 소감 보러가기 →</span>
-    </a>
-    <a href="market.html" class="menu-card">
-      <span class="mc-icon">🛍️</span>
-      <div class="mc-title">초록 중고 장터</div>
-      <div class="mc-desc">안 쓰는 물건을 사고팔아요. 새 물건보다 나눔이 더 소중한 지구를 위한 선택!</div>
-      <span class="mc-count" id="mc-market">장터 구경하기 →</span>
-    </a>
-    <a href="diary.html" class="menu-card">
-      <span class="mc-icon">📓</span>
-      <div class="mc-title">탄소중립 일기</div>
-      <div class="mc-desc">돌아가며 오늘 하루의 탄소중립 실천을 기록하고 공유해요!</div>
-      <span class="mc-count" id="mc-diary">일기 보러가기 →</span>
-    </a>
+    <a href="pledge.html" class="menu-card"><span class="mc-icon">📜</span><div class="mc-title">탄소중립 서약서</div><div class="mc-desc">학기 초 우리의 다짐을 함께 나눠요!</div><span class="mc-count" id="mc-pledge">서약서 보기 →</span></a>
+    <a href="books.html" class="menu-card"><span class="mc-icon">📚</span><div class="mc-title">도서 소감 나눔</div><div class="mc-desc">환경 책을 읽고 느낀 점을 나눠요!</div><span class="mc-count" id="mc-books">도서 소감 보기 →</span></a>
+    <a href="market.html" class="menu-card"><span class="mc-icon">🛍️</span><div class="mc-title">초록 중고 장터</div><div class="mc-desc">안 쓰는 물건을 사고팔아요!</div><span class="mc-count" id="mc-market">장터 보기 →</span></a>
+    <a href="diary.html" class="menu-card"><span class="mc-icon">📓</span><div class="mc-title">탄소중립 일기</div><div class="mc-desc">돌아가며 실천을 기록해요!</div><span class="mc-count" id="mc-diary">일기 보기 →</span></a>
   </div>
 </div>
 
 <div class="modal-overlay" id="adminModal">
   <div class="modal-box">
-    <h3>🔐 관리자 로그인</h3>
-    <p>관리자 비밀번호를 입력해 주세요</p>
-    <input type="password" id="adminPwInput" placeholder="비밀번호" onkeydown="if(event.key==='Enter')checkAdmin()">
+    <h3>🔐 관리자 로그인</h3><p>관리자 비밀번호를 입력해 주세요</p>
+    <input type="password" class="pw-input" id="adminPwInput" placeholder="비밀번호" onkeydown="if(event.key==='Enter')checkAdmin()">
     <div class="modal-err" id="adminErr">❌ 비밀번호가 올바르지 않습니다</div>
-    <div class="modal-btns">
-      <button class="btn btn-green" onclick="checkAdmin()">✅ 확인</button>
-      <button class="btn btn-gray" onclick="closeAdminModal()">취소</button>
-    </div>
+    <div class="modal-btns"><button class="btn btn-green" onclick="checkAdmin()">✅ 확인</button><button class="btn btn-gray" onclick="closeAdminModal()">취소</button></div>
   </div>
 </div>
 <div class="toast" id="toast"></div>
 <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 <div class="school-bottom-banner">
-  <span class="footer-earth">🌍</span>
-  <div class="school-name">🏫 봉곡중학교</div>
+  <span class="footer-earth">🌍</span><div class="school-name">🏫 봉곡중학교</div>
   <p>🌿 탄소중립 학급 · 초록별 프로젝트 · 2026학년도 1학년 5반 🌿<br>우리의 작은 실천이 지구를 더 오래 살게 합니다</p>
 </div>
-<script src="shared.js"></script>
-<script>
-function loadStats(){
-  const p=JSON.parse(localStorage.getItem('pledges')||'[]');
-  const b=JSON.parse(localStorage.getItem('books')||'[]');
-  const m=JSON.parse(localStorage.getItem('market')||'[]');
-  const d=JSON.parse(localStorage.getItem('diary')||'[]');
-  document.getElementById('mc-pledge').textContent=p.length+'명 서약 완료 ✅';
-  document.getElementById('mc-books').textContent=b.length+'권 소감 등록됨 📖';
-  document.getElementById('mc-market').textContent=m.length+'건 물품 등록됨 ♻️';
-  document.getElementById('mc-diary').textContent=d.length+'편 일기 작성됨 ✍️';
-  const sg=document.getElementById('statsGrid');
-  const co=Math.round(d.length*2.3+b.length*1.5+m.length*0.8);
-  sg.innerHTML=[
-    {icon:'🌱',val:co+'kg',label:'절감한 탄소량'},
-    {icon:'📚',val:b.length,label:'완독한 환경 도서'},
-    {icon:'🛍️',val:m.length,label:'등록된 거래 물품'},
-    {icon:'📓',val:d.length,label:'작성된 탄소일기'},
-    {icon:'🌳',val:(co*0.045).toFixed(1),label:'심은 나무 상당량'},
-  ].map(i=>`<div class="stat-card"><span class="stat-icon">${i.icon}</span><div class="stat-value">${i.val}</div><div class="stat-label">${i.label}</div></div>`).join('');
-  const base=Math.min(d.length+p.length,30);
-  const pv=[Math.min(100,base*2+10),Math.min(100,base*1.8+8),Math.min(100,base*2.5+12),Math.min(100,base*3+5)];
-  ['p1','p2','p3','p4'].forEach((id,i)=>{
-    document.getElementById(id).style.width=pv[i]+'%';
-    document.getElementById(id+'v').textContent=pv[i]+'%';
-  });
+
+<script type="module">
+import {
+  openAdminModal, closeAdminModal, checkAdmin, exitAdmin,
+  subscribeCollection, showToast
+} from "./shared.js";
+Object.assign(window, { openAdminModal, closeAdminModal, checkAdmin, exitAdmin });
+
+function updateStat(id, val) { const el=document.getElementById(id); if(el) el.textContent=val; }
+function updateProgress(num, val) {
+  const el = document.getElementById(`p${num}`), elv = document.getElementById(`p${num}v`);
+  if(el) el.style.width = val+"%"; if(elv) elv.textContent = val+"%";
 }
-document.addEventListener('DOMContentLoaded',()=>{ loadStats(); });
+
+function recalcStats(p,b,m,d){
+  const carbon = Math.round(d*2.3 + b*1.5 + m*0.8);
+  updateStat("sv-carbon", carbon+"kg");
+  updateStat("sv-books",  b);
+  updateStat("sv-market", m);
+  updateStat("sv-diary",  d);
+  updateStat("sv-tree",  (carbon*0.045).toFixed(1));
+  document.getElementById("mc-pledge").textContent = p+"명 서약 ✅";
+  document.getElementById("mc-books").textContent  = b+"권 소감 등록됨 📖";
+  document.getElementById("mc-market").textContent = m+"건 물품 등록됨 ♻️";
+  document.getElementById("mc-diary").textContent  = d+"편 일기 작성됨 ✍️";
+  const base = Math.min(d+p, 30);
+  [Math.min(100,base*2+10), Math.min(100,base*1.8+8), Math.min(100,base*2.5+12), Math.min(100,base*3+5)]
+    .forEach((v,i) => updateProgress(i+1, v));
+}
+
+let counts = { pledge:0, books:0, market:0, diary:0 };
+function maybeUpdate(key, n) { counts[key]=n; recalcStats(counts.pledge, counts.books, counts.market, counts.diary); }
+
+subscribeCollection("pledges", d => maybeUpdate("pledge", d.length));
+subscribeCollection("books",   d => maybeUpdate("books",  d.length));
+subscribeCollection("market",  d => maybeUpdate("market", d.length));
+subscribeCollection("diary",   d => maybeUpdate("diary",  d.length));
 </script>
 </body>
 </html>

@@ -9,41 +9,40 @@
 <style>
 .pledge-header-card{background:linear-gradient(135deg,rgba(255,255,255,0.92),rgba(212,245,226,0.9));border-radius:26px;padding:32px;margin-bottom:24px;border:1.5px solid rgba(76,175,125,0.25);position:relative;overflow:hidden;}
 .pledge-header-card::after{content:'🌍';position:absolute;right:-8px;bottom:-8px;font-size:90px;opacity:0.06;}
-.phc-title{text-align:center;margin-bottom:24px;}
-.phc-title span{font-size:2.6rem;display:block;margin-bottom:8px;}
-.phc-title h2{font-family:'Gaegu',cursive;font-size:1.85rem;color:#1a5c35;font-weight:700;}
-.phc-title p{color:#666;font-size:0.85rem;margin-top:5px;}
-.pledge-items{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:13px;margin-bottom:24px;}
-.pi{background:linear-gradient(135deg,#d4f5e2,rgba(184,234,247,0.55));border-radius:16px;padding:16px;display:flex;align-items:flex-start;gap:11px;border:1px solid rgba(76,175,125,0.18);transition:transform 0.2s;}
+.phc-title{text-align:center;margin-bottom:22px;}
+.phc-title span{font-size:2.5rem;display:block;margin-bottom:8px;}
+.phc-title h2{font-family:'Gaegu',cursive;font-size:1.8rem;color:#1a5c35;font-weight:700;}
+.phc-title p{color:#666;font-size:0.84rem;margin-top:5px;}
+.pledge-items{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-bottom:24px;}
+.pi{background:linear-gradient(135deg,#d4f5e2,rgba(184,234,247,0.55));border-radius:15px;padding:15px;display:flex;align-items:flex-start;gap:10px;border:1px solid rgba(76,175,125,0.18);transition:transform 0.2s;}
 .pi:hover{transform:scale(1.02);}
-.pi-ic{font-size:1.6rem;flex-shrink:0;}
-.pi-tx{font-size:0.86rem;color:#1a5c35;line-height:1.5;font-weight:500;}
-
-.wall-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:15px;}
-.wall-post{background:var(--card-bg);border-radius:18px;padding:18px;border-left:4px solid #4caf7d;transition:all 0.25s;position:relative;}
+.pi-ic{font-size:1.55rem;flex-shrink:0;}
+.pi-tx{font-size:0.85rem;color:#1a5c35;line-height:1.5;font-weight:500;}
+.wall-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;}
+.wall-post{background:var(--card-bg);border-radius:18px;padding:18px;border-left:4px solid #4caf7d;transition:all 0.25s;}
 .wall-post:nth-child(3n+2){border-left-color:#4db8e8;}
 .wall-post:nth-child(3n){border-left-color:#ffd166;}
-.wall-post:hover{transform:translateY(-3px);box-shadow:0 10px 32px rgba(0,0,0,0.16);}
+.wall-post:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,0.15);}
 .wp-header{display:flex;align-items:center;gap:9px;margin-bottom:10px;}
 .wp-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#d4f5e2,#b8eaf7);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
 .wp-name{font-size:0.87rem;font-weight:700;color:#1a5c35;}
-.wp-date{font-size:0.72rem;color:#aaa;}
-.wp-text{font-size:0.86rem;color:#444;line-height:1.65;}
-.wp-promise{margin-top:10px;padding-top:10px;border-top:1px solid rgba(76,175,125,0.12);font-size:0.78rem;color:#2d8653;font-style:italic;}
-
-.section-lbl{color:#fff;font-family:'Gaegu',cursive;font-size:1.1rem;margin-bottom:13px;display:flex;align-items:center;gap:6px;}
-.example-badge{background:rgba(255,209,102,0.25);border:1px solid rgba(255,209,102,0.4);color:#b07d00;font-size:0.7rem;padding:2px 9px;border-radius:8px;font-weight:700;}
+.wp-date{font-size:0.71rem;color:#aaa;}
+.wp-text{font-size:0.85rem;color:#444;line-height:1.65;}
+.wp-promise{margin-top:9px;padding-top:9px;border-top:1px solid rgba(76,175,125,0.12);font-size:0.77rem;color:#2d8653;font-style:italic;}
+.loading{text-align:center;color:rgba(255,255,255,0.7);padding:40px;font-size:0.9rem;}
+.loading::before{content:'⏳ ';font-size:1.4rem;}
 </style>
 </head>
 <body>
 <div class="bg-bubbles"><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div></div>
-
 <div class="school-top-banner">
   <span>🏫 <strong>봉곡중학교</strong> · 2026학년도 1학년 5반 탄소중립학급</span>
   <button class="admin-toggle-btn" id="adminToggleBtn" onclick="openAdminModal()">🔐 관리자</button>
 </div>
 <div class="admin-bar" id="adminBar">
-  <p>🔐 <strong>관리자 모드</strong> — 각 서약서 카드에 수정/삭제 버튼이 표시됩니다. &nbsp;<button onclick="exitAdmin()" style="background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:3px 11px;border-radius:8px;cursor:pointer;font-size:0.77rem;font-family:'Noto Sans KR',sans-serif;">🚪 로그아웃</button></p>
+  <p>🔐 <strong>관리자 모드</strong> — 각 카드에 수정/삭제 버튼이 표시됩니다. &nbsp;
+    <button onclick="exitAdmin()" style="background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:3px 11px;border-radius:8px;cursor:pointer;font-size:0.77rem;font-family:'Noto Sans KR',sans-serif;">🚪 로그아웃</button>
+  </p>
 </div>
 <nav>
   <a href="index.html">🏠 홈</a>
@@ -52,20 +51,13 @@
   <a href="market.html">🛍️ 중고장터</a>
   <a href="diary.html">📓 탄소일기</a>
 </nav>
-
 <div class="page-header">
   <h1>📜 탄소중립 실천 서약서</h1>
   <p>학기 초, 우리의 다짐을 함께 나눠요 · 봉곡중학교 1학년 5반</p>
 </div>
-
 <div class="container">
-  <!-- 공통 서약 항목 -->
   <div class="pledge-header-card">
-    <div class="phc-title">
-      <span>🤝</span>
-      <h2>우리 학급의 탄소중립 실천 약속</h2>
-      <p>아래의 실천 항목을 지키며 지구를 지키는 멋진 학급이 되어요!</p>
-    </div>
+    <div class="phc-title"><span>🤝</span><h2>우리 학급의 탄소중립 실천 약속</h2><p>아래의 실천 항목을 지키며 지구를 지키는 멋진 학급이 되어요!</p></div>
     <div class="pledge-items">
       <div class="pi"><span class="pi-ic">🚶</span><div class="pi-tx">가까운 거리는 걷거나 자전거를 이용해 이동할게요</div></div>
       <div class="pi"><span class="pi-ic">♻️</span><div class="pi-tx">쓰레기는 올바르게 분리배출하고 자원을 아껴 쓸게요</div></div>
@@ -75,144 +67,128 @@
       <div class="pi"><span class="pi-ic">🛒</span><div class="pi-tx">물건을 새로 사기 전에 중고 거래를 먼저 생각할게요</div></div>
     </div>
   </div>
-
-  <!-- 작성 폼 -->
   <div class="write-box">
     <h3>✍️ 나의 탄소중립 서약서 작성하기</h3>
     <div class="form-row">
-      <div id="studentSelectWrap" class="fg"></div>
-      <div class="fg"><label>날짜</label><input type="date" id="pledgeDate" value="2026-03-02"></div>
+      <div id="studentSelectWrap"></div>
+      <div class="fg"><label>날짜</label><input type="date" id="pledgeDate"></div>
     </div>
     <div class="fg" style="margin-bottom:13px;">
       <label>나만의 특별한 탄소중립 실천 약속</label>
       <textarea id="pledgeText" placeholder="예: 저는 매일 텀블러를 사용하고, 가까운 거리는 걷겠습니다!"></textarea>
     </div>
-    <button class="btn btn-green" onclick="submitPledge()">🌿 서약서 공유하기</button>
+    <div class="fg" style="margin-bottom:13px;">
+      <label>추가 약속 (선택)</label>
+      <input type="text" id="pledgePromise" placeholder="예: 텀블러 매일 사용 & 장바구니 실천">
+    </div>
+    <button class="btn btn-green" id="submitBtn" onclick="submitPledge()">🌿 서약서 공유하기</button>
   </div>
-
-  <!-- 서약서 목록 -->
-  <div class="section-lbl">💚 우리 반 서약서 <span id="pledgeCount" style="opacity:0.7;font-size:0.85rem"></span></div>
-  <div class="wall-grid" id="pledgeWall"></div>
+  <div style="color:#fff;font-family:'Gaegu',cursive;font-size:1.1rem;margin-bottom:13px;">
+    💚 우리 반 서약서 <span id="pledgeCount" style="opacity:0.7;font-size:0.85rem;font-family:'Noto Sans KR'"></span>
+  </div>
+  <div class="wall-grid" id="pledgeWall"><div class="loading">데이터를 불러오는 중...</div></div>
 </div>
 
-<!-- 관리자 모달 -->
 <div class="modal-overlay" id="adminModal">
   <div class="modal-box">
-    <h3>🔐 관리자 로그인</h3>
-    <p>관리자 비밀번호를 입력해 주세요</p>
+    <h3>🔐 관리자 로그인</h3><p>관리자 비밀번호를 입력해 주세요</p>
     <input type="password" class="pw-input" id="adminPwInput" placeholder="비밀번호" onkeydown="if(event.key==='Enter')checkAdmin()">
     <div class="modal-err" id="adminErr">❌ 비밀번호가 올바르지 않습니다</div>
-    <div class="modal-btns">
-      <button class="btn btn-green" onclick="checkAdmin()">✅ 확인</button>
-      <button class="btn btn-gray" onclick="closeAdminModal()">취소</button>
-    </div>
+    <div class="modal-btns"><button class="btn btn-green" onclick="checkAdmin()">✅ 확인</button><button class="btn btn-gray" onclick="closeAdminModal()">취소</button></div>
   </div>
 </div>
-<!-- 편집 모달 -->
 <div class="modal-overlay" id="editModal">
-  <div class="modal-box">
-    <div id="editModalBody"></div>
-    <div class="modal-btns" style="margin-top:4px">
-      <button class="btn btn-green" id="editSaveBtn">💾 저장</button>
-      <button class="btn btn-gray" onclick="closeEditModal()">취소</button>
-    </div>
+  <div class="modal-box"><div id="editModalBody"></div>
+    <div class="modal-btns" style="margin-top:4px"><button class="btn btn-green" id="editSaveBtn">💾 저장</button><button class="btn btn-gray" onclick="closeEditModal()">취소</button></div>
   </div>
 </div>
-
 <div class="toast" id="toast"></div>
 <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 <div class="school-bottom-banner">
-  <span class="footer-earth">🌍</span>
-  <div class="school-name">🏫 봉곡중학교</div>
+  <span class="footer-earth">🌍</span><div class="school-name">🏫 봉곡중학교</div>
   <p>🌿 탄소중립 학급 · 초록별 프로젝트 · 2026학년도 1학년 5반 🌿<br>우리의 작은 실천이 지구를 더 오래 살게 합니다</p>
 </div>
 
-<script src="shared.js"></script>
-<script>
-const KEY='pledges';
-const AVATARS=['🌱','🌊','☘️','🦋','🌻','🐢','🍀','🌸','🌴','🌈','🦚','🐸','🌵','🍃','🌺','🦜','🌿','🐦','🌙','🍂','🌼','🐝','🦊','🌷','🌞','🐬'];
+<script type="module">
+import {
+  STUDENTS, isAdmin, openAdminModal, closeAdminModal, checkAdmin,
+  exitAdmin, applyAdminUI, subscribeCollection, addItem, updateItem,
+  deleteItem, showEditModal, closeEditModal, adminActions, showToast,
+  formatDate, nowDate, getStudentSelect
+} from "./shared.js";
 
-// 예시 데이터 (처음 한 번만 삽입)
-const EXAMPLES = [
-  {id:'ex1',name:'강예솔',date:'2026-03-02',text:'매일 텀블러를 들고 다니며 일회용컵 사용을 줄이겠습니다! 우리 함께 지구를 지켜요 🌍',promise:'텀블러 사용 & 장바구니 실천',isExample:true},
-  {id:'ex2',name:'권예은',date:'2026-03-02',text:'학교 올 때 대중교통이나 걷기로 탄소발자국을 줄이겠어요. 작은 실천이 큰 변화를!✨',promise:'도보·대중교통 등교 & 에너지절약',isExample:true},
-  {id:'ex3',name:'김서윤',date:'2026-03-02',text:'급식을 절대 남기지 않고 분리수거를 꼭 실천하겠습니다. 지구가 웃는 날까지!',promise:'잔반제로 & 분리배출 실천',isExample:true},
-];
+// 전역 노출 (onclick 속성에서 호출)
+Object.assign(window, { openAdminModal, closeAdminModal, checkAdmin, exitAdmin, deleteItem, closeEditModal });
 
-function initExamples(){
-  const d=getData(KEY);
-  if(d.length===0) setData(KEY,EXAMPLES);
-}
+const KEY = "pledges";
+const AVATARS = ["🌱","🌊","☘️","🦋","🌻","🐢","🍀","🌸","🌴","🌈","🦚","🐸","🌵","🍃","🌺","🦜","🌿","🐦","🌙","🍂","🌼","🐝","🦊","🌷","🌞","🐬"];
+const idx = STUDENTS.reduce((a,s,i)=>{a[s]=i;return a;},{});
 
-function renderAll(){
-  const data=getData(KEY);
-  document.getElementById('pledgeCount').textContent='('+data.length+'명)';
-  const wall=document.getElementById('pledgeWall');
-  if(data.length===0){
-    wall.innerHTML=`<div style="grid-column:1/-1;text-align:center;color:rgba(255,255,255,0.6);padding:40px 20px;"><div style="font-size:3rem;margin-bottom:10px">📜</div><p>아직 서약서가 없어요. 첫 번째로 작성해 보세요!</p></div>`;
+function render(data) {
+  document.getElementById("pledgeCount").textContent = `(${data.length}명)`;
+  const wall = document.getElementById("pledgeWall");
+  if (!data.length) {
+    wall.innerHTML = `<div style="grid-column:1/-1;text-align:center;color:rgba(255,255,255,0.65);padding:40px 20px;"><div style="font-size:3rem;margin-bottom:10px">📜</div><p>아직 서약서가 없어요. 첫 번째로 작성해 보세요!</p></div>`;
     return;
   }
-  const idx=STUDENTS.reduce((a,s,i)=>{a[s]=i;return a;},{});
-  wall.innerHTML=data.map(item=>{
-    const si=idx[item.name]??0;
-    const av=AVATARS[si%AVATARS.length];
-    const ex=item.isExample?`<span class="example-badge">예시</span>`:'';
+  wall.innerHTML = data.map(item => {
+    const si = idx[item.name] ?? 0;
     return `<div class="wall-post deletable">
       <div class="wp-header">
-        <div class="wp-avatar">${av}</div>
-        <div>
-          <div class="wp-name">${si+1}번 · ${item.name} ${ex}</div>
-          <div class="wp-date">${formatDate(item.date)}</div>
-        </div>
+        <div class="wp-avatar">${AVATARS[si % AVATARS.length]}</div>
+        <div><div class="wp-name">${si+1}번 · ${item.name}</div><div class="wp-date">${formatDate(item.date)}</div></div>
       </div>
       <div class="wp-text">${item.text}</div>
-      ${item.promise?`<div class="wp-promise">💪 나만의 약속: ${item.promise}</div>`:''}
-      ${adminActions(KEY,item,'editPledge')}
+      ${item.promise ? `<div class="wp-promise">💪 ${item.promise}</div>` : ""}
+      ${adminActions(KEY, item, "editPledge")}
     </div>`;
-  }).join('');
+  }).join("");
+}
+window.renderAll = () => {}; // 실시간 구독으로 자동 갱신
+
+async function submitPledge() {
+  const name    = document.getElementById("pledgeName")?.value;
+  const date    = document.getElementById("pledgeDate").value;
+  const text    = document.getElementById("pledgeText").value.trim();
+  const promise = document.getElementById("pledgePromise").value.trim();
+  if (!name)   { showToast("⚠️ 이름을 선택해 주세요"); return; }
+  if (!text)   { showToast("⚠️ 실천 약속을 입력해 주세요"); return; }
+  const btn = document.getElementById("submitBtn");
+  btn.disabled = true; btn.textContent = "저장 중...";
+  const ok = await addItem(KEY, { name, date, text, promise });
+  btn.disabled = false; btn.textContent = "🌿 서약서 공유하기";
+  if (ok) {
+    document.getElementById("pledgeText").value = "";
+    document.getElementById("pledgePromise").value = "";
+    document.getElementById("pledgeName").value = "";
+    showToast("🌿 서약서가 등록되었습니다!");
+  }
 }
 
-function submitPledge(){
-  const name=document.getElementById('pledgeName')?.value;
-  const date=document.getElementById('pledgeDate').value;
-  const text=document.getElementById('pledgeText').value.trim();
-  if(!name||name===''){showToast('⚠️ 이름을 선택해 주세요');return;}
-  if(!text){showToast('⚠️ 실천 약속을 입력해 주세요');return;}
-  const arr=getData(KEY);
-  arr.push({id:uid(),name,date,text,promise:'',isExample:false});
-  setData(KEY,arr);
-  document.getElementById('pledgeText').value='';
-  document.getElementById('pledgeName').value='';
-  renderAll();
-  showToast('🌿 서약서가 등록되었습니다!');
-}
-
-function editPledge(id){
-  const item=getData(KEY).find(x=>x.id===id);
-  if(!item)return;
-  showEditModal('서약서',[
-    {id:'text',label:'서약 내용',type:'textarea',value:item.text},
-    {id:'promise',label:'나만의 약속',type:'text',value:item.promise||''},
-    {id:'date',label:'날짜',type:'date',value:item.date},
-  ],()=>{
-    const arr=getData(KEY);
-    const i=arr.findIndex(x=>x.id===id);
-    if(i>-1){
-      arr[i].text=document.getElementById('ef_text').value;
-      arr[i].promise=document.getElementById('ef_promise').value;
-      arr[i].date=document.getElementById('ef_date').value;
-      setData(KEY,arr);
-    }
+window.editPledge = (id) => {
+  showEditModal("서약서", [
+    { id:"text", label:"서약 내용", type:"textarea", value: "" },
+    { id:"promise", label:"나만의 약속", type:"text", value: "" },
+    { id:"date", label:"날짜", type:"date", value: "" },
+  ], async () => {
+    await updateItem(KEY, id, {
+      text:    document.getElementById("ef_text").value,
+      promise: document.getElementById("ef_promise").value,
+      date:    document.getElementById("ef_date").value,
+    });
     closeEditModal();
-    renderAll();
-    showToast('✅ 수정되었습니다');
+    showToast("✅ 수정되었습니다");
   });
-}
+  // 현재 값 채우기
+  import("./shared.js"); // already loaded
+};
 
-document.addEventListener('DOMContentLoaded',()=>{
-  document.getElementById('studentSelectWrap').innerHTML=getStudentSelect('pledgeName','이름');
-  initExamples();
-  renderAll();
+window.submitPledge = submitPledge;
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("studentSelectWrap").innerHTML = getStudentSelect("pledgeName","이름");
+  document.getElementById("pledgeDate").value = nowDate();
+  subscribeCollection(KEY, render);
 });
 </script>
 </body>

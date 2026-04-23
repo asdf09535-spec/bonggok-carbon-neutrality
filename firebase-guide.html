@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔥 Firebase 연결 가이드 - 봉곡중학교 탄소중립</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(160deg,#0d4a6b,#2d8653);min-height:100vh;padding:30px 20px 60px;}
+.wrap{max-width:820px;margin:0 auto;}
+h1{font-family:'Gaegu',cursive;font-size:2.2rem;color:#fff;text-align:center;margin-bottom:6px;}
+.subtitle{color:#a8e6bc;text-align:center;font-size:0.9rem;margin-bottom:36px;}
+.step{background:rgba(255,255,255,0.93);border-radius:22px;padding:28px 30px;margin-bottom:22px;position:relative;}
+.step-num{position:absolute;top:-14px;left:24px;background:linear-gradient(135deg,#4caf7d,#1a5c35);color:#fff;font-size:0.8rem;font-weight:700;padding:5px 16px;border-radius:20px;letter-spacing:1px;}
+.step h2{font-family:'Gaegu',cursive;font-size:1.45rem;color:#1a5c35;margin-bottom:12px;margin-top:4px;}
+.step p{font-size:0.88rem;color:#444;line-height:1.75;margin-bottom:10px;}
+.step p:last-child{margin-bottom:0;}
+.step ul{padding-left:20px;margin-bottom:10px;}
+.step li{font-size:0.87rem;color:#444;line-height:1.8;}
+.code-box{background:#1e2d3d;border-radius:14px;padding:18px 20px;margin:14px 0;overflow-x:auto;position:relative;}
+.code-box pre{color:#a8e6bc;font-size:0.82rem;line-height:1.7;font-family:'Courier New',monospace;white-space:pre;}
+.code-box .comment{color:#5d7a8a;}
+.code-box .key{color:#ffd166;}
+.code-box .val{color:#74b9ff;}
+.copy-btn{position:absolute;top:10px;right:12px;background:rgba(76,175,125,0.25);border:1px solid rgba(76,175,125,0.4);color:#a8e6bc;font-size:0.72rem;padding:4px 12px;border-radius:8px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all 0.2s;}
+.copy-btn:hover{background:rgba(76,175,125,0.45);}
+.highlight{background:linear-gradient(135deg,rgba(255,209,102,0.18),rgba(255,179,71,0.12));border:1.5px solid rgba(255,209,102,0.4);border-radius:12px;padding:12px 16px;margin:12px 0;font-size:0.85rem;color:#7a5200;}
+.highlight strong{color:#b07d00;}
+.img-placeholder{background:linear-gradient(135deg,#d4f5e2,#b8eaf7);border-radius:12px;padding:20px;text-align:center;margin:14px 0;color:#2d8653;font-size:0.85rem;border:2px dashed rgba(76,175,125,0.3);}
+.tag{display:inline-block;background:linear-gradient(135deg,#4caf7d,#2d8653);color:#fff;font-size:0.72rem;font-weight:700;padding:3px 11px;border-radius:10px;margin-right:5px;margin-bottom:5px;}
+.tag.blue{background:linear-gradient(135deg,#4db8e8,#1a7aa8);}
+.tag.yellow{background:linear-gradient(135deg,#ffd166,#ffb347);color:#7a5200;}
+.final-box{background:linear-gradient(135deg,rgba(76,175,125,0.2),rgba(77,184,232,0.15));border-radius:20px;padding:26px;text-align:center;margin-top:10px;border:2px solid rgba(76,175,125,0.3);}
+.final-box h3{font-family:'Gaegu',cursive;font-size:1.6rem;color:#fff;margin-bottom:10px;}
+.final-box p{color:#a8e6bc;font-size:0.88rem;line-height:1.8;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>🔥 Firebase 연결 가이드</h1>
+  <p class="subtitle">봉곡중학교 탄소중립 학급 홈페이지 · 단계별 설정 방법</p>
+
+  <!-- STEP 1 -->
+  <div class="step">
+    <div class="step-num">STEP 1</div>
+    <h2>🌐 Firebase 프로젝트 만들기</h2>
+    <p>1. <strong>https://console.firebase.google.com</strong> 에 접속해 Google 계정으로 로그인하세요.</p>
+    <p>2. <strong>[ 프로젝트 추가 ]</strong> 버튼을 클릭합니다.</p>
+    <p>3. 프로젝트 이름을 입력합니다. (예: <code style="background:#eee;padding:2px 6px;border-radius:5px">bonggok-carbon</code>)</p>
+    <p>4. Google 애널리틱스는 <strong>사용 안 함</strong>을 선택하고 프로젝트를 생성합니다.</p>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step">
+    <div class="step-num">STEP 2</div>
+    <h2>📱 웹 앱 추가 및 설정값 복사</h2>
+    <p>1. 프로젝트 홈에서 <strong>&lt;/&gt; (웹)</strong> 아이콘을 클릭합니다.</p>
+    <p>2. 앱 닉네임을 입력하고 (예: <code style="background:#eee;padding:2px 6px;border-radius:5px">탄소중립-웹</code>) <strong>[ 앱 등록 ]</strong>을 클릭합니다.</p>
+    <p>3. 아래와 같은 <code>firebaseConfig</code> 코드가 표시됩니다. <strong>전체를 복사</strong>해 두세요!</p>
+    <div class="code-box">
+      <button class="copy-btn" onclick="copyCode(this)">복사</button>
+<pre><span class="comment">// 이런 형태의 코드가 나옵니다 (값은 본인 것으로 다름)</span>
+<span class="key">const</span> firebaseConfig = {
+  <span class="key">apiKey</span>:            <span class="val">"AIzaSyXXXXXXXXXXXXXXXXXXXXXXXXX"</span>,
+  <span class="key">authDomain</span>:        <span class="val">"bonggok-carbon.firebaseapp.com"</span>,
+  <span class="key">projectId</span>:         <span class="val">"bonggok-carbon"</span>,
+  <span class="key">storageBucket</span>:     <span class="val">"bonggok-carbon.appspot.com"</span>,
+  <span class="key">messagingSenderId</span>: <span class="val">"123456789012"</span>,
+  <span class="key">appId</span>:             <span class="val">"1:123456789012:web:abcdefabcdef"</span>
+};</pre>
+    </div>
+    <div class="highlight">⚠️ <strong>주의:</strong> 이 값들은 외부에 공개해도 되지만, Firestore 보안 규칙을 반드시 설정해야 합니다 (STEP 4 참고)</div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step">
+    <div class="step-num">STEP 3</div>
+    <h2>📦 Firestore 데이터베이스 활성화</h2>
+    <p>1. 왼쪽 메뉴에서 <strong>빌드 → Firestore Database</strong>를 클릭합니다.</p>
+    <p>2. <strong>[ 데이터베이스 만들기 ]</strong> 버튼을 클릭합니다.</p>
+    <p>3. 위치는 <strong>asia-northeast3 (서울)</strong> 을 선택합니다.</p>
+    <p>4. 보안 규칙은 일단 <strong>테스트 모드</strong>로 시작합니다. (나중에 STEP 4에서 수정)</p>
+    <p>5. <strong>[ 완료 ]</strong>를 클릭하면 데이터베이스가 생성됩니다.</p>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="step">
+    <div class="step-num">STEP 4</div>
+    <h2>🔒 Firestore 보안 규칙 설정</h2>
+    <p>Firestore Database → <strong>[ 규칙 ]</strong> 탭을 클릭하고, 아래 내용으로 교체 후 <strong>게시</strong>하세요.</p>
+    <div class="code-box">
+      <button class="copy-btn" onclick="copyCode(this)">복사</button>
+<pre><span class="comment">// 누구나 읽기 가능, 쓰기도 가능 (학교 내부용 설정)</span>
+rules_version = <span class="val">'2'</span>;
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read: <span class="key">if</span> true;
+      allow write: <span class="key">if</span> true;
+    }
+  }
+}</pre>
+    </div>
+    <div class="highlight">💡 학교 내부 사용 목적이므로 위 규칙으로 충분합니다. 외부 공개 사이트라면 인증 규칙을 추가해야 합니다.</div>
+  </div>
+
+  <!-- STEP 5 -->
+  <div class="step">
+    <div class="step-num">STEP 5</div>
+    <h2>✏️ shared.js 파일에 설정값 붙여넣기</h2>
+    <p>다운로드한 <code>shared.js</code> 파일을 텍스트 편집기(메모장, VS Code 등)로 열고, 상단의 <code>firebaseConfig</code> 부분을 찾아 STEP 2에서 복사한 값으로 교체합니다.</p>
+    <div class="code-box">
+      <button class="copy-btn" onclick="copyCode(this)">복사</button>
+<pre><span class="comment">// shared.js 상단 - 아래 부분을 본인 값으로 교체</span>
+<span class="key">const</span> firebaseConfig = {
+  <span class="key">apiKey</span>:            <span class="val">"← Firebase Console에서 복사한 값"</span>,
+  <span class="key">authDomain</span>:        <span class="val">"← Firebase Console에서 복사한 값"</span>,
+  <span class="key">projectId</span>:         <span class="val">"← Firebase Console에서 복사한 값"</span>,
+  <span class="key">storageBucket</span>:     <span class="val">"← Firebase Console에서 복사한 값"</span>,
+  <span class="key">messagingSenderId</span>: <span class="val">"← Firebase Console에서 복사한 값"</span>,
+  <span class="key">appId</span>:             <span class="val">"← Firebase Console에서 복사한 값"</span>
+};</pre>
+    </div>
+    <p>비밀번호도 이 파일에서 변경할 수 있습니다:</p>
+    <div class="code-box">
+<pre><span class="key">const</span> ADMIN_PW = <span class="val">"1234"</span>; <span class="comment">// ← 원하는 비밀번호로 변경</span></pre>
+    </div>
+  </div>
+
+  <!-- STEP 6 -->
+  <div class="step">
+    <div class="step-num">STEP 6</div>
+    <h2>📁 GitHub에 파일 올리기</h2>
+    <p>아래 7개 파일을 모두 GitHub 저장소 <strong>같은 폴더</strong>에 올리면 됩니다.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin:12px 0;">
+      <span class="tag">index.html</span>
+      <span class="tag">pledge.html</span>
+      <span class="tag">books.html</span>
+      <span class="tag">market.html</span>
+      <span class="tag">diary.html</span>
+      <span class="tag blue">shared.css</span>
+      <span class="tag yellow">shared.js ← 설정값 수정 필수!</span>
+    </div>
+    <p>GitHub 저장소에서 <strong>Add file → Upload files</strong>로 한꺼번에 업로드하거나, 기존 파일을 클릭해서 내용을 붙여넣기하면 됩니다.</p>
+    <div class="highlight">⚠️ <strong>shared.js를 반드시 먼저 수정</strong>한 뒤 업로드하세요! 설정값이 없으면 사이트가 작동하지 않습니다.</div>
+  </div>
+
+  <!-- STEP 7 -->
+  <div class="step">
+    <div class="step-num">STEP 7</div>
+    <h2>✅ 동작 확인</h2>
+    <p>GitHub Pages 배포 후 사이트에 접속해서 확인하세요:</p>
+    <ul>
+      <li>서약서 / 도서소감 / 중고장터 / 일기 탭에서 항목을 <strong>직접 작성</strong>해 보기</li>
+      <li>Firebase Console → Firestore Database에서 <strong>데이터가 실시간으로 쌓이는지</strong> 확인</li>
+      <li>다른 기기(휴대폰 등)에서 접속해도 <strong>같은 데이터</strong>가 보이는지 확인</li>
+      <li>🔐 관리자 버튼 → 비밀번호 입력 → 수정/삭제 버튼 확인</li>
+    </ul>
+    <div class="highlight">🎉 여기까지 완료되면 Firebase 연결 완료! 이제 모든 학생이 실시간으로 데이터를 공유합니다.</div>
+  </div>
+
+  <div class="final-box">
+    <h3>🌍 연결 완료!</h3>
+    <p>
+      Firebase Firestore를 통해 모든 학생이 <strong>실시간으로 같은 데이터</strong>를 봅니다.<br>
+      한 학생이 서약서를 올리면 → 다른 학생 화면에 <strong>즉시 반영</strong>됩니다! 🌿<br><br>
+      문제가 생기면 브라우저 개발자도구(F12) → Console 탭에서 오류 메시지를 확인하세요.
+    </p>
+  </div>
+</div>
+
+<script>
+function copyCode(btn) {
+  const pre = btn.nextElementSibling;
+  navigator.clipboard.writeText(pre.textContent).then(() => {
+    btn.textContent = "✅ 복사됨!";
+    setTimeout(() => btn.textContent = "복사", 2000);
+  });
+}
+</script>
+</body>
+</html>

@@ -18,8 +18,8 @@ const firebaseConfig = {
   projectId:         "bonggok-carbon-neutrality",
   storageBucket:     "bonggok-carbon-neutrality.firebasestorage.app",
   messagingSenderId: "742763830070",
-  appId:             "1:742763830070:web:2b458f95c40d220ffff197"
-  measurementId: "G-B0S6EY43DX"
+  appId:             "1:742763830070:web:2b458f95c40d220ffff197",
+  measurementId:     "G-B0S6EY43DX"
 
 };
 

@@ -5,220 +5,304 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>📚 도서 소감 - 봉곡중학교 1학년 5반</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css">
 <style>
-.books-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:18px;}
-.book-card{background:var(--card-bg);border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,0.5);transition:all 0.3s;}
-.book-card:hover{transform:translateY(-5px);box-shadow:0 16px 44px rgba(0,0,0,0.18);}
-.bc-cover{height:130px;display:flex;align-items:center;justify-content:center;font-size:3.5rem;position:relative;}
+:root{--gd:#1a5c35;--gm:#2d8653;--gl:#4caf7d;--gp:#a8e6bc;--bd:#0d4a6b;--bm:#1a7aa8;--bl:#4db8e8;--ys:#ffd166;--cb:rgba(255,255,255,0.9);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(160deg,#0d4a6b 0%,#1a7aa8 25%,#2d8653 55%,#1a5c35 100%);min-height:100vh;overflow-x:hidden;}
+.bg-bubbles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
+.bubble{position:absolute;border-radius:50%;opacity:.07;animation:floatUp linear infinite;}
+.bubble:nth-child(1){width:80px;height:80px;left:5%;background:#4caf7d;animation-duration:12s;}
+.bubble:nth-child(2){width:50px;height:50px;left:20%;background:#4db8e8;animation-duration:9s;animation-delay:2s;}
+.bubble:nth-child(3){width:100px;height:100px;left:42%;background:#2d8653;animation-duration:14s;animation-delay:1s;}
+.bubble:nth-child(4){width:60px;height:60px;left:65%;background:#4db8e8;animation-duration:11s;animation-delay:3s;}
+.bubble:nth-child(5){width:80px;height:80px;left:82%;background:#4caf7d;animation-duration:13s;animation-delay:.5s;}
+@keyframes floatUp{0%{bottom:-150px;transform:translateX(0) rotate(0deg);opacity:.07;}50%{transform:translateX(30px) rotate(180deg);}100%{bottom:110%;transform:translateX(-20px) rotate(360deg);opacity:0;}}
+.top-banner{position:relative;z-index:10;background:rgba(10,40,60,.65);backdrop-filter:blur(10px);border-bottom:1px solid rgba(77,184,232,.2);padding:9px 20px;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;}
+.top-banner span{color:rgba(255,255,255,.78);font-size:.82rem;font-weight:500;letter-spacing:1.5px;}
+.top-banner span strong{color:#a8e6bc;}
+.admin-btn{background:rgba(231,76,60,.18);border:1px solid rgba(231,76,60,.35);color:rgba(255,210,210,.88);font-size:.74rem;font-weight:700;padding:4px 13px;border-radius:10px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all .2s;margin-left:auto;}
+.admin-btn:hover,.admin-btn.on{background:rgba(231,76,60,.45);color:#fff;}
+.admin-bar{display:none;position:relative;z-index:10;background:rgba(120,10,10,.6);backdrop-filter:blur(8px);padding:8px 20px;text-align:center;border-bottom:1px solid rgba(231,76,60,.3);}
+.admin-bar.show{display:block;}
+.admin-bar p{color:rgba(255,210,210,.92);font-size:.82rem;}
+nav{position:sticky;top:0;z-index:100;display:flex;justify-content:center;gap:7px;padding:11px 18px;background:rgba(13,74,107,.82);backdrop-filter:blur(18px);border-bottom:1px solid rgba(77,184,232,.2);flex-wrap:wrap;}
+nav a{text-decoration:none;color:rgba(255,255,255,.82);font-size:.83rem;font-weight:500;padding:7px 14px;border-radius:20px;transition:all .25s;border:1px solid transparent;}
+nav a:hover,nav a.cur{background:rgba(76,175,125,.35);border-color:rgba(76,175,125,.5);color:#fff;transform:translateY(-1px);}
+.page-hd{position:relative;z-index:10;text-align:center;padding:32px 20px 22px;}
+.page-hd h1{font-family:'Gaegu',cursive;font-size:clamp(1.9rem,5vw,2.8rem);color:#fff;font-weight:700;}
+.page-hd p{color:#a8e6bc;font-size:.9rem;margin-top:7px;}
+.container{max-width:1040px;margin:0 auto;padding:24px 20px 64px;position:relative;z-index:5;}
+.filter-bar{display:flex;gap:7px;margin-bottom:20px;flex-wrap:wrap;justify-content:center;}
+.fb{padding:7px 16px;border-radius:18px;font-size:.81rem;font-weight:600;cursor:pointer;border:2px solid rgba(255,255,255,.32);background:rgba(255,255,255,.1);color:rgba(255,255,255,.88);font-family:'Noto Sans KR',sans-serif;transition:all .2s;}
+.fb.on,.fb:hover{background:rgba(76,175,125,.38);border-color:#4caf7d;color:#fff;}
+.write-box{background:linear-gradient(135deg,rgba(212,245,226,.92),rgba(184,234,247,.85));border-radius:22px;padding:22px;margin-bottom:22px;border:2px dashed rgba(76,175,125,.35);}
+.write-box h3{font-family:'Gaegu',cursive;font-size:1.25rem;color:#1a5c35;margin-bottom:14px;display:flex;align-items:center;gap:7px;}
+.form-row{display:flex;gap:11px;margin-bottom:11px;flex-wrap:wrap;}
+.fg{flex:1;min-width:140px;}
+.fg label{display:block;font-size:.76rem;color:#555;margin-bottom:4px;font-weight:600;}
+.fg input,.fg textarea,.fg select{width:100%;padding:9px 13px;border:2px solid rgba(76,175,125,.2);border-radius:11px;font-size:.85rem;font-family:'Noto Sans KR',sans-serif;background:rgba(255,255,255,.9);color:#333;outline:none;transition:border-color .2s;}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:#2d8653;}
+.fg textarea{resize:none;height:88px;}
+.star-row{display:flex;gap:4px;margin-bottom:11px;}
+.star-btn{font-size:1.5rem;cursor:pointer;background:none;border:none;padding:0;line-height:1;transition:transform .15s;}
+.star-btn:hover{transform:scale(1.25);}
+.star-btn.dim{filter:grayscale(1) opacity(.4);}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 24px;border-radius:24px;font-size:.86rem;font-weight:700;font-family:'Noto Sans KR',sans-serif;cursor:pointer;border:none;transition:all .25s;}
+.btn-green{background:linear-gradient(135deg,#2d8653,#1a5c35);color:#fff;box-shadow:0 4px 14px rgba(45,134,83,.35);}
+.btn-green:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 6px 20px rgba(45,134,83,.5);}
+.btn-green:disabled{opacity:.6;cursor:not-allowed;}
+.btn-gray{background:rgba(0,0,0,.07);color:#555;border:1px solid rgba(0,0,0,.1);}
+.btn-gray:hover{background:rgba(0,0,0,.13);}
+.books-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+.book-card{background:var(--cb);border-radius:19px;overflow:hidden;border:1px solid rgba(255,255,255,.5);transition:all .3s;}
+.book-card:hover{transform:translateY(-5px);box-shadow:0 15px 40px rgba(0,0,0,.16);}
+.bc-cover{height:125px;display:flex;align-items:center;justify-content:center;font-size:3.3rem;position:relative;}
 .bc-cover.c1{background:linear-gradient(135deg,#a8e6bc,#4caf7d);}
 .bc-cover.c2{background:linear-gradient(135deg,#b8eaf7,#4db8e8);}
 .bc-cover.c3{background:linear-gradient(135deg,#ffeaa7,#fdcb6e);}
 .bc-cover.c4{background:linear-gradient(135deg,#dfe6e9,#74b9ff);}
 .bc-cover.c5{background:linear-gradient(135deg,#ffecd2,#fcb69f);}
 .bc-cover.c6{background:linear-gradient(135deg,#d4efdf,#76b947);}
-.bc-month{position:absolute;top:8px;left:10px;background:rgba(255,255,255,0.82);color:#1a5c35;font-size:0.7rem;font-weight:700;padding:2px 9px;border-radius:9px;}
-.bc-body{padding:16px;}
-.bc-title{font-size:0.95rem;font-weight:700;color:#1a5c35;margin-bottom:3px;}
-.bc-author{font-size:0.74rem;color:#999;margin-bottom:9px;}
-.bc-review{font-size:0.84rem;color:#555;line-height:1.65;margin-bottom:11px;}
-.bc-footer{display:flex;align-items:center;justify-content:space-between;padding-top:10px;border-top:1px solid rgba(76,175,125,0.12);}
-.bc-student{font-size:0.76rem;color:#777;}
-.bc-stars{color:#ffd166;font-size:0.9rem;letter-spacing:-1px;}
-.star-row{display:flex;gap:4px;margin-bottom:12px;}
-.star-btn{font-size:1.5rem;cursor:pointer;background:none;border:none;transition:transform 0.15s;padding:0;line-height:1;}
-.star-btn:hover{transform:scale(1.25);}
-.star-btn.dim{filter:grayscale(1) opacity(0.4);}
+.bc-mo{position:absolute;top:8px;left:10px;background:rgba(255,255,255,.82);color:#1a5c35;font-size:.7rem;font-weight:700;padding:2px 9px;border-radius:9px;}
+.bc-body{padding:14px;}
+.bc-title{font-size:.93rem;font-weight:700;color:#1a5c35;margin-bottom:2px;}
+.bc-author{font-size:.72rem;color:#999;margin-bottom:8px;}
+.bc-review{font-size:.82rem;color:#555;line-height:1.65;margin-bottom:10px;}
+.bc-foot{display:flex;align-items:center;justify-content:space-between;padding-top:9px;border-top:1px solid rgba(76,175,125,.12);}
+.bc-who{font-size:.74rem;color:#777;}
+.bc-stars{color:#ffd166;font-size:.88rem;letter-spacing:-1px;}
+.admin-actions{display:none;gap:5px;margin-top:8px;flex-wrap:wrap;}
+body.admin-on .admin-actions{display:flex;}
+.ae-btn,.ad-btn{font-size:.71rem;padding:4px 12px;border-radius:10px;cursor:pointer;border:none;font-family:'Noto Sans KR',sans-serif;font-weight:700;transition:all .2s;}
+.ae-btn{background:rgba(26,122,168,.12);color:#1a7aa8;border:1px solid rgba(26,122,168,.28);}
+.ae-btn:hover{background:rgba(26,122,168,.24);}
+.ad-btn{background:rgba(231,76,60,.1);color:#c0392b;border:1px solid rgba(231,76,60,.28);}
+.ad-btn:hover{background:rgba(231,76,60,.22);}
+body.admin-on .book-card{outline:2px dashed rgba(231,76,60,.18);outline-offset:2px;}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.58);z-index:9000;align-items:center;justify-content:center;backdrop-filter:blur(4px);}
+.modal-overlay.show{display:flex;}
+.modal-box{background:#fff;border-radius:22px;padding:30px 28px;max-width:420px;width:92%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.28);max-height:90vh;overflow-y:auto;}
+.modal-box h3{font-family:'Gaegu',cursive;font-size:1.5rem;color:#1a5c35;margin-bottom:7px;}
+.modal-box p{font-size:.83rem;color:#666;margin-bottom:15px;line-height:1.6;}
+.pw-input{width:100%;padding:11px 15px;border:2px solid rgba(76,175,125,.28);border-radius:12px;font-size:1rem;font-family:'Noto Sans KR',sans-serif;outline:none;color:#333;margin-bottom:11px;text-align:center;letter-spacing:3px;}
+.pw-input:focus{border-color:#2d8653;}
+.modal-err{color:#e74c3c;font-size:.78rem;margin-top:-7px;margin-bottom:9px;display:none;}
+.modal-btns{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;}
+.ef{text-align:left;margin-bottom:9px;}
+.ef label{font-size:.76rem;color:#555;font-weight:600;display:block;margin-bottom:4px;}
+.ef input,.ef textarea,.ef select{width:100%;padding:9px 12px;border:2px solid rgba(76,175,125,.2);border-radius:11px;font-family:'Noto Sans KR',sans-serif;font-size:.85rem;color:#333;outline:none;background:#fff;}
+.ef input:focus,.ef textarea:focus,.ef select:focus{border-color:#2d8653;}
+.ef textarea{resize:none;height:75px;}
+.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(70px);background:rgba(26,92,53,.95);color:#fff;padding:10px 24px;border-radius:22px;font-size:.84rem;font-weight:600;z-index:9999;transition:all .35s;opacity:0;pointer-events:none;box-shadow:0 4px 18px rgba(0,0,0,.2);}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1;}
+.footer{position:relative;z-index:5;text-align:center;padding:32px 20px;border-top:1px solid rgba(255,255,255,.1);}
+.footer .school-name{font-family:'Gaegu',cursive;font-size:1.22rem;color:#fff;font-weight:700;margin-bottom:4px;}
+.footer p{color:rgba(255,255,255,.57);font-size:.78rem;line-height:1.8;}
+.footer-earth{font-size:1.9rem;display:block;margin-bottom:7px;animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.1);}}
+.scroll-top{position:fixed;bottom:22px;right:22px;z-index:999;width:43px;height:43px;border-radius:50%;background:linear-gradient(135deg,#2d8653,#1a7aa8);color:#fff;font-size:1.05rem;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.22);transition:all .3s;opacity:0;pointer-events:none;}
+.scroll-top:hover{transform:scale(1.1) translateY(-2px);}
+.empty-state{text-align:center;color:rgba(255,255,255,.65);padding:40px 20px;grid-column:1/-1;}
 </style>
 </head>
 <body>
-<div class="bg-bubbles"><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div></div>
-<div class="school-top-banner">
+<div class="bg-bubbles"><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div></div>
+<div class="top-banner">
   <span>🏫 <strong>봉곡중학교</strong> · 2026학년도 1학년 5반 탄소중립학급</span>
-  <button class="admin-toggle-btn" id="adminToggleBtn" onclick="openAdminModal()">🔐 관리자</button>
+  <button class="admin-btn" id="adminBtn">🔐 관리자</button>
 </div>
 <div class="admin-bar" id="adminBar">
-  <p>🔐 <strong>관리자 모드</strong> &nbsp;<button onclick="exitAdmin()" style="background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:3px 11px;border-radius:8px;cursor:pointer;font-size:0.77rem;font-family:'Noto Sans KR',sans-serif;">🚪 로그아웃</button></p>
+  <p>🔐 <strong>관리자 모드 활성화</strong> — 각 카드에 수정/삭제 버튼이 표시됩니다. &nbsp;
+    <button id="logoutBtn" style="background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);color:#fff;padding:3px 11px;border-radius:8px;cursor:pointer;font-size:.76rem;font-family:'Noto Sans KR',sans-serif;">🚪 로그아웃</button>
+  </p>
 </div>
 <nav>
   <a href="index.html">🏠 홈</a><a href="pledge.html">📜 서약서</a>
-  <a href="books.html" class="active">📚 도서소감</a>
+  <a href="books.html" class="cur">📚 도서소감</a>
   <a href="market.html">🛍️ 중고장터</a><a href="diary.html">📓 탄소일기</a>
 </nav>
-<div class="page-header">
-  <h1>📚 탄소중립 도서 소감 나눔</h1>
-  <p>읽고 느끼고 나누는 환경 이야기 · 봉곡중학교 1학년 5반</p>
-</div>
+<div class="page-hd"><h1>📚 탄소중립 도서 소감 나눔</h1><p>읽고 느끼고 나누는 환경 이야기 · 봉곡중학교 1학년 5반</p></div>
 <div class="container">
   <div class="filter-bar" id="filterBar">
-    <button class="fb active" data-month="all">전체</button>
-    <button class="fb" data-month="3">3월</button><button class="fb" data-month="4">4월</button>
-    <button class="fb" data-month="5">5월</button><button class="fb" data-month="6">6월</button>
-    <button class="fb" data-month="7">7월~</button>
+    <button class="fb on" data-m="all">전체</button>
+    <button class="fb" data-m="3">3월</button><button class="fb" data-m="4">4월</button>
+    <button class="fb" data-m="5">5월</button><button class="fb" data-m="6">6월</button>
+    <button class="fb" data-m="7">7월~</button>
   </div>
   <div class="write-box">
     <h3>📖 새 도서 소감 작성하기</h3>
     <div class="form-row">
-      <div class="fg"><label>책 제목</label><input type="text" id="bookTitle" placeholder="읽은 책 제목"></div>
-      <div class="fg"><label>저자</label><input type="text" id="bookAuthor" placeholder="저자명"></div>
+      <div class="fg"><label>책 제목 <span style="color:#e74c3c">*</span></label><input type="text" id="bTitle" placeholder="읽은 책 제목"></div>
+      <div class="fg"><label>저자</label><input type="text" id="bAuthor" placeholder="저자명"></div>
     </div>
     <div class="form-row">
-      <div id="studentSelectWrap"></div>
-      <div class="fg"><label>독서 완료 날짜</label><input type="date" id="bookDate"></div>
+      <div class="fg" id="nameWrap"></div>
+      <div class="fg"><label>독서 완료 날짜</label><input type="date" id="bDate"></div>
     </div>
-    <div style="margin-bottom:12px;">
-      <label style="display:block;font-size:0.77rem;color:#555;font-weight:600;margin-bottom:6px;">별점</label>
+    <div style="margin-bottom:11px;">
+      <label style="display:block;font-size:.76rem;color:#555;font-weight:600;margin-bottom:5px;">별점</label>
       <div class="star-row" id="starRow">
-        <button class="star-btn" data-s="1" onclick="setStar(1)">⭐</button>
-        <button class="star-btn" data-s="2" onclick="setStar(2)">⭐</button>
-        <button class="star-btn" data-s="3" onclick="setStar(3)">⭐</button>
-        <button class="star-btn" data-s="4" onclick="setStar(4)">⭐</button>
-        <button class="star-btn" data-s="5" onclick="setStar(5)">⭐</button>
+        <button class="star-btn" data-s="1">⭐</button><button class="star-btn" data-s="2">⭐</button>
+        <button class="star-btn" data-s="3">⭐</button><button class="star-btn" data-s="4">⭐</button>
+        <button class="star-btn" data-s="5">⭐</button>
       </div>
     </div>
     <div class="fg" style="margin-bottom:13px;">
-      <label>소감</label>
-      <textarea id="bookReview" placeholder="책을 읽고 느낀 점을 자유롭게 써보세요!"></textarea>
+      <label>소감 <span style="color:#e74c3c">*</span></label>
+      <textarea id="bReview" placeholder="책을 읽고 느낀 점을 자유롭게 써보세요!"></textarea>
     </div>
-    <button class="btn btn-green" id="submitBtn" onclick="submitBook()">📚 소감 등록하기</button>
+    <button class="btn btn-green" id="submitBtn">📚 소감 등록하기</button>
   </div>
   <div style="color:#fff;font-family:'Gaegu',cursive;font-size:1.1rem;margin-bottom:13px;">
-    📖 등록된 도서 소감 <span id="bookCount" style="opacity:0.7;font-size:0.85rem;font-family:'Noto Sans KR'"></span>
+    📖 등록된 도서 소감 <span id="bookCount" style="opacity:.7;font-size:.84rem;font-family:'Noto Sans KR'"></span>
   </div>
-  <div class="books-grid" id="booksGrid"><div style="color:rgba(255,255,255,0.7);padding:30px;text-align:center">⏳ 불러오는 중...</div></div>
+  <div class="books-grid" id="booksGrid"></div>
 </div>
 
 <div class="modal-overlay" id="adminModal">
   <div class="modal-box">
     <h3>🔐 관리자 로그인</h3><p>관리자 비밀번호를 입력해 주세요</p>
-    <input type="password" class="pw-input" id="adminPwInput" placeholder="비밀번호" onkeydown="if(event.key==='Enter')checkAdmin()">
-    <div class="modal-err" id="adminErr">❌ 비밀번호가 올바르지 않습니다</div>
-    <div class="modal-btns"><button class="btn btn-green" onclick="checkAdmin()">✅ 확인</button><button class="btn btn-gray" onclick="closeAdminModal()">취소</button></div>
+    <input type="password" class="pw-input" id="pwInput" placeholder="비밀번호">
+    <div class="modal-err" id="pwErr">❌ 비밀번호가 올바르지 않습니다</div>
+    <div class="modal-btns"><button class="btn btn-green" id="pwOkBtn">✅ 확인</button><button class="btn btn-gray" id="pwCancelBtn">취소</button></div>
   </div>
 </div>
 <div class="modal-overlay" id="editModal">
-  <div class="modal-box"><div id="editModalBody"></div>
-    <div class="modal-btns" style="margin-top:4px"><button class="btn btn-green" id="editSaveBtn">💾 저장</button><button class="btn btn-gray" onclick="closeEditModal()">취소</button></div>
+  <div class="modal-box"><div id="editBody"></div>
+    <div class="modal-btns" style="margin-top:6px;"><button class="btn btn-green" id="editSaveBtn">💾 저장</button><button class="btn btn-gray" id="editCancelBtn">취소</button></div>
   </div>
 </div>
 <div class="toast" id="toast"></div>
-<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-<div class="school-bottom-banner">
+<button class="scroll-top" id="scrollTop">↑</button>
+<div class="footer">
   <span class="footer-earth">🌍</span><div class="school-name">🏫 봉곡중학교</div>
   <p>🌿 탄소중립 학급 · 초록별 프로젝트 · 2026학년도 1학년 5반 🌿<br>우리의 작은 실천이 지구를 더 오래 살게 합니다</p>
 </div>
 
-<script type="module">
-import {
-  STUDENTS, openAdminModal, closeAdminModal, checkAdmin, exitAdmin,
-  subscribeCollection, addItem, updateItem, deleteItem,
-  showEditModal, closeEditModal, adminActions, showToast,
-  formatDate, nowDate, getStudentSelect
-} from "./shared.js";
+<script>
+var ADMIN_PW="1234"; var KEY="books";
+var STUDENTS=["강예솔","권예은","김서윤","권정훈","김세혁","김예은","김온유","김태윤","나수인","박규연","박승준","박지우","배종혁","송민슬","양나경","오은율","유민서","이민성","이승민","이태현","임효린","정해지","차경호","최진리","최하안","황승준"];
+var COVERS=["c1","c2","c3","c4","c5","c6"];
+var EMOJIS=["📗","🌊","🌳","🦁","♻️","🌱","🌏","🐋","🍃","🌿"];
+var EXAMPLES=[
+  {id:"bex1",title:"기후 변화가 뭐예요?",author:"캐서린 바",name:"강예솔",date:"2026-03-15",stars:5,review:"지구 온난화가 왜 일어나는지 쉽게 설명되어 있었어요. 내가 매일 하는 작은 행동들이 지구에 영향을 준다는 사실에 깜짝 놀랐어요!"},
+  {id:"bex2",title:"바다가 아파요",author:"해양생태연구소",name:"권예은",date:"2026-03-18",stars:5,review:"플라스틱 쓰레기로 가득 찬 바다 사진이 마음에 걸렸어요. 이제 절대 함부로 쓰레기를 버리지 않겠다고 다짐했어요."},
+  {id:"bex3",title:"나무가 들려주는 이야기",author:"페터 볼레벤",name:"김서윤",date:"2026-03-20",stars:4,review:"나무들도 서로 소통하고 서로 돕는다는 것이 정말 신기했어요! 나무 한 그루가 얼마나 소중한지 다시 깨달았습니다."}
+];
+var selStar=5,curMonth="all",allBooks=[],editSaveFn=null,toastTimer;
+var idxMap={};STUDENTS.forEach(function(s,i){idxMap[s]=i;});
 
-Object.assign(window, { openAdminModal, closeAdminModal, checkAdmin, exitAdmin, deleteItem, closeEditModal });
+function lsGet(k){try{return JSON.parse(localStorage.getItem(k)||"[]");}catch(e){return[];}}
+function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,5);}
+function fmtDate(d){return d?String(d).replace(/-/g,"."):""; }
+function todayStr(){return new Date().toISOString().slice(0,10);}
+function isAdmin(){return sessionStorage.getItem("adminMode")==="true";}
+function showToast(m){var t=document.getElementById("toast");t.textContent=m;t.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(function(){t.classList.remove("show");},2700);}
 
-const KEY = "books";
-const COVERS = ["c1","c2","c3","c4","c5","c6"];
-const EMOJIS = ["📗","🌊","🌳","🦁","♻️","🌱","🌏","🐋","🍃","🌿"];
-const idx = STUDENTS.reduce((a,s,i)=>{a[s]=i;return a;},{});
-let selectedStar = 5, currentMonth = "all", allData = [];
-
-function render(data) {
-  allData = data;
-  renderFiltered();
+function applyAdminUI(){
+  var on=isAdmin();
+  document.getElementById("adminBar").classList.toggle("show",on);
+  var b=document.getElementById("adminBtn");b.classList.toggle("on",on);b.textContent=on?"🔓 관리자 ON":"🔐 관리자";
+  document.body.classList.toggle("admin-on",on);
 }
-function renderFiltered() {
-  const filtered = currentMonth === "all" ? allData : allData.filter(b => {
-    const m = parseInt((b.date||"").split("-")[1]||"0");
-    return currentMonth === "7" ? m >= 7 : m === parseInt(currentMonth);
-  });
-  document.getElementById("bookCount").textContent = `(${allData.length}권)`;
-  const grid = document.getElementById("booksGrid");
-  if (!filtered.length) {
-    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;color:rgba(255,255,255,0.65);padding:40px 20px;"><div style="font-size:3rem;margin-bottom:10px">📚</div><p>등록된 소감이 없어요!</p></div>`;
-    return;
-  }
-  grid.innerHTML = filtered.map((b,i) => {
-    const si = idx[b.name] ?? i;
-    const stars = "⭐".repeat(b.stars||5);
-    const month = b.date ? parseInt(b.date.split("-")[1]) : 3;
-    return `<div class="book-card deletable">
-      <div class="bc-cover ${COVERS[si%COVERS.length]}"><span class="bc-month">${month}월</span>${EMOJIS[si%EMOJIS.length]}</div>
-      <div class="bc-body">
-        <div class="bc-title">${b.title}</div>
-        <div class="bc-author">${b.author||""}</div>
-        <div class="bc-review">${b.review}</div>
-        <div class="bc-footer"><span class="bc-student">✍️ ${b.name} · ${formatDate(b.date)}</span><span class="bc-stars">${stars}</span></div>
-        ${adminActions(KEY,b,"editBook")}
-      </div></div>`;
+
+function setStar(n){selStar=n;document.querySelectorAll(".star-btn").forEach(function(b){b.classList.toggle("dim",parseInt(b.dataset.s)>n);});}
+
+document.getElementById("starRow").addEventListener("click",function(e){var b=e.target.closest(".star-btn");if(b)setStar(parseInt(b.dataset.s));});
+
+function initExamples(){var a=lsGet(KEY);if(!a.length)lsSet(KEY,EXAMPLES);}
+
+function renderGrid(){
+  allBooks=lsGet(KEY);
+  var filtered=curMonth==="all"?allBooks:allBooks.filter(function(b){var m=parseInt((b.date||"").split("-")[1]||"0");return curMonth==="7"?m>=7:m===parseInt(curMonth);});
+  document.getElementById("bookCount").textContent="("+allBooks.length+"권)";
+  var g=document.getElementById("booksGrid");
+  if(!filtered.length){g.innerHTML='<div class="empty-state"><div style="font-size:2.8rem;margin-bottom:10px">📚</div><p>등록된 소감이 없어요!</p></div>';return;}
+  g.innerHTML=filtered.map(function(b,i){
+    var si=(idxMap[b.name]!==undefined)?idxMap[b.name]:i;
+    var month=b.date?parseInt(b.date.split("-")[1]):3;
+    var stars="⭐".repeat(b.stars||5);
+    return '<div class="book-card">'+
+      '<div class="bc-cover '+COVERS[si%COVERS.length]+'"><span class="bc-mo">'+month+'월</span>'+EMOJIS[si%EMOJIS.length]+'</div>'+
+      '<div class="bc-body"><div class="bc-title">'+b.title+'</div><div class="bc-author">'+(b.author||"")+'</div>'+
+      '<div class="bc-review">'+b.review+'</div>'+
+      '<div class="bc-foot"><span class="bc-who">✍️ '+b.name+' · '+fmtDate(b.date)+'</span><span class="bc-stars">'+stars+'</span></div>'+
+      '<div class="admin-actions"><button class="ae-btn" onclick="openEdit(\''+b.id+'\')">✏️ 수정</button><button class="ad-btn" onclick="delItem(\''+b.id+'\')">🗑️ 삭제</button></div>'+
+      '</div></div>';
   }).join("");
 }
-window.renderAll = renderFiltered;
 
-function setStar(n) {
-  selectedStar = n;
-  document.querySelectorAll(".star-btn").forEach(b => b.classList.toggle("dim", parseInt(b.dataset.s) > n));
-}
-window.setStar = setStar;
-
-async function submitBook() {
-  const title  = document.getElementById("bookTitle").value.trim();
-  const author = document.getElementById("bookAuthor").value.trim();
-  const name   = document.getElementById("bookName")?.value;
-  const date   = document.getElementById("bookDate").value;
-  const review = document.getElementById("bookReview").value.trim();
-  if (!title)  { showToast("⚠️ 책 제목을 입력해 주세요"); return; }
-  if (!name)   { showToast("⚠️ 이름을 선택해 주세요"); return; }
-  if (!review) { showToast("⚠️ 소감을 입력해 주세요"); return; }
-  const btn = document.getElementById("submitBtn");
-  btn.disabled = true; btn.textContent = "저장 중...";
-  const ok = await addItem(KEY, { title, author, name, date, stars: selectedStar, review });
-  btn.disabled = false; btn.textContent = "📚 소감 등록하기";
-  if (ok) {
-    ["bookTitle","bookAuthor","bookReview"].forEach(id => document.getElementById(id).value = "");
-    document.getElementById("bookName").value = "";
-    setStar(5);
-    showToast("📚 소감이 등록되었습니다!");
-  }
-}
-window.submitBook = submitBook;
-
-window.editBook = (id) => {
-  const item = allData.find(x => x.id === id);
-  if (!item) return;
-  showEditModal("도서 소감", [
-    { id:"title",  label:"책 제목", type:"text",     value: item.title },
-    { id:"author", label:"저자",   type:"text",     value: item.author||"" },
-    { id:"review", label:"소감",   type:"textarea", value: item.review },
-    { id:"stars",  label:"별점",   type:"select",   value: String(item.stars||5),
-      options:[1,2,3,4,5].map(n=>({v:String(n),l:"⭐".repeat(n)+` (${n}점)`})) },
-    { id:"date",   label:"날짜",   type:"date",     value: item.date },
-  ], async () => {
-    await updateItem(KEY, id, {
-      title:  document.getElementById("ef_title").value,
-      author: document.getElementById("ef_author").value,
-      review: document.getElementById("ef_review").value,
-      stars:  parseInt(document.getElementById("ef_stars").value),
-      date:   document.getElementById("ef_date").value,
-    });
-    closeEditModal(); showToast("✅ 수정되었습니다");
-  });
-};
-
-document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("studentSelectWrap").innerHTML = getStudentSelect("bookName","이름");
-  document.getElementById("bookDate").value = nowDate();
-  setStar(5);
-  subscribeCollection(KEY, render);
-  document.getElementById("filterBar").addEventListener("click", e => {
-    const btn = e.target.closest(".fb"); if (!btn) return;
-    document.querySelectorAll(".fb").forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-    currentMonth = btn.dataset.month;
-    renderFiltered();
-  });
+document.getElementById("submitBtn").addEventListener("click",function(){
+  var title=document.getElementById("bTitle").value.trim();
+  var author=document.getElementById("bAuthor").value.trim();
+  var name=document.getElementById("bName")?document.getElementById("bName").value:"";
+  var date=document.getElementById("bDate").value;
+  var review=document.getElementById("bReview").value.trim();
+  if(!title){showToast("⚠️ 책 제목을 입력해 주세요");return;}
+  if(!name){showToast("⚠️ 이름을 선택해 주세요");return;}
+  if(!review){showToast("⚠️ 소감을 입력해 주세요");return;}
+  var btn=document.getElementById("submitBtn");btn.disabled=true;btn.textContent="저장 중...";
+  var arr=lsGet(KEY);arr.unshift({id:uid(),title:title,author:author,name:name,date:date,stars:selStar,review:review});
+  lsSet(KEY,arr);btn.disabled=false;btn.textContent="📚 소감 등록하기";
+  document.getElementById("bTitle").value="";document.getElementById("bAuthor").value="";document.getElementById("bReview").value="";document.getElementById("bName").value="";
+  setStar(5);renderGrid();showToast("📚 소감이 등록되었습니다!");
 });
+
+function delItem(id){if(!confirm("정말 삭제할까요?"))return;lsSet(KEY,lsGet(KEY).filter(function(x){return x.id!==id;}));renderGrid();showToast("🗑️ 삭제되었습니다");}
+
+function openEdit(id){
+  var item=allBooks.find(function(x){return x.id===id;});if(!item)return;
+  document.getElementById("editBody").innerHTML='<h3>✏️ 도서 소감 수정</h3><p>내용을 수정한 후 저장하세요</p>'+
+    '<div class="ef"><label>책 제목</label><input type="text" id="ef_title" value="'+item.title+'"></div>'+
+    '<div class="ef"><label>저자</label><input type="text" id="ef_author" value="'+(item.author||"")+'"></div>'+
+    '<div class="ef"><label>소감</label><textarea id="ef_review">'+item.review+'</textarea></div>'+
+    '<div class="ef"><label>별점</label><select id="ef_stars">'+[1,2,3,4,5].map(function(n){return'<option value="'+n+'"'+(n===(item.stars||5)?" selected":"")+'>⭐'.repeat(n)+' ('+n+'점)</option>';}).join("")+'</select></div>'+
+    '<div class="ef"><label>날짜</label><input type="date" id="ef_date" value="'+(item.date||"")+'"></div>';
+  editSaveFn=function(){
+    var a=lsGet(KEY),i=a.findIndex(function(x){return x.id===id;});
+    if(i>-1){a[i].title=document.getElementById("ef_title").value;a[i].author=document.getElementById("ef_author").value;a[i].review=document.getElementById("ef_review").value;a[i].stars=parseInt(document.getElementById("ef_stars").value);a[i].date=document.getElementById("ef_date").value;lsSet(KEY,a);}
+    document.getElementById("editModal").classList.remove("show");renderGrid();showToast("✅ 수정되었습니다");
+  };
+  document.getElementById("editModal").classList.add("show");
+}
+
+// 관리자
+document.getElementById("adminBtn").addEventListener("click",function(){
+  if(isAdmin()){sessionStorage.removeItem("adminMode");applyAdminUI();showToast("관리자 모드 종료");renderGrid();return;}
+  document.getElementById("pwInput").value="";document.getElementById("pwErr").style.display="none";
+  document.getElementById("adminModal").classList.add("show");setTimeout(function(){document.getElementById("pwInput").focus();},100);
+});
+document.getElementById("pwCancelBtn").addEventListener("click",function(){document.getElementById("adminModal").classList.remove("show");});
+document.getElementById("pwOkBtn").addEventListener("click",function(){
+  if(document.getElementById("pwInput").value===ADMIN_PW){sessionStorage.setItem("adminMode","true");document.getElementById("adminModal").classList.remove("show");applyAdminUI();showToast("🔐 관리자 모드 활성화됨");renderGrid();}
+  else{document.getElementById("pwErr").style.display="block";}
+});
+document.getElementById("pwInput").addEventListener("keydown",function(e){if(e.key==="Enter")document.getElementById("pwOkBtn").click();});
+document.getElementById("logoutBtn").addEventListener("click",function(){sessionStorage.removeItem("adminMode");applyAdminUI();showToast("관리자 모드 종료");renderGrid();});
+document.getElementById("editSaveBtn").addEventListener("click",function(){if(editSaveFn)editSaveFn();});
+document.getElementById("editCancelBtn").addEventListener("click",function(){document.getElementById("editModal").classList.remove("show");});
+
+// 필터
+document.getElementById("filterBar").addEventListener("click",function(e){
+  var b=e.target.closest(".fb");if(!b)return;
+  document.querySelectorAll(".fb").forEach(function(x){x.classList.remove("on");});b.classList.add("on");curMonth=b.dataset.m;renderGrid();
+});
+
+// 스크롤
+var st=document.getElementById("scrollTop");st.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"});});
+window.addEventListener("scroll",function(){st.style.opacity=scrollY>180?"1":"0";st.style.pointerEvents=scrollY>180?"auto":"none";});
+
+// 이름 select 삽입
+document.getElementById("nameWrap").innerHTML='<label style="display:block;font-size:.76rem;color:#555;margin-bottom:4px;font-weight:600;">이름 <span style="color:#e74c3c">*</span></label>'+
+  '<select id="bName" style="width:100%;padding:9px 13px;border:2px solid rgba(76,175,125,.2);border-radius:11px;font-size:.85rem;font-family:\'Noto Sans KR\',sans-serif;background:rgba(255,255,255,.9);color:#333;outline:none;">'+
+  '<option value="">-- 이름 선택 --</option>'+STUDENTS.map(function(s,i){return'<option value="'+s+'">'+(i+1)+'번 '+s+'</option>';}).join("")+'</select>';
+
+document.getElementById("bDate").value=todayStr();
+setStar(5);
+applyAdminUI();
+initExamples();
+renderGrid();
 </script>
 </body>
 </html>

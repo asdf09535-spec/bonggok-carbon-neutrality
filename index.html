@@ -6,6 +6,21 @@
 <title>🌍 탄소중립 학급 - 봉곡중학교 1학년 5반</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
+<style>
+.tree-widget{background:rgba(255,255,255,0.13);backdrop-filter:blur(8px);border-radius:24px;border:1px solid rgba(255,255,255,0.22);padding:24px 20px 20px;margin-bottom:28px;text-align:center;}
+.tree-widget-title{font-family:'Gaegu',cursive;font-size:1.25rem;color:#fff;margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:8px;}
+.tree-stage-row{display:flex;justify-content:center;gap:6px;margin-bottom:16px;flex-wrap:wrap;}
+.tree-stage-btn{padding:4px 13px;border-radius:18px;border:1.5px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.8);font-size:11px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all .18s;}
+.tree-stage-btn.active{background:rgba(255,255,255,0.28);border-color:#fff;color:#fff;font-weight:700;}
+.tree-display{display:none;flex-direction:column;align-items:center;gap:8px;}
+.tree-display.visible{display:flex;}
+.tree-display img{object-fit:contain;border-radius:14px;transition:opacity .3s;filter:drop-shadow(0 6px 18px rgba(0,0,0,0.25));}
+.tree-stage-name{font-family:'Gaegu',cursive;font-size:1.15rem;color:#fff;font-weight:700;}
+.tree-stage-desc{font-size:0.78rem;color:rgba(255,255,255,0.75);}
+.tree-prog-wrap{width:240px;height:8px;background:rgba(255,255,255,0.18);border-radius:4px;overflow:hidden;margin:6px auto 3px;}
+.tree-prog-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#a8e063,#56ab2f);transition:width .9s cubic-bezier(.34,1.4,.64,1);}
+.tree-prog-label{font-size:0.72rem;color:rgba(255,255,255,0.65);}
+</style>
 </head>
 <body>
 <div class="bg-bubbles"><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div></div>
@@ -65,6 +80,48 @@
     <div class="stat-card"><span class="stat-icon">📓</span><div class="stat-value" id="sv-diary">-</div><div class="stat-label">작성된 탄소일기</div></div>
     <div class="stat-card"><span class="stat-icon">🌳</span><div class="stat-value" id="sv-tree">-</div><div class="stat-label">심은 나무 상당량</div></div>
   </div>
+  <!-- 🌱 나무 성장 위젯 -->
+  <div class="tree-widget">
+    <div class="tree-widget-title">🌱 우리 반 생명나무 성장 중!</div>
+    <div class="tree-stage-row" id="treeStageBtns"></div>
+    <div class="tree-display visible" id="ts0">
+      <svg width="110" height="110" viewBox="0 0 140 140">
+        <ellipse cx="70" cy="120" rx="46" ry="14" fill="#7a4e2a" opacity=".7"/>
+        <ellipse cx="70" cy="114" rx="38" ry="10" fill="#8B5E3C"/>
+        <ellipse cx="50" cy="116" rx="10" ry="5" fill="#a07040" opacity=".5"/>
+        <ellipse cx="90" cy="117" rx="8" ry="4" fill="#a07040" opacity=".4"/>
+        <path d="M70 112 Q70 98 70 88" stroke="#5a8a20" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <path d="M70 97 Q58 88 54 74 Q66 78 70 90" fill="#6ab830"/>
+        <path d="M70 97 Q82 88 86 74 Q74 78 70 90" fill="#52a820"/>
+        <ellipse cx="70" cy="86" rx="7" ry="5" fill="#88d840"/>
+      </svg>
+      <div class="tree-stage-name">🌰 씨앗</div>
+      <div class="tree-stage-desc">활동 0–4개 · 이제 막 시작!</div>
+    </div>
+    <div class="tree-display" id="ts1">
+      <img src="tree1.png" width="130" height="130">
+      <div class="tree-stage-name">🌱 새싹</div>
+      <div class="tree-stage-desc">활동 5–9개 · 쑥쑥 자라는 중!</div>
+    </div>
+    <div class="tree-display" id="ts2">
+      <img src="tree2.png" width="160" height="160">
+      <div class="tree-stage-name">🌿 묘목</div>
+      <div class="tree-stage-desc">활동 10–19개 · 가지가 생겼어요!</div>
+    </div>
+    <div class="tree-display" id="ts3">
+      <img src="tree3.png" width="200" height="200">
+      <div class="tree-stage-name">🌳 나무</div>
+      <div class="tree-stage-desc">활동 20–29개 · 든든하게 자랐어요!</div>
+    </div>
+    <div class="tree-display" id="ts4">
+      <img src="tree4.png" width="240" height="240">
+      <div class="tree-stage-name">🌲 신령한 나무</div>
+      <div class="tree-stage-desc">활동 30개 이상 · 우리 반의 자랑!</div>
+    </div>
+    <div class="tree-prog-wrap"><div class="tree-prog-fill" id="treeProgFill" style="width:0%"></div></div>
+    <div class="tree-prog-label" id="treeProgLabel">총 0개 활동</div>
+  </div>
+
   <div class="progress-box">
     <div class="progress-title">🎯 이번 학기 목표 달성률</div>
     <div class="progress-item"><div class="progress-label"><span>🚴 자전거·도보 등교</span><span id="p1v">-</span></div><div class="progress-bar"><div class="progress-fill pf-g" id="p1" style="width:0%"></div></div></div>
@@ -104,6 +161,45 @@ import {
 } from "./shared.js";
 Object.assign(window, { openAdminModal, closeAdminModal, checkAdmin, exitAdmin });
 
+// ── 나무 성장 위젯 ──
+const TREE_STAGES = [
+  {label:"🌰 씨앗",    min:0},
+  {label:"🌱 새싹",   min:5},
+  {label:"🌿 묘목",   min:10},
+  {label:"🌳 나무",   min:20},
+  {label:"🌲 신령한 나무", min:30}
+];
+const TREE_MAX = 35;
+let treeCur = 0;
+(function initTree(){
+  const row = document.getElementById("treeStageBtns");
+  if (!row) return;
+  TREE_STAGES.forEach((s,i) => {
+    const b = document.createElement("button");
+    b.className = "tree-stage-btn" + (i===0?" active":"");
+    b.textContent = s.label; b.id = "tsb"+i;
+    b.onclick = () => treeJump(i);
+    row.appendChild(b);
+  });
+})();
+function treeGetStage(n){ for(let i=TREE_STAGES.length-1;i>=0;i--) if(n>=TREE_STAGES[i].min) return i; return 0; }
+function treeJump(i){
+  document.querySelectorAll(".tree-display").forEach(e=>e.classList.remove("visible"));
+  document.querySelectorAll(".tree-stage-btn").forEach(b=>b.classList.remove("active"));
+  const el=document.getElementById("ts"+i); if(el) el.classList.add("visible");
+  const btn=document.getElementById("tsb"+i); if(btn) btn.classList.add("active");
+  treeCur=i;
+}
+function treeUpdate(total){
+  const si = treeGetStage(total);
+  if(si !== treeCur) treeJump(si);
+  const pct = Math.min(100, Math.round(total/TREE_MAX*100));
+  const fill = document.getElementById("treeProgFill");
+  const lbl  = document.getElementById("treeProgLabel");
+  if(fill) fill.style.width = pct+"%";
+  if(lbl)  lbl.textContent  = "총 "+total+"개 활동 ("+pct+"%)";
+}
+
 function updateStat(id, val) { const el=document.getElementById(id); if(el) el.textContent=val; }
 function updateProgress(num, val) {
   const el = document.getElementById(`p${num}`), elv = document.getElementById(`p${num}v`);
@@ -124,6 +220,7 @@ function recalcStats(p,b,m,d){
   const base = Math.min(d+p, 30);
   [Math.min(100,base*2+10), Math.min(100,base*1.8+8), Math.min(100,base*2.5+12), Math.min(100,base*3+5)]
     .forEach((v,i) => updateProgress(i+1, v));
+  treeUpdate(p + b + m + d);
 }
 
 let counts = { pledge:0, books:0, market:0, diary:0 };

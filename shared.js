@@ -13,14 +13,12 @@ import {
 //  🔥 Firebase 설정 (Firebase Console → 프로젝트 설정 → 앱 추가에서 복사)
 // ────────────────────────────────────────────────────────────────
 const firebaseConfig = {
-  apiKey:            "AIzaSyBtUnIx0_PH3VCZk8wYlcLPQfnZ7r5vrz4",
-  authDomain:        "bonggok-carbon-neutrality.firebaseapp.com",
-  projectId:         "bonggok-carbon-neutrality",
-  storageBucket:     "bonggok-carbon-neutrality.firebasestorage.app",
-  messagingSenderId: "742763830070",
-  appId:             "1:742763830070:web:2b458f95c40d220ffff197",
-  measurementId:     "G-B0S6EY43DX"
-
+  apiKey:            "여기에_붙여넣기",
+  authDomain:        "여기에_붙여넣기",
+  projectId:         "여기에_붙여넣기",
+  storageBucket:     "여기에_붙여넣기",
+  messagingSenderId: "여기에_붙여넣기",
+  appId:             "여기에_붙여넣기"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -29,12 +27,12 @@ const db  = getFirestore(app);
 // ────────────────────────────────────────────────────────────────
 //  상수
 // ────────────────────────────────────────────────────────────────
-const ADMIN_PW = "2781"; // ← 비밀번호 변경 시 여기만 수정
+const ADMIN_PW = "1234"; // ← 비밀번호 변경 시 여기만 수정
 const STUDENTS = [
   "강예솔","권예은","김서윤","권정훈","김세혁","김예은","김온유","김태윤",
-  "나수인","박규연","박승준","박지우","배종혁","송민슬","양나경","오은율",
-  "유민서","이민성","이승민","이태현","임효린","정해지","차경호","최진리",
-  "최하안","황승준"
+  "나수인","박규연","박승준","박지우","배종혁","송민솔","양나경","오은율",
+  "유민서","이민성","이송민","이태현","임효린","정해지","차경호","최진리",
+  "최하얀","황승준"
 ];
 
 // ────────────────────────────────────────────────────────────────

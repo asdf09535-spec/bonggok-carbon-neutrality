@@ -99,6 +99,8 @@ body.admin .post{outline:2px dashed rgba(231,76,60,.2);outline-offset:2px;}
 .stb{position:fixed;bottom:22px;right:22px;z-index:999;width:43px;height:43px;border-radius:50%;background:linear-gradient(135deg,#2d8653,#1a7aa8);color:#fff;font-size:1.05rem;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.22);transition:all .3s;opacity:0;pointer-events:none;}
 .empty{text-align:center;color:rgba(255,255,255,.65);padding:40px 20px;grid-column:1/-1;}
 .empty .ei{font-size:2.8rem;margin-bottom:10px;}
+.loading{text-align:center;color:rgba(255,255,255,.65);padding:40px 20px;grid-column:1/-1;}
+.loading .li{font-size:2rem;margin-bottom:10px;animation:pulse 1.2s ease-in-out infinite;}
 </style>
 </head>
 <body>
@@ -156,7 +158,9 @@ body.admin .post{outline:2px dashed rgba(231,76,60,.2);outline-offset:2px;}
   </div>
 
   <div class="wall-label">💚 우리 반 서약서 <span id="cnt" style="opacity:.7;font-size:.84rem;font-family:'Noto Sans KR'"></span></div>
-  <div class="wall" id="wall"></div>
+  <div class="wall" id="wall">
+    <div class="loading"><div class="li">🌿</div><p>서약서를 불러오는 중...</p></div>
+  </div>
 </div>
 
 <!-- 관리자 모달 -->
@@ -183,135 +187,259 @@ body.admin .post{outline:2px dashed rgba(231,76,60,.2);outline-offset:2px;}
   <p>🌿 탄소중립 학급 · 초록별 프로젝트 · 2026학년도 1학년 5반 🌿<br>우리의 작은 실천이 지구를 더 오래 살게 합니다</p>
 </div>
 
-<script>
-// ===================== 설정 =====================
-var PW  = "1234";   // 관리자 비밀번호
-var KEY = "pledges";
+<!-- ✅ Firebase SDK (compat 버전) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 
-// ===================== 학생 명단 (수정됨) =====================
+<script>
+// ===================== 관리자 비밀번호 =====================
+var PW = "1234";
+
+// ===================== 🔥 Firebase 설정 (반드시 본인 것으로 교체!) =====================
+var firebaseConfig = {
+  apiKey:            "YOUR_API_KEY",
+  authDomain:        "YOUR_PROJECT_ID.firebaseapp.com",
+  databaseURL:       "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
+  projectId:         "YOUR_PROJECT_ID",
+  storageBucket:     "YOUR_PROJECT_ID.appspot.com",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId:             "YOUR_APP_ID"
+};
+
+firebase.initializeApp(firebaseConfig);
+var db         = firebase.database();
+var pledgesRef = db.ref("pledges");
+
+// ===================== 로컬 캐시 (렌더링용) =====================
+var _data = [];
+
+// ===================== 학생 명단 =====================
 var ST = ["강예솔","권예은","김서윤","권정훈","김세혁","김예은","김온유","김태윤",
           "나수인","박규연","박승준","박지우","배종혁","송민솔","양나경","오은율",
           "유민서","이민성","이송민","이태현","임효린","정해지","차경호","최진리",
           "최하얀","황승준"];
 
-var AV  = ["🌱","🌊","☘️","🦋","🌻","🐢","🍀","🌸","🌴","🌈","🦚","🐸","🌵","🍃","🌺","🦜","🌿","🐦","🌙","🍂","🌼","🐝","🦊","🌷","🌞","🐬"];
-var EX  = [
-  {id:"ex1",name:"강예솔",date:"2026-03-02",text:"매일 텀블러를 들고 다니며 일회용컵 사용을 줄이겠습니다! 우리 함께 지구를 지켜요 🌍",promise:"텀블러 사용 & 장바구니 실천"},
-  {id:"ex2",name:"권예은",date:"2026-03-02",text:"학교 올 때 걷기로 탄소발자국을 줄이겠어요. 작은 실천이 큰 변화를! ✨",promise:"도보 등교 & 에너지 절약"},
-  {id:"ex3",name:"김서윤",date:"2026-03-02",text:"급식을 절대 남기지 않고 분리수거를 꼭 실천하겠습니다. 지구가 웃는 날까지!",promise:"잔반제로 & 분리배출 실천"}
+var AV = ["🌱","🌊","☘️","🦋","🌻","🐢","🍀","🌸","🌴","🌈","🦚","🐸","🌵","🍃","🌺","🦜","🌿","🐦","🌙","🍂","🌼","🐝","🦊","🌷","🌞","🐬"];
+
+// 예시 데이터 (DB가 비어있을 때 1회만 삽입)
+var EX = [
+  {name:"강예솔",date:"2026-03-02",text:"매일 텀블러를 들고 다니며 일회용컵 사용을 줄이겠습니다! 우리 함께 지구를 지켜요 🌍",promise:"텀블러 사용 & 장바구니 실천"},
+  {name:"권예은",date:"2026-03-02",text:"학교 올 때 걷기로 탄소발자국을 줄이겠어요. 작은 실천이 큰 변화를! ✨",promise:"도보 등교 & 에너지 절약"},
+  {name:"김서윤",date:"2026-03-02",text:"급식을 절대 남기지 않고 분리수거를 꼭 실천하겠습니다. 지구가 웃는 날까지!",promise:"잔반제로 & 분리배출 실천"}
 ];
 
 // ===================== 유틸 =====================
-var idxMap={};ST.forEach(function(s,i){idxMap[s]=i;});
-function lsGet(){try{return JSON.parse(localStorage.getItem(KEY)||"[]");}catch(e){return[];}}
-function lsSet(v){try{localStorage.setItem(KEY,JSON.stringify(v));}catch(e){}}
-function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,5);}
-function fd(d){return d?String(d).replace(/-/g,"."):""; }
-function today(){return new Date().toISOString().slice(0,10);}
-function isA(){return sessionStorage.getItem("adm")==="1";}
+var idxMap = {};
+ST.forEach(function(s, i){ idxMap[s] = i; });
+
+function fd(d){ return d ? String(d).replace(/-/g, ".") : ""; }
+function today(){ return new Date().toISOString().slice(0, 10); }
+function isA(){ return sessionStorage.getItem("adm") === "1"; }
+
 var _tt;
-function toast(m){var t=document.getElementById("toast");t.textContent=m;t.classList.add("show");clearTimeout(_tt);_tt=setTimeout(function(){t.classList.remove("show");},2700);}
+function toast(m){
+  var t = document.getElementById("toast");
+  t.textContent = m;
+  t.classList.add("show");
+  clearTimeout(_tt);
+  _tt = setTimeout(function(){ t.classList.remove("show"); }, 2700);
+}
 
 // ===================== 관리자 UI =====================
 function applyA(){
-  var on=isA();
-  document.getElementById("aBar").classList.toggle("show",on);
-  var b=document.getElementById("aBtn");b.classList.toggle("on",on);b.textContent=on?"🔓 관리자 ON":"🔐 관리자";
-  document.body.classList.toggle("admin",on);
+  var on = isA();
+  document.getElementById("aBar").classList.toggle("show", on);
+  var b = document.getElementById("aBtn");
+  b.classList.toggle("on", on);
+  b.textContent = on ? "🔓 관리자 ON" : "🔐 관리자";
+  document.body.classList.toggle("admin", on);
 }
-document.getElementById("aBtn").onclick=function(){
-  if(isA()){sessionStorage.removeItem("adm");applyA();toast("관리자 모드 종료");render();return;}
-  document.getElementById("pwInp").value="";
-  document.getElementById("pwErr").style.display="none";
-  document.getElementById("aModal").classList.add("show");
-  setTimeout(function(){document.getElementById("pwInp").focus();},100);
-};
-document.getElementById("logoutBtn").onclick=function(){sessionStorage.removeItem("adm");applyA();toast("관리자 모드 종료");render();};
-document.getElementById("pwCx").onclick=function(){document.getElementById("aModal").classList.remove("show");};
-document.getElementById("pwOk").onclick=function(){
-  if(document.getElementById("pwInp").value===PW){
-    sessionStorage.setItem("adm","1");document.getElementById("aModal").classList.remove("show");applyA();toast("🔐 관리자 모드 활성화됨");render();
-  }else{document.getElementById("pwErr").style.display="block";}
-};
-document.getElementById("pwInp").onkeydown=function(e){if(e.key==="Enter")document.getElementById("pwOk").click();};
 
-// ===================== 렌더링 =====================
-function render(){
-  var data=lsGet();
-  document.getElementById("cnt").textContent="("+data.length+"명)";
-  var w=document.getElementById("wall");
-  if(!data.length){w.innerHTML='<div class="empty"><div class="ei">📜</div><p>아직 서약서가 없어요. 첫 번째로 작성해 보세요!</p></div>';return;}
-  w.innerHTML=data.map(function(item){
-    var si=idxMap[item.name]!==undefined?idxMap[item.name]:0;
-    return '<div class="post">'+
-      '<div class="post-head"><div class="av">'+AV[si%AV.length]+'</div>'+
-      '<div><div class="pname">'+(si+1)+'번 · '+item.name+'</div>'+
-      '<div class="pdate">'+fd(item.date)+'</div></div></div>'+
-      '<div class="ptext">'+item.text+'</div>'+
-      (item.promise?'<div class="ppromise">💪 나만의 약속: '+item.promise+'</div>':'')+
-      '<div class="aa">'+
-        '<button class="ae" onclick="openEdit(\''+item.id+'\')">✏️ 수정</button>'+
-        '<button class="ad" onclick="del(\''+item.id+'\')">🗑️ 삭제</button>'+
-      '</div></div>';
+document.getElementById("aBtn").onclick = function(){
+  if(isA()){
+    sessionStorage.removeItem("adm");
+    applyA();
+    toast("관리자 모드 종료");
+    return;
+  }
+  document.getElementById("pwInp").value = "";
+  document.getElementById("pwErr").style.display = "none";
+  document.getElementById("aModal").classList.add("show");
+  setTimeout(function(){ document.getElementById("pwInp").focus(); }, 100);
+};
+
+document.getElementById("logoutBtn").onclick = function(){
+  sessionStorage.removeItem("adm");
+  applyA();
+  toast("관리자 모드 종료");
+};
+
+document.getElementById("pwCx").onclick = function(){
+  document.getElementById("aModal").classList.remove("show");
+};
+
+document.getElementById("pwOk").onclick = function(){
+  if(document.getElementById("pwInp").value === PW){
+    sessionStorage.setItem("adm", "1");
+    document.getElementById("aModal").classList.remove("show");
+    applyA();
+    toast("🔐 관리자 모드 활성화됨");
+  } else {
+    document.getElementById("pwErr").style.display = "block";
+  }
+};
+
+document.getElementById("pwInp").onkeydown = function(e){
+  if(e.key === "Enter") document.getElementById("pwOk").click();
+};
+
+// ===================== 렌더링 (Firebase 데이터 기반) =====================
+function render(data){
+  document.getElementById("cnt").textContent = "(" + data.length + "명)";
+  var w = document.getElementById("wall");
+  if(!data.length){
+    w.innerHTML = '<div class="empty"><div class="ei">📜</div><p>아직 서약서가 없어요. 첫 번째로 작성해 보세요!</p></div>';
+    return;
+  }
+  w.innerHTML = data.map(function(item){
+    var si = idxMap[item.name] !== undefined ? idxMap[item.name] : 0;
+    var safeId = item.id.replace(/'/g, "\\'");
+    return '<div class="post">' +
+      '<div class="post-head">' +
+        '<div class="av">' + AV[si % AV.length] + '</div>' +
+        '<div>' +
+          '<div class="pname">' + (si + 1) + '번 · ' + item.name + '</div>' +
+          '<div class="pdate">' + fd(item.date) + '</div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="ptext">' + item.text + '</div>' +
+      (item.promise ? '<div class="ppromise">💪 나만의 약속: ' + item.promise + '</div>' : '') +
+      '<div class="aa">' +
+        '<button class="ae" onclick="openEdit(\'' + safeId + '\')">✏️ 수정</button>' +
+        '<button class="ad" onclick="del(\'' + safeId + '\')">🗑️ 삭제</button>' +
+      '</div>' +
+    '</div>';
   }).join("");
 }
 
-// ===================== 이름 select 생성 =====================
-document.getElementById("nameWrap").innerHTML=
-  '<label style="display:block;font-size:.75rem;color:#555;margin-bottom:4px;font-weight:600;">이름 <span style="color:#e74c3c">*</span></label>'+
-  '<select id="pName" style="width:100%;padding:9px 13px;border:2px solid rgba(76,175,125,.2);border-radius:11px;font-size:.85rem;font-family:\'Noto Sans KR\',sans-serif;background:rgba(255,255,255,.9);color:#333;outline:none;">'+
-  '<option value="">-- 이름 선택 --</option>'+
-  ST.map(function(s,i){return'<option value="'+s+'">'+(i+1)+'번 '+s+'</option>';}).join("")+
-  '</select>';
-document.getElementById("pDate").value=today();
+// ===================== 🔥 Firebase 실시간 리스너 =====================
+pledgesRef.on("value", function(snap){
+  _data = [];
+  snap.forEach(function(child){
+    var val = child.val();
+    val.id = child.key;   // Firebase 자동 생성 키를 id로 사용
+    _data.push(val);
+  });
+  render(_data);
+}, function(err){
+  // 연결 오류 처리
+  document.getElementById("wall").innerHTML =
+    '<div class="empty"><div class="ei">⚠️</div>' +
+    '<p>데이터를 불러오지 못했습니다.<br><small style="color:rgba(255,255,255,.5);">' + err.message + '</small><br><br>' +
+    'Firebase 설정(firebaseConfig)을 확인해 주세요.</p></div>';
+});
 
-// ===================== 제출 =====================
-document.getElementById("subBtn").onclick=function(){
-  var name=document.getElementById("pName").value;
-  var date=document.getElementById("pDate").value;
-  var text=document.getElementById("pText").value.trim();
-  var promise=document.getElementById("pPromise").value.trim();
-  if(!name){toast("⚠️ 이름을 선택해 주세요");return;}
-  if(!text){toast("⚠️ 서약 내용을 입력해 주세요");return;}
-  var btn=document.getElementById("subBtn");btn.disabled=true;btn.textContent="저장 중...";
-  var arr=lsGet();arr.push({id:uid(),name:name,date:date,text:text,promise:promise});
-  lsSet(arr);btn.disabled=false;btn.textContent="🌿 서약서 공유하기";
-  document.getElementById("pText").value="";document.getElementById("pPromise").value="";document.getElementById("pName").value="";
-  render();toast("🌿 서약서가 등록되었습니다!");
+// ===================== 예시 데이터 1회 삽입 =====================
+pledgesRef.once("value").then(function(snap){
+  if(!snap.exists()){
+    return Promise.all(EX.map(function(item){
+      return pledgesRef.push(item);
+    }));
+  }
+});
+
+// ===================== 이름 select 생성 =====================
+document.getElementById("nameWrap").innerHTML =
+  '<label style="display:block;font-size:.75rem;color:#555;margin-bottom:4px;font-weight:600;">이름 <span style="color:#e74c3c">*</span></label>' +
+  '<select id="pName" style="width:100%;padding:9px 13px;border:2px solid rgba(76,175,125,.2);border-radius:11px;font-size:.85rem;font-family:\'Noto Sans KR\',sans-serif;background:rgba(255,255,255,.9);color:#333;outline:none;">' +
+  '<option value="">-- 이름 선택 --</option>' +
+  ST.map(function(s, i){ return '<option value="' + s + '">' + (i + 1) + '번 ' + s + '</option>'; }).join("") +
+  '</select>';
+document.getElementById("pDate").value = today();
+
+// ===================== 🔥 서약서 제출 (Firebase push) =====================
+document.getElementById("subBtn").onclick = function(){
+  var name    = document.getElementById("pName").value;
+  var date    = document.getElementById("pDate").value;
+  var text    = document.getElementById("pText").value.trim();
+  var promise = document.getElementById("pPromise").value.trim();
+
+  if(!name){ toast("⚠️ 이름을 선택해 주세요"); return; }
+  if(!text){ toast("⚠️ 서약 내용을 입력해 주세요"); return; }
+
+  // 중복 제출 방지
+  var dup = _data.find(function(x){ return x.name === name; });
+  if(dup){ toast("⚠️ " + name + "님은 이미 서약서를 작성했습니다!"); return; }
+
+  var btn = document.getElementById("subBtn");
+  btn.disabled = true;
+  btn.textContent = "저장 중...";
+
+  pledgesRef.push({ name: name, date: date, text: text, promise: promise })
+    .then(function(){
+      btn.disabled = false;
+      btn.textContent = "🌿 서약서 공유하기";
+      document.getElementById("pText").value    = "";
+      document.getElementById("pPromise").value = "";
+      document.getElementById("pName").value    = "";
+      toast("🌿 서약서가 등록되었습니다!");
+    })
+    .catch(function(err){
+      btn.disabled = false;
+      btn.textContent = "🌿 서약서 공유하기";
+      toast("❌ 저장 오류: " + err.message);
+    });
 };
 
-// ===================== 삭제 =====================
-function del(id){if(!confirm("정말 삭제할까요?"))return;lsSet(lsGet().filter(function(x){return x.id!==id;}));render();toast("🗑️ 삭제되었습니다");}
+// ===================== 🔥 삭제 (Firebase remove) =====================
+function del(id){
+  if(!confirm("정말 삭제할까요?")) return;
+  pledgesRef.child(id).remove()
+    .then(function(){ toast("🗑️ 삭제되었습니다"); })
+    .catch(function(err){ toast("❌ 삭제 오류: " + err.message); });
+}
 
-// ===================== 편집 =====================
-var _saveFn=null;
+// ===================== 🔥 편집 (Firebase update) =====================
+var _saveFn = null;
 function openEdit(id){
-  var item=lsGet().find(function(x){return x.id===id;});if(!item)return;
-  document.getElementById("eBody").innerHTML=
-    '<h3>✏️ 서약서 수정</h3><p>내용을 수정한 후 저장하세요</p>'+
-    '<div class="ef"><label>서약 내용</label><textarea id="ef_t">'+item.text+'</textarea></div>'+
-    '<div class="ef"><label>나만의 약속</label><input type="text" id="ef_p" value="'+(item.promise||"")+'"></div>'+
-    '<div class="ef"><label>날짜</label><input type="date" id="ef_d" value="'+(item.date||"")+'"></div>';
-  _saveFn=function(){
-    var a=lsGet(),i=a.findIndex(function(x){return x.id===id;});
-    if(i>-1){a[i].text=document.getElementById("ef_t").value;a[i].promise=document.getElementById("ef_p").value;a[i].date=document.getElementById("ef_d").value;lsSet(a);}
-    document.getElementById("eModal").classList.remove("show");render();toast("✅ 수정되었습니다");
+  var item = _data.find(function(x){ return x.id === id; });
+  if(!item) return;
+  document.getElementById("eBody").innerHTML =
+    '<h3>✏️ 서약서 수정</h3><p>내용을 수정한 후 저장하세요</p>' +
+    '<div class="ef"><label>서약 내용</label><textarea id="ef_t">' + item.text + '</textarea></div>' +
+    '<div class="ef"><label>나만의 약속</label><input type="text" id="ef_p" value="' + (item.promise || "") + '"></div>' +
+    '<div class="ef"><label>날짜</label><input type="date" id="ef_d" value="' + (item.date || "") + '"></div>';
+
+  _saveFn = function(){
+    var t = document.getElementById("ef_t").value.trim();
+    if(!t){ toast("⚠️ 서약 내용을 입력해 주세요"); return; }
+    pledgesRef.child(id).update({
+      text:    t,
+      promise: document.getElementById("ef_p").value,
+      date:    document.getElementById("ef_d").value
+    })
+    .then(function(){
+      document.getElementById("eModal").classList.remove("show");
+      toast("✅ 수정되었습니다");
+    })
+    .catch(function(err){ toast("❌ 수정 오류: " + err.message); });
   };
   document.getElementById("eModal").classList.add("show");
 }
-document.getElementById("eSave").onclick=function(){if(_saveFn)_saveFn();};
-document.getElementById("eCx").onclick=function(){document.getElementById("eModal").classList.remove("show");};
 
-// ===================== 스크롤 =====================
-var sb=document.getElementById("stb");
-sb.onclick=function(){window.scrollTo({top:0,behavior:"smooth"});};
-window.onscroll=function(){sb.style.opacity=scrollY>180?"1":"0";sb.style.pointerEvents=scrollY>180?"auto":"none";};
+document.getElementById("eSave").onclick = function(){ if(_saveFn) _saveFn(); };
+document.getElementById("eCx").onclick   = function(){ document.getElementById("eModal").classList.remove("show"); };
+
+// ===================== 스크롤 버튼 =====================
+var sb = document.getElementById("stb");
+sb.onclick = function(){ window.scrollTo({ top: 0, behavior: "smooth" }); };
+window.onscroll = function(){
+  sb.style.opacity       = scrollY > 180 ? "1" : "0";
+  sb.style.pointerEvents = scrollY > 180 ? "auto" : "none";
+};
 
 // ===================== 초기화 =====================
-(function(){
-  var arr=lsGet();if(!arr.length)lsSet(EX);
-  applyA();render();
-})();
+applyA();
 </script>
 </body>
 </html>

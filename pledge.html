@@ -5,138 +5,60 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>📜 탄소중립 서약서 - 봉곡중학교 1학년 5반</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(160deg,#0d4a6b 0%,#1a7aa8 25%,#2d8653 55%,#1a5c35 100%);min-height:100vh;overflow-x:hidden;}
-.bubbles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
-.bubble{position:absolute;border-radius:50%;opacity:.07;animation:floatUp linear infinite;}
-.bubble:nth-child(1){width:80px;height:80px;left:5%;background:#4caf7d;animation-duration:12s;}
-.bubble:nth-child(2){width:50px;height:50px;left:20%;background:#4db8e8;animation-duration:9s;animation-delay:2s;}
-.bubble:nth-child(3){width:100px;height:100px;left:42%;background:#2d8653;animation-duration:14s;animation-delay:1s;}
-.bubble:nth-child(4){width:60px;height:60px;left:65%;background:#4db8e8;animation-duration:11s;animation-delay:3s;}
-.bubble:nth-child(5){width:80px;height:80px;left:82%;background:#4caf7d;animation-duration:13s;animation-delay:.5s;}
-@keyframes floatUp{0%{bottom:-150px;opacity:.07;}50%{transform:translateX(20px);}100%{bottom:110%;opacity:0;}}
-.top-banner{position:relative;z-index:10;background:rgba(10,40,60,.65);backdrop-filter:blur(10px);border-bottom:1px solid rgba(77,184,232,.2);padding:9px 20px;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;}
-.top-banner .txt{color:rgba(255,255,255,.78);font-size:.82rem;font-weight:500;letter-spacing:1px;}
-.top-banner .txt strong{color:#a8e6bc;}
-.ab{background:rgba(231,76,60,.18);border:1px solid rgba(231,76,60,.35);color:rgba(255,210,210,.88);font-size:.74rem;font-weight:700;padding:4px 13px;border-radius:10px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;margin-left:auto;}
-.ab:hover,.ab.on{background:rgba(231,76,60,.5);color:#fff;}
-.admin-bar{display:none;background:rgba(120,10,10,.6);padding:8px 20px;text-align:center;border-bottom:1px solid rgba(231,76,60,.3);position:relative;z-index:10;}
-.admin-bar.show{display:block;}
-.admin-bar p{color:rgba(255,210,210,.92);font-size:.82rem;}
-nav{position:sticky;top:0;z-index:100;display:flex;justify-content:center;gap:7px;padding:11px 18px;background:rgba(13,74,107,.85);backdrop-filter:blur(18px);border-bottom:1px solid rgba(77,184,232,.2);flex-wrap:wrap;}
-nav a{text-decoration:none;color:rgba(255,255,255,.82);font-size:.83rem;font-weight:500;padding:7px 14px;border-radius:20px;transition:all .25s;border:1px solid transparent;}
-nav a:hover,nav a.cur{background:rgba(76,175,125,.35);border-color:rgba(76,175,125,.5);color:#fff;}
-.ph{position:relative;z-index:10;text-align:center;padding:32px 20px 20px;}
-.ph h1{font-family:'Gaegu',cursive;font-size:clamp(1.9rem,5vw,2.8rem);color:#fff;font-weight:700;}
-.ph p{color:#a8e6bc;font-size:.9rem;margin-top:6px;}
-.wrap{max-width:1040px;margin:0 auto;padding:22px 20px 60px;position:relative;z-index:5;}
-.pledge-card{background:linear-gradient(135deg,rgba(255,255,255,.93),rgba(212,245,226,.9));border-radius:24px;padding:28px;margin-bottom:20px;border:1.5px solid rgba(76,175,125,.25);position:relative;overflow:hidden;}
-.pledge-card::after{content:'🌍';position:absolute;right:-5px;bottom:-5px;font-size:85px;opacity:.06;pointer-events:none;}
-.pc-title{text-align:center;margin-bottom:18px;}
-.pc-title .ico{font-size:2.4rem;display:block;margin-bottom:8px;}
-.pc-title h2{font-family:'Gaegu',cursive;font-size:1.7rem;color:#1a5c35;font-weight:700;}
-.pc-title p{color:#666;font-size:.83rem;margin-top:4px;}
-.pi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:22px;}
-.pi{background:linear-gradient(135deg,#d4f5e2,rgba(184,234,247,.5));border-radius:14px;padding:13px;display:flex;align-items:flex-start;gap:9px;border:1px solid rgba(76,175,125,.17);}
-.pi-ic{font-size:1.5rem;flex-shrink:0;}
-.pi-tx{font-size:.83rem;color:#1a5c35;line-height:1.5;font-weight:500;}
-.wbox{background:linear-gradient(135deg,rgba(212,245,226,.92),rgba(184,234,247,.85));border-radius:20px;padding:22px;border:2px dashed rgba(76,175,125,.35);}
-.wbox h3{font-family:'Gaegu',cursive;font-size:1.22rem;color:#1a5c35;margin-bottom:14px;}
-.frow{display:flex;gap:10px;margin-bottom:10px;flex-wrap:wrap;}
-.fg{flex:1;min-width:140px;}
-.fg label{display:block;font-size:.75rem;color:#555;margin-bottom:4px;font-weight:600;}
-.fg input,.fg textarea,.fg select{width:100%;padding:9px 13px;border:2px solid rgba(76,175,125,.2);border-radius:11px;font-size:.85rem;font-family:'Noto Sans KR',sans-serif;background:rgba(255,255,255,.9);color:#333;outline:none;transition:border-color .2s;}
-.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:#2d8653;}
-.fg textarea{resize:none;height:86px;}
-.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 24px;border-radius:24px;font-size:.86rem;font-weight:700;font-family:'Noto Sans KR',sans-serif;cursor:pointer;border:none;transition:all .25s;}
-.btn-g{background:linear-gradient(135deg,#2d8653,#1a5c35);color:#fff;box-shadow:0 4px 14px rgba(45,134,83,.35);}
-.btn-g:hover:not(:disabled){transform:translateY(-2px);}
-.btn-g:disabled{opacity:.6;cursor:not-allowed;}
-.btn-gray{background:rgba(0,0,0,.07);color:#555;border:1px solid rgba(0,0,0,.1);}
-.btn-gray:hover{background:rgba(0,0,0,.13);}
-.wall-label{color:#fff;font-family:'Gaegu',cursive;font-size:1.1rem;margin:20px 0 12px;}
-.wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;}
-.post{background:rgba(255,255,255,.9);border-radius:17px;padding:16px;border-left:4px solid #4caf7d;transition:all .25s;}
-.post:nth-child(3n+2){border-left-color:#4db8e8;}
-.post:nth-child(3n){border-left-color:#ffd166;}
-.post:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,.14);}
-.post-head{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
-.av{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#d4f5e2,#b8eaf7);display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0;}
-.pname{font-size:.85rem;font-weight:700;color:#1a5c35;}
-.pdate{font-size:.7rem;color:#aaa;}
-.ptext{font-size:.83rem;color:#444;line-height:1.65;}
-.ppromise{margin-top:8px;padding-top:8px;border-top:1px solid rgba(76,175,125,.12);font-size:.74rem;color:#2d8653;font-style:italic;}
-.aa{display:none;gap:5px;margin-top:8px;}
-body.admin .aa{display:flex;}
-.ae,.ad{font-size:.71rem;padding:4px 12px;border-radius:10px;cursor:pointer;border:none;font-family:'Noto Sans KR',sans-serif;font-weight:700;}
-.ae{background:rgba(26,122,168,.12);color:#1a7aa8;border:1px solid rgba(26,122,168,.28);}
-.ae:hover{background:rgba(26,122,168,.24);}
-.ad{background:rgba(231,76,60,.1);color:#c0392b;border:1px solid rgba(231,76,60,.28);}
-.ad:hover{background:rgba(231,76,60,.22);}
-body.admin .post{outline:2px dashed rgba(231,76,60,.2);outline-offset:2px;}
-.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.58);z-index:9000;align-items:center;justify-content:center;backdrop-filter:blur(4px);}
-.overlay.show{display:flex;}
-.mbox{background:#fff;border-radius:22px;padding:28px 26px;max-width:420px;width:92%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.28);max-height:90vh;overflow-y:auto;}
-.mbox h3{font-family:'Gaegu',cursive;font-size:1.45rem;color:#1a5c35;margin-bottom:7px;}
-.mbox p{font-size:.83rem;color:#666;margin-bottom:14px;line-height:1.6;}
-.pw{width:100%;padding:11px 15px;border:2px solid rgba(76,175,125,.28);border-radius:12px;font-size:1rem;font-family:'Noto Sans KR',sans-serif;outline:none;color:#333;margin-bottom:10px;text-align:center;letter-spacing:3px;}
-.pw:focus{border-color:#2d8653;}
-.merr{color:#e74c3c;font-size:.78rem;margin-top:-6px;margin-bottom:9px;display:none;}
-.mbtns{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;}
-.ef{text-align:left;margin-bottom:9px;}
-.ef label{font-size:.75rem;color:#555;font-weight:600;display:block;margin-bottom:4px;}
-.ef input,.ef textarea,.ef select{width:100%;padding:9px 12px;border:2px solid rgba(76,175,125,.2);border-radius:11px;font-family:'Noto Sans KR',sans-serif;font-size:.84rem;color:#333;outline:none;background:#fff;}
-.ef input:focus,.ef textarea:focus,.ef select:focus{border-color:#2d8653;}
-.ef textarea{resize:none;height:75px;}
-.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(70px);background:rgba(26,92,53,.95);color:#fff;padding:10px 24px;border-radius:22px;font-size:.84rem;font-weight:600;z-index:9999;transition:all .35s;opacity:0;pointer-events:none;}
-.toast.show{transform:translateX(-50%) translateY(0);opacity:1;}
-.footer{position:relative;z-index:5;text-align:center;padding:30px 20px;border-top:1px solid rgba(255,255,255,.1);}
-.footer .sn{font-family:'Gaegu',cursive;font-size:1.2rem;color:#fff;font-weight:700;margin-bottom:4px;}
-.footer p{color:rgba(255,255,255,.55);font-size:.78rem;line-height:1.8;}
-.fe{font-size:1.9rem;display:block;margin-bottom:7px;animation:pulse 2s ease-in-out infinite;}
-@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.1);}}
-.stb{position:fixed;bottom:22px;right:22px;z-index:999;width:43px;height:43px;border-radius:50%;background:linear-gradient(135deg,#2d8653,#1a7aa8);color:#fff;font-size:1.05rem;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.22);transition:all .3s;opacity:0;pointer-events:none;}
-.empty{text-align:center;color:rgba(255,255,255,.65);padding:40px 20px;grid-column:1/-1;}
-.empty .ei{font-size:2.8rem;margin-bottom:10px;}
-.db-status{position:fixed;top:60px;right:16px;z-index:999;font-size:.72rem;font-weight:700;padding:5px 12px;border-radius:10px;transition:all .4s;}
-.db-status.connecting{background:rgba(255,193,7,.2);color:#b8860b;border:1px solid rgba(255,193,7,.4);}
-.db-status.connected{background:rgba(76,175,125,.2);color:#1a5c35;border:1px solid rgba(76,175,125,.4);}
-.db-status.error{background:rgba(231,76,60,.2);color:#c0392b;border:1px solid rgba(231,76,60,.4);}
+.pledge-header-card{background:linear-gradient(135deg,rgba(255,255,255,0.92),rgba(212,245,226,0.9));border-radius:26px;padding:32px;margin-bottom:24px;border:1.5px solid rgba(76,175,125,0.25);position:relative;overflow:hidden;}
+.pledge-header-card::after{content:'🌍';position:absolute;right:-8px;bottom:-8px;font-size:90px;opacity:0.06;}
+.phc-title{text-align:center;margin-bottom:22px;}
+.phc-title span{font-size:2.5rem;display:block;margin-bottom:8px;}
+.phc-title h2{font-family:'Gaegu',cursive;font-size:1.8rem;color:#1a5c35;font-weight:700;}
+.phc-title p{color:#666;font-size:0.84rem;margin-top:5px;}
+.pledge-items{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-bottom:24px;}
+.pi{background:linear-gradient(135deg,#d4f5e2,rgba(184,234,247,0.55));border-radius:15px;padding:15px;display:flex;align-items:flex-start;gap:10px;border:1px solid rgba(76,175,125,0.18);transition:transform 0.2s;}
+.pi:hover{transform:scale(1.02);}
+.pi-ic{font-size:1.55rem;flex-shrink:0;}
+.pi-tx{font-size:0.85rem;color:#1a5c35;line-height:1.5;font-weight:500;}
+.wall-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;}
+.wall-post{background:var(--card-bg);border-radius:18px;padding:18px;border-left:4px solid #4caf7d;transition:all 0.25s;}
+.wall-post:nth-child(3n+2){border-left-color:#4db8e8;}
+.wall-post:nth-child(3n){border-left-color:#ffd166;}
+.wall-post:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,0.15);}
+.wp-header{display:flex;align-items:center;gap:9px;margin-bottom:10px;}
+.wp-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#d4f5e2,#b8eaf7);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.wp-name{font-size:0.87rem;font-weight:700;color:#1a5c35;}
+.wp-date{font-size:0.71rem;color:#aaa;}
+.wp-text{font-size:0.85rem;color:#444;line-height:1.65;}
+.wp-promise{margin-top:9px;padding-top:9px;border-top:1px solid rgba(76,175,125,0.12);font-size:0.77rem;color:#2d8653;font-style:italic;}
+.loading{text-align:center;color:rgba(255,255,255,0.7);padding:40px;font-size:0.9rem;}
+.loading::before{content:'⏳ ';font-size:1.4rem;}
 </style>
 </head>
 <body>
-<div class="bubbles"><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div></div>
-
-<div class="top-banner">
-  <span class="txt">🏫 <strong>봉곡중학교</strong> · 2026학년도 1학년 5반 탄소중립학급</span>
-  <button class="ab" id="aBtn">🔐 관리자</button>
+<div class="bg-bubbles"><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div></div>
+<div class="school-top-banner">
+  <span>🏫 <strong>봉곡중학교</strong> · 2026학년도 1학년 5반 탄소중립학급</span>
+  <button class="admin-toggle-btn" id="adminToggleBtn" onclick="openAdminModal()">🔐 관리자</button>
 </div>
-<div class="admin-bar" id="aBar">
-  <p>🔐 <strong>관리자 모드 활성화</strong> — 카드에 수정/삭제 버튼이 표시됩니다. &nbsp;
-    <button id="logoutBtn" style="background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);color:#fff;padding:3px 11px;border-radius:8px;cursor:pointer;font-size:.76rem;font-family:'Noto Sans KR',sans-serif;">🚪 로그아웃</button>
+<div class="admin-bar" id="adminBar">
+  <p>🔐 <strong>관리자 모드</strong> — 각 카드에 수정/삭제 버튼이 표시됩니다. &nbsp;
+    <button onclick="exitAdmin()" style="background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:3px 11px;border-radius:8px;cursor:pointer;font-size:0.77rem;font-family:'Noto Sans KR',sans-serif;">🚪 로그아웃</button>
   </p>
 </div>
 <nav>
   <a href="index.html">🏠 홈</a>
-  <a href="pledge.html" class="cur">📜 서약서</a>
+  <a href="pledge.html" class="active">📜 서약서</a>
   <a href="books.html">📚 도서소감</a>
   <a href="market.html">🛍️ 중고장터</a>
   <a href="diary.html">📓 탄소일기</a>
 </nav>
-<div class="ph"><h1>📜 탄소중립 실천 서약서</h1><p>학기 초, 우리의 다짐을 함께 나눠요 · 봉곡중학교 1학년 5반</p></div>
-
-<!-- DB 연결 상태 표시 -->
-<div class="db-status connecting" id="dbStatus">🔄 DB 연결 중...</div>
-
-<div class="wrap">
-  <div class="pledge-card">
-    <div class="pc-title">
-      <span class="ico">🤝</span>
-      <h2>우리 학급의 탄소중립 실천 약속</h2>
-      <p>아래의 실천 항목을 지키며 지구를 지키는 멋진 학급이 되어요!</p>
-    </div>
-    <div class="pi-grid">
+<div class="page-header">
+  <h1>📜 탄소중립 실천 서약서</h1>
+  <p>학기 초, 우리의 다짐을 함께 나눠요 · 봉곡중학교 1학년 5반</p>
+</div>
+<div class="container">
+  <div class="pledge-header-card">
+    <div class="phc-title"><span>🤝</span><h2>우리 학급의 탄소중립 실천 약속</h2><p>아래의 실천 항목을 지키며 지구를 지키는 멋진 학급이 되어요!</p></div>
+    <div class="pledge-items">
       <div class="pi"><span class="pi-ic">🚶</span><div class="pi-tx">가까운 거리는 걷거나 자전거를 이용해 이동할게요</div></div>
       <div class="pi"><span class="pi-ic">♻️</span><div class="pi-tx">쓰레기는 올바르게 분리배출하고 자원을 아껴 쓸게요</div></div>
       <div class="pi"><span class="pi-ic">🍽️</span><div class="pi-tx">급식을 남기지 않고 음식물 쓰레기를 줄일게요</div></div>
@@ -144,306 +66,133 @@ body.admin .post{outline:2px dashed rgba(231,76,60,.2);outline-offset:2px;}
       <div class="pi"><span class="pi-ic">🌱</span><div class="pi-tx">매달 환경 관련 도서를 읽고 환경 지식을 쌓을게요</div></div>
       <div class="pi"><span class="pi-ic">🛒</span><div class="pi-tx">물건을 새로 사기 전에 중고 거래를 먼저 생각할게요</div></div>
     </div>
-    <div class="wbox">
-      <h3>✍️ 나의 탄소중립 서약서 작성하기</h3>
-      <div class="frow">
-        <div class="fg" id="nameWrap"></div>
-        <div class="fg"><label>날짜</label><input type="date" id="pDate"></div>
-      </div>
-      <div class="fg" style="margin-bottom:10px;">
-        <label>탄소중립 실천 서약 내용 <span style="color:#e74c3c">*</span></label>
-        <textarea id="pText" placeholder="예: 저는 매일 텀블러를 사용하고, 가까운 거리는 걷겠습니다!"></textarea>
-      </div>
-      <div class="fg" style="margin-bottom:14px;">
-        <label>나만의 추가 약속 (선택)</label>
-        <input type="text" id="pPromise" placeholder="예: 텀블러 매일 사용하기">
-      </div>
-      <button class="btn btn-g" id="subBtn">🌿 서약서 공유하기</button>
+  </div>
+  <div class="write-box">
+    <h3>✍️ 나의 탄소중립 서약서 작성하기</h3>
+    <div class="form-row">
+      <div id="studentSelectWrap"></div>
+      <div class="fg"><label>날짜</label><input type="date" id="pledgeDate"></div>
     </div>
+    <div class="fg" style="margin-bottom:13px;">
+      <label>나만의 특별한 탄소중립 실천 약속</label>
+      <textarea id="pledgeText" placeholder="예: 저는 매일 텀블러를 사용하고, 가까운 거리는 걷겠습니다!"></textarea>
+    </div>
+    <div class="fg" style="margin-bottom:13px;">
+      <label>추가 약속 (선택)</label>
+      <input type="text" id="pledgePromise" placeholder="예: 텀블러 매일 사용 & 장바구니 실천">
+    </div>
+    <button class="btn btn-green" id="submitBtn" onclick="submitPledge()">🌿 서약서 공유하기</button>
   </div>
-
-  <div class="wall-label">💚 우리 반 서약서 <span id="cnt" style="opacity:.7;font-size:.84rem;font-family:'Noto Sans KR'"></span></div>
-  <div class="wall" id="wall"></div>
+  <div style="color:#fff;font-family:'Gaegu',cursive;font-size:1.1rem;margin-bottom:13px;">
+    💚 우리 반 서약서 <span id="pledgeCount" style="opacity:0.7;font-size:0.85rem;font-family:'Noto Sans KR'"></span>
+  </div>
+  <div class="wall-grid" id="pledgeWall"><div class="loading">데이터를 불러오는 중...</div></div>
 </div>
 
-<!-- 관리자 모달 -->
-<div class="overlay" id="aModal">
-  <div class="mbox">
+<div class="modal-overlay" id="adminModal">
+  <div class="modal-box">
     <h3>🔐 관리자 로그인</h3><p>관리자 비밀번호를 입력해 주세요</p>
-    <input type="password" class="pw" id="pwInp" placeholder="비밀번호">
-    <div class="merr" id="pwErr">❌ 비밀번호가 올바르지 않습니다</div>
-    <div class="mbtns"><button class="btn btn-g" id="pwOk">✅ 확인</button><button class="btn btn-gray" id="pwCx">취소</button></div>
+    <input type="password" class="pw-input" id="adminPwInput" placeholder="비밀번호" onkeydown="if(event.key==='Enter')checkAdmin()">
+    <div class="modal-err" id="adminErr">❌ 비밀번호가 올바르지 않습니다</div>
+    <div class="modal-btns"><button class="btn btn-green" onclick="checkAdmin()">✅ 확인</button><button class="btn btn-gray" onclick="closeAdminModal()">취소</button></div>
   </div>
 </div>
-<!-- 편집 모달 -->
-<div class="overlay" id="eModal">
-  <div class="mbox"><div id="eBody"></div>
-    <div class="mbtns" style="margin-top:6px;"><button class="btn btn-g" id="eSave">💾 저장</button><button class="btn btn-gray" id="eCx">취소</button></div>
+<div class="modal-overlay" id="editModal">
+  <div class="modal-box"><div id="editModalBody"></div>
+    <div class="modal-btns" style="margin-top:4px"><button class="btn btn-green" id="editSaveBtn">💾 저장</button><button class="btn btn-gray" onclick="closeEditModal()">취소</button></div>
   </div>
 </div>
-
 <div class="toast" id="toast"></div>
-<button class="stb" id="stb">↑</button>
-
-<div class="footer">
-  <span class="fe">🌍</span><div class="sn">🏫 봉곡중학교</div>
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<div class="school-bottom-banner">
+  <span class="footer-earth">🌍</span><div class="school-name">🏫 봉곡중학교</div>
   <p>🌿 탄소중립 학급 · 초록별 프로젝트 · 2026학년도 1학년 5반 🌿<br>우리의 작은 실천이 지구를 더 오래 살게 합니다</p>
 </div>
 
-<!-- ✅ Firebase CDN (compat 버전 - 일반 HTML에서 사용 가능) -->
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+<script type="module">
+import {
+  STUDENTS, studentIndex, esc, isAdmin, openAdminModal, closeAdminModal, checkAdmin,
+  exitAdmin, applyAdminUI, subscribeCollection, addItem, updateItem,
+  deleteItem, showEditModal, closeEditModal, adminActions, showToast,
+  formatDate, nowDate, getStudentSelect
+} from "./shared.js";
 
-<script>
-// ===================== ✅ Firebase 설정 (실제 프로젝트 값 적용됨) =====================
-var firebaseConfig = {
-  apiKey:            "AIzaSyBtUnIx0_PH3VCZk8wYlcLPQfnZ7r5vrz4",
-  authDomain:        "bonggok-carbon-neutrality.firebaseapp.com",
-  // ⚠️ databaseURL: Firebase 콘솔 > Realtime Database 에서 복사한 URL 입력
-  // 예시(싱가포르): "https://bonggok-carbon-neutrality-default-rtdb.asia-southeast1.firebasedatabase.app"
-  // 예시(미국):     "https://bonggok-carbon-neutrality-default-rtdb.firebaseio.com"
-  databaseURL:       "https://bonggok-carbon-neutrality-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId:         "bonggok-carbon-neutrality",
-  storageBucket:     "bonggok-carbon-neutrality.firebasestorage.app",
-  messagingSenderId: "742763830070",
-  appId:             "1:742763830070:web:2b458f95c40d220ffff197"
-};
+// 전역 노출 (onclick 속성에서 호출)
+Object.assign(window, { openAdminModal, closeAdminModal, checkAdmin, exitAdmin, deleteItem, closeEditModal });
 
-firebase.initializeApp(firebaseConfig);
-var db = firebase.database();
-var pledgesRef = db.ref("pledges");
+const KEY = "pledges";
+const AVATARS = ["🌱","🌊","☘️","🦋","🌻","🐢","🍀","🌸","🌴","🌈","🦚","🐸","🌵","🍃","🌺","🦜","🌿","🐦","🌙","🍂","🌼","🐝","🦊","🌷","🌞","🐬"];
+let allData = [];
 
-// ===================== 설정 =====================
-var PW  = "1234";   // 관리자 비밀번호 (변경 권장)
-
-// ===================== 학생 명단 =====================
-var ST = ["강예솔","권예은","김서윤","권정훈","김세혁","김예은","김온유","김태윤",
-          "나수인","박규연","박승준","박지우","배종혁","송민솔","양나경","오은율",
-          "유민서","이민성","이송민","이태현","임효린","정해지","차경호","최진리",
-          "최하얀","황승준"];
-
-var AV  = ["🌱","🌊","☘️","🦋","🌻","🐢","🍀","🌸","🌴","🌈","🦚","🐸","🌵","🍃","🌺","🦜","🌿","🐦","🌙","🍂","🌼","🐝","🦊","🌷","🌞","🐬"];
-
-// ===================== 유틸 =====================
-var idxMap = {};
-ST.forEach(function(s, i) { idxMap[s] = i; });
-
-function fd(d) { return d ? String(d).replace(/-/g, ".") : ""; }
-function today() { return new Date().toISOString().slice(0, 10); }
-function isA() { return sessionStorage.getItem("adm") === "1"; }
-
-var _tt;
-function toast(m) {
-  var t = document.getElementById("toast");
-  t.textContent = m;
-  t.classList.add("show");
-  clearTimeout(_tt);
-  _tt = setTimeout(function() { t.classList.remove("show"); }, 2700);
-}
-
-// ===================== DB 연결 상태 표시 =====================
-var statusEl = document.getElementById("dbStatus");
-var connRef = db.ref(".info/connected");
-connRef.on("value", function(snap) {
-  if (snap.val() === true) {
-    statusEl.textContent = "✅ Firebase 연결됨";
-    statusEl.className = "db-status connected";
-    setTimeout(function() { statusEl.style.opacity = "0"; }, 3000);
-  } else {
-    statusEl.textContent = "🔄 DB 연결 중...";
-    statusEl.className = "db-status connecting";
-    statusEl.style.opacity = "1";
-  }
-});
-
-// ===================== 관리자 UI =====================
-function applyA() {
-  var on = isA();
-  document.getElementById("aBar").classList.toggle("show", on);
-  var b = document.getElementById("aBtn");
-  b.classList.toggle("on", on);
-  b.textContent = on ? "🔓 관리자 ON" : "🔐 관리자";
-  document.body.classList.toggle("admin", on);
-}
-
-document.getElementById("aBtn").onclick = function() {
-  if (isA()) {
-    sessionStorage.removeItem("adm");
-    applyA();
-    toast("관리자 모드 종료");
-    return;
-  }
-  document.getElementById("pwInp").value = "";
-  document.getElementById("pwErr").style.display = "none";
-  document.getElementById("aModal").classList.add("show");
-  setTimeout(function() { document.getElementById("pwInp").focus(); }, 100);
-};
-document.getElementById("logoutBtn").onclick = function() {
-  sessionStorage.removeItem("adm");
-  applyA();
-  toast("관리자 모드 종료");
-};
-document.getElementById("pwCx").onclick = function() {
-  document.getElementById("aModal").classList.remove("show");
-};
-document.getElementById("pwOk").onclick = function() {
-  if (document.getElementById("pwInp").value === PW) {
-    sessionStorage.setItem("adm", "1");
-    document.getElementById("aModal").classList.remove("show");
-    applyA();
-    toast("🔐 관리자 모드 활성화됨");
-  } else {
-    document.getElementById("pwErr").style.display = "block";
-  }
-};
-document.getElementById("pwInp").onkeydown = function(e) {
-  if (e.key === "Enter") document.getElementById("pwOk").click();
-};
-
-// ===================== 렌더링 =====================
 function render(data) {
-  document.getElementById("cnt").textContent = "(" + data.length + "명)";
-  var w = document.getElementById("wall");
+  allData = data;
+  document.getElementById("pledgeCount").textContent = `(${data.length}명)`;
+  const wall = document.getElementById("pledgeWall");
   if (!data.length) {
-    w.innerHTML = '<div class="empty"><div class="ei">📜</div><p>아직 서약서가 없어요. 첫 번째로 작성해 보세요!</p></div>';
+    wall.innerHTML = `<div style="grid-column:1/-1;text-align:center;color:rgba(255,255,255,0.65);padding:40px 20px;"><div style="font-size:3rem;margin-bottom:10px">📜</div><p>아직 서약서가 없어요. 첫 번째로 작성해 보세요!</p></div>`;
     return;
   }
-  w.innerHTML = data.map(function(item) {
-    var si = idxMap[item.name] !== undefined ? idxMap[item.name] : 0;
-    return '<div class="post">' +
-      '<div class="post-head"><div class="av">' + AV[si % AV.length] + '</div>' +
-      '<div><div class="pname">' + (si + 1) + '번 · ' + item.name + '</div>' +
-      '<div class="pdate">' + fd(item.date) + '</div></div></div>' +
-      '<div class="ptext">' + item.text + '</div>' +
-      (item.promise ? '<div class="ppromise">💪 나만의 약속: ' + item.promise + '</div>' : '') +
-      '<div class="aa">' +
-        '<button class="ae" onclick="openEdit(&quot;' + item.id + '&quot;)">✏️ 수정</button>' +
-        '<button class="ad" onclick="del(&quot;' + item.id + '&quot;)">🗑️ 삭제</button>' +
-      '</div></div>';
+  wall.innerHTML = data.map(item => {
+    const si = studentIndex(item.name);
+    return `<div class="wall-post deletable">
+      <div class="wp-header">
+        <div class="wp-avatar">${si>=0 ? AVATARS[si % AVATARS.length] : "🌱"}</div>
+        <div><div class="wp-name">${si>=0 ? (si+1)+"번 · " : ""}${esc(item.name)}</div><div class="wp-date">${formatDate(item.date)}</div></div>
+      </div>
+      <div class="wp-text">${esc(item.text)}</div>
+      ${item.promise ? `<div class="wp-promise">💪 나만의 약속: ${esc(item.promise)}</div>` : ""}
+      ${adminActions(KEY, item, "editPledge")}
+    </div>`;
   }).join("");
 }
+window.renderAll = () => {}; // 실시간 구독으로 자동 갱신
 
-// ===================== 실시간 데이터 리스너 (핵심!) =====================
-pledgesRef.on("value", function(snapshot) {
-  var data = [];
-  snapshot.forEach(function(child) {
-    var item = child.val();
-    item.id = child.key;
-    data.push(item);
-  });
-  // 등록일 기준 오름차순 정렬
-  data.sort(function(a, b) {
-    return (a.createdAt || 0) - (b.createdAt || 0);
-  });
-  render(data);
-}, function(error) {
-  statusEl.textContent = "❌ DB 오류: " + error.code;
-  statusEl.className = "db-status error";
-  statusEl.style.opacity = "1";
-  toast("❌ 데이터베이스 오류: " + error.message);
-  console.error("Firebase error:", error);
-});
+async function submitPledge() {
+  const name    = document.getElementById("pledgeName")?.value;
+  const date    = document.getElementById("pledgeDate").value;
+  const text    = document.getElementById("pledgeText").value.trim();
+  const promise = document.getElementById("pledgePromise").value.trim();
+  if (!name)   { showToast("⚠️ 이름을 선택해 주세요"); return; }
+  if (!text)   { showToast("⚠️ 실천 약속을 입력해 주세요"); return; }
+  const btn = document.getElementById("submitBtn");
+  btn.disabled = true; btn.textContent = "저장 중...";
+  const ok = await addItem(KEY, { name, date, text, promise });
+  btn.disabled = false; btn.textContent = "🌿 서약서 공유하기";
+  if (ok) {
+    document.getElementById("pledgeText").value = "";
+    document.getElementById("pledgePromise").value = "";
+    document.getElementById("pledgeName").value = "";
+    showToast("🌿 서약서가 등록되었습니다!");
+  }
+}
 
-// ===================== 이름 select 생성 =====================
-document.getElementById("nameWrap").innerHTML =
-  '<label style="display:block;font-size:.75rem;color:#555;margin-bottom:4px;font-weight:600;">이름 <span style="color:#e74c3c">*</span></label>' +
-  '<select id="pName" style="width:100%;padding:9px 13px;border:2px solid rgba(76,175,125,.2);border-radius:11px;font-size:.85rem;font-family:\'Noto Sans KR\',sans-serif;background:rgba(255,255,255,.9);color:#333;outline:none;">' +
-  '<option value="">-- 이름 선택 --</option>' +
-  ST.map(function(s, i) {
-    return '<option value="' + s + '">' + (i + 1) + '번 ' + s + '</option>';
-  }).join("") +
-  '</select>';
-document.getElementById("pDate").value = today();
-
-// ===================== 제출 =====================
-document.getElementById("subBtn").onclick = function() {
-  var name    = document.getElementById("pName").value;
-  var date    = document.getElementById("pDate").value;
-  var text    = document.getElementById("pText").value.trim();
-  var promise = document.getElementById("pPromise").value.trim();
-
-  if (!name) { toast("⚠️ 이름을 선택해 주세요"); return; }
-  if (!text) { toast("⚠️ 서약 내용을 입력해 주세요"); return; }
-
-  // ✅ 중복 제출 방지: Firebase에서 같은 이름 확인
-  pledgesRef.orderByChild("name").equalTo(name).once("value", function(snap) {
-    if (snap.exists()) {
-      toast("⚠️ " + name + " 학생은 이미 서약서를 작성했어요!");
-      return;
-    }
-    var btn = document.getElementById("subBtn");
-    btn.disabled = true;
-    btn.textContent = "저장 중...";
-
-    // ✅ Firebase에 저장
-    pledgesRef.push({
-      name:      name,
-      date:      date,
-      text:      text,
-      promise:   promise,
-      createdAt: firebase.database.ServerValue.TIMESTAMP
-    }).then(function() {
-      btn.disabled = false;
-      btn.textContent = "🌿 서약서 공유하기";
-      document.getElementById("pText").value    = "";
-      document.getElementById("pPromise").value = "";
-      document.getElementById("pName").value    = "";
-      toast("🌿 서약서가 등록되었습니다!");
-    }).catch(function(error) {
-      btn.disabled = false;
-      btn.textContent = "🌿 서약서 공유하기";
-      toast("❌ 저장 오류: " + error.message);
+window.editPledge = (id) => {
+  const item = allData.find(x => x.id === id);
+  if (!item) return;
+  showEditModal("서약서", [
+    { id:"text",    label:"서약 내용",   type:"textarea", value: item.text || "" },
+    { id:"promise", label:"나만의 약속", type:"text",     value: item.promise || "" },
+    { id:"date",    label:"날짜",        type:"date",     value: item.date || "" },
+  ], async () => {
+    const text = document.getElementById("ef_text").value.trim();
+    if (!text) { showToast("⚠️ 서약 내용을 비워둘 수 없어요"); return; }
+    await updateItem(KEY, id, {
+      text,
+      promise: document.getElementById("ef_promise").value.trim(),
+      date:    document.getElementById("ef_date").value,
     });
+    closeEditModal();
+    showToast("✅ 수정되었습니다");
   });
 };
 
-// ===================== 삭제 =====================
-function del(id) {
-  if (!confirm("정말 삭제할까요?")) return;
-  pledgesRef.child(id).remove()
-    .then(function() { toast("🗑️ 삭제되었습니다"); })
-    .catch(function(error) { toast("❌ 삭제 오류: " + error.message); });
-}
+window.submitPledge = submitPledge;
 
-// ===================== 편집 =====================
-var _saveFn = null;
-function openEdit(id) {
-  pledgesRef.child(id).once("value", function(snap) {
-    var item = snap.val();
-    if (!item) return;
-    document.getElementById("eBody").innerHTML =
-      '<h3>✏️ 서약서 수정</h3><p>내용을 수정한 후 저장하세요</p>' +
-      '<div class="ef"><label>서약 내용</label><textarea id="ef_t">' + item.text + '</textarea></div>' +
-      '<div class="ef"><label>나만의 약속</label><input type="text" id="ef_p" value="' + (item.promise || "") + '"></div>' +
-      '<div class="ef"><label>날짜</label><input type="date" id="ef_d" value="' + (item.date || "") + '"></div>';
-    _saveFn = function() {
-      pledgesRef.child(id).update({
-        text:    document.getElementById("ef_t").value,
-        promise: document.getElementById("ef_p").value,
-        date:    document.getElementById("ef_d").value
-      }).then(function() {
-        document.getElementById("eModal").classList.remove("show");
-        toast("✅ 수정되었습니다");
-      }).catch(function(error) {
-        toast("❌ 수정 오류: " + error.message);
-      });
-    };
-    document.getElementById("eModal").classList.add("show");
-  });
-}
-document.getElementById("eSave").onclick = function() { if (_saveFn) _saveFn(); };
-document.getElementById("eCx").onclick   = function() { document.getElementById("eModal").classList.remove("show"); };
-
-// ===================== 스크롤 =====================
-var sb = document.getElementById("stb");
-sb.onclick = function() { window.scrollTo({ top: 0, behavior: "smooth" }); };
-window.onscroll = function() {
-  sb.style.opacity      = scrollY > 180 ? "1" : "0";
-  sb.style.pointerEvents = scrollY > 180 ? "auto" : "none";
-};
-
-// ===================== 초기화 =====================
-applyA();
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("studentSelectWrap").innerHTML = getStudentSelect("pledgeName","이름");
+  document.getElementById("pledgeDate").value = nowDate();
+  subscribeCollection(KEY, render);
+});
 </script>
 </body>
 </html>

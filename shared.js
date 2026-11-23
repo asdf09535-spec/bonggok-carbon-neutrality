@@ -1,6 +1,6 @@
 // ================================================================
 //  봉곡중 1-5 탄소중립 · Firebase Firestore 연동 공유 모듈
-//  ⚠️  아래 firebaseConfig 값을 본인 프로젝트 값으로 교체하세요!
+//  (firebaseConfig는 bonggok-carbon-neutrality 프로젝트 값으로 설정 완료)
 // ================================================================
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -32,10 +32,25 @@ const db  = getFirestore(app);
 const ADMIN_PW = "2781"; // ← 비밀번호 변경 시 여기만 수정
 const STUDENTS = [
   "강예솔","권예은","김서윤","권정훈","김세혁","김예은","김온유","김태윤",
-  "나수인","박규연","박승준","박지우","배종혁","송민슬","양나경","오은율",
+  "나수인","박규연","박승준","박지우","배종혁","송민솔","양나경","오은율",
   "유민서","이민성","이승민","이태현","임효린","정해지","차경호","최진리",
   "최하안","황승준"
 ];
+
+// 예전 버전/오타로 저장된 이름도 같은 번호로 보이게 하는 별칭표
+const NAME_ALIAS = { "송민슬":"송민솔", "이송민":"이승민", "최하얀":"최하안" };
+const _idx = STUDENTS.reduce((a,s,i)=>{ a[s]=i; return a; }, {});
+/** 이름 → 0부터 시작하는 번호 (없으면 -1) */
+function studentIndex(name) {
+  const n = String(name||"").trim();
+  if (n in _idx) return _idx[n];
+  if (NAME_ALIAS[n] in _idx) return _idx[NAME_ALIAS[n]];
+  return -1;
+}
+/** HTML 특수문자 처리 (학생이 쓴 글이 화면을 깨뜨리지 않게) */
+function esc(v) {
+  return String(v ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
+}
 
 // ────────────────────────────────────────────────────────────────
 //  관리자 인증
@@ -125,11 +140,11 @@ function showEditModal(title, fields, onSave) {
   fields.forEach(f => {
     const lbl = `<label style="font-size:.77rem;color:#555;font-weight:600;display:block;margin-bottom:4px;text-align:left">${f.label}</label>`;
     if (f.type === "textarea")
-      html += `<div>${lbl}<textarea id="ef_${f.id}" style="${s}resize:none;height:78px">${f.value||""}</textarea></div>`;
+      html += `<div>${lbl}<textarea id="ef_${f.id}" style="${s}resize:none;height:78px">${esc(f.value)}</textarea></div>`;
     else if (f.type === "select")
-      html += `<div>${lbl}<select id="ef_${f.id}" style="${s}">${f.options.map(o=>`<option value="${o.v}"${o.v===f.value?" selected":""}>${o.l}</option>`).join("")}</select></div>`;
+      html += `<div>${lbl}<select id="ef_${f.id}" style="${s}">${f.options.map(o=>`<option value="${esc(o.v)}"${String(o.v)===String(f.value)?" selected":""}>${esc(o.l)}</option>`).join("")}</select></div>`;
     else
-      html += `<div>${lbl}<input type="${f.type||"text"}" id="ef_${f.id}" value="${f.value||""}" style="${s}"></div>`;
+      html += `<div>${lbl}<input type="${f.type||"text"}" id="ef_${f.id}" value="${esc(f.value)}" style="${s}"></div>`;
   });
   document.getElementById("editModalBody").innerHTML = html;
   document.getElementById("editSaveBtn").onclick = onSave;
@@ -155,7 +170,10 @@ function showToast(msg) {
   setTimeout(() => t.classList.remove("show"), 2700);
 }
 function formatDate(d) { return d ? String(d).replace(/-/g, ".") : ""; }
-function nowDate()     { return new Date().toISOString().slice(0, 10); }
+function nowDate() {            // 한국 시간 기준 오늘 날짜 (오전 9시 전에도 날짜가 하루 밀리지 않음)
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+}
 function getStudentSelect(id, label) {
   return `<div class="fg"><label>${label||"이름"}</label>
     <select id="${id}"><option value="">-- 이름 선택 --</option>
@@ -179,7 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
 //  전역 노출
 // ────────────────────────────────────────────────────────────────
 export {
-  db, STUDENTS, ADMIN_PW,
+  db, STUDENTS, ADMIN_PW, studentIndex, esc,
   isAdmin, openAdminModal, closeAdminModal, checkAdmin, exitAdmin, applyAdminUI,
   subscribeCollection, addItem, updateItem, deleteItem,
   showEditModal, closeEditModal, adminActions,

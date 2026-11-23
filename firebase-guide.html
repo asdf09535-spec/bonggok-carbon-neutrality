@@ -91,18 +91,18 @@ h1{font-family:'Gaegu',cursive;font-size:2.2rem;color:#fff;text-align:center;mar
     <p>Firestore Database → <strong>[ 규칙 ]</strong> 탭을 클릭하고, 아래 내용으로 교체 후 <strong>게시</strong>하세요.</p>
     <div class="code-box">
       <button class="copy-btn" onclick="copyCode(this)">복사</button>
-<pre><span class="comment">// 누구나 읽기 가능, 쓰기도 가능 (학교 내부용 설정)</span>
+<pre><span class="comment">// 누구나 읽기 가능, 사이트에서 쓰는 4개 컬렉션만 쓰기 가능 (날짜 제한 없음)</span>
 rules_version = <span class="val">'2'</span>;
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /{document=**} {
+    match /{collection}/{docId} {
       allow read: <span class="key">if</span> true;
-      allow write: <span class="key">if</span> true;
+      allow create, update, delete: <span class="key">if</span> collection <span class="key">in</span> [<span class="val">'pledges'</span>, <span class="val">'books'</span>, <span class="val">'market'</span>, <span class="val">'diary'</span>];
     }
   }
 }</pre>
     </div>
-    <div class="highlight">💡 학교 내부 사용 목적이므로 위 규칙으로 충분합니다. 외부 공개 사이트라면 인증 규칙을 추가해야 합니다.</div>
+    <div class="highlight">💡 테스트 모드 규칙은 30일 뒤 만료되어 사이트가 멈추므로, 꼭 위 규칙으로 바꿔 두세요. 삭제까지 완전히 막으려면 Firebase Authentication을 추가해야 합니다.</div>
   </div>
 
   <!-- STEP 5 -->
@@ -124,7 +124,7 @@ service cloud.firestore {
     </div>
     <p>비밀번호도 이 파일에서 변경할 수 있습니다:</p>
     <div class="code-box">
-<pre><span class="key">const</span> ADMIN_PW = <span class="val">"1234"</span>; <span class="comment">// ← 원하는 비밀번호로 변경</span></pre>
+<pre><span class="key">const</span> ADMIN_PW = <span class="val">"새비밀번호"</span>; <span class="comment">// ← 원하는 비밀번호로 변경</span></pre>
     </div>
   </div>
 
